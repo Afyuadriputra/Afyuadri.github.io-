@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Afyuadri Putra — Full-Stack Software Engineer</title>
+<meta name="description" content="Portfolio Afyuadri Putra — Full-Stack Software Engineer specializing in Laravel, modern web development, software engineering, and AI integration.">
+
+<!-- FONTS -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<!-- MATERIAL SYMBOLS -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
+
+<!-- TAILWIND -->
+<script src="https://cdn.tailwindcss.com"></script>
+<script>tailwind.config={theme:{extend:{colors:{portfolio:{background:"#F7F7F7",surface:"#EEEEEE",dark:"#393E46",muted:"#929AAB",white:"#FFFFFF"}},fontFamily:{sans:["Geist","Inter","sans-serif"],mono:["JetBrains Mono","monospace"]},maxWidth:{portfolio:"1240px"}}}}</script>
+
+<!-- ALPINE FOCUS + CORE -->
+<script defer src="https://cdn.jsdelivr.net/npm/@alpinejs/focus@3.15.12/dist/cdn.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.15.12/dist/cdn.min.js"></script>
+
+<style>
+[x-cloak]{display:none!important}*{box-sizing:border-box}html{scroll-behavior:smooth;background:#F7F7F7;scrollbar-gutter:stable}body{margin:0;background:#F7F7F7}.material-symbols-outlined{font-variation-settings:"FILL" 0,"wght" 400,"GRAD" 0,"opsz" 24}::selection{background:#393E46;color:#fff}.nav-link::after{content:"";position:absolute;left:12px;right:12px;bottom:5px;height:1px;background:#393E46;transform:scaleX(0);transform-origin:center;transition:transform .18s ease}.nav-link:hover::after,.nav-link:focus-visible::after{transform:scaleX(1)}@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}}
+</style>
+</head>
+
+<body class="overflow-x-hidden bg-portfolio-background font-sans text-portfolio-dark antialiased">
+
+<!-- ============================================================
+     NAVIGATION
+     NOTE:
+     target="_parent" is intentional because this HTML runs
+     inside the iframe shell from index.html.
+============================================================ -->
+<div x-data="portfolioNav()" @keydown.escape.window="escape()" class="relative">
+
+<nav class="hidden fixed inset-x-0 top-0 z-50 border-b border-portfolio-surface bg-portfolio-background/95 backdrop-blur-md">
+<div class="mx-auto grid h-[72px] max-w-portfolio grid-cols-[1fr_auto] items-center px-5 sm:px-6 lg:grid-cols-[1fr_auto_1fr] lg:px-8">
+
+<!-- BRAND -->
+<div class="flex items-center justify-start">
+<a href="#home" target="_parent" aria-label="Afyuadri Putra — Home" class="group inline-flex h-11 items-center gap-2 rounded-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-portfolio-muted focus-visible:ring-offset-2 focus-visible:ring-offset-portfolio-background">
+<span class="text-[27px] font-semibold tracking-[-.055em] text-portfolio-dark transition-opacity duration-200 group-hover:opacity-70">AP.</span>
+<span class="hidden h-1 w-1 rounded-full bg-portfolio-muted sm:block"></span>
+<span class="hidden font-mono text-[8px] uppercase tracking-[.14em] text-portfolio-muted sm:block">Full-Stack Engineer</span>
+</a>
+</div>
+
+<!-- DESKTOP PRIMARY NAVIGATION -->
+<div class="hidden items-center justify-center lg:flex">
+<div class="flex h-11 items-center gap-0.5" aria-label="Primary navigation">
+
+<a href="#work" target="_parent" class="nav-link relative inline-flex h-11 items-center px-3 font-mono text-[10.5px] font-medium text-portfolio-muted transition-colors duration-200 hover:text-portfolio-dark focus-visible:outline-none focus-visible:text-portfolio-dark"><span>Work</span></a>
+
+<a href="#capabilities" target="_parent" class="nav-link relative inline-flex h-11 items-center px-3 font-mono text-[10.5px] font-medium text-portfolio-muted transition-colors duration-200 hover:text-portfolio-dark focus-visible:outline-none focus-visible:text-portfolio-dark"><span>Capabilities</span></a>
+
+<a href="#ai-engineering" target="_parent" class="nav-link relative inline-flex h-11 items-center px-3 font-mono text-[10.5px] font-medium text-portfolio-muted transition-colors duration-200 hover:text-portfolio-dark focus-visible:outline-none focus-visible:text-portfolio-dark"><span>AI</span></a>
+
+<a href="#more-work" target="_parent" class="nav-link relative inline-flex h-11 items-center px-3 font-mono text-[10.5px] font-medium text-portfolio-muted transition-colors duration-200 hover:text-portfolio-dark focus-visible:outline-none focus-visible:text-portfolio-dark"><span>Experience</span></a>
+
+<a href="#project-archive" target="_parent" class="nav-link relative inline-flex h-11 items-center px-3 font-mono text-[10.5px] font-medium text-portfolio-muted transition-colors duration-200 hover:text-portfolio-dark focus-visible:outline-none focus-visible:text-portfolio-dark"><span>Archive</span></a>
+
+<a href="#contact" target="_parent" class="nav-link relative inline-flex h-11 items-center px-3 font-mono text-[10.5px] font-medium text-portfolio-muted transition-colors duration-200 hover:text-portfolio-dark focus-visible:outline-none focus-visible:text-portfolio-dark"><span>Contact</span></a>
+
+</div>
+</div>
+
+<!-- RIGHT ACTIONS -->
+<div class="flex items-center justify-end gap-1.5">
+
+<!-- DESKTOP CV -->
+<button type="button" @click="openCV()" class="group hidden h-11 items-center gap-2 rounded-lg bg-portfolio-dark px-4 text-white transition-opacity duration-200 hover:opacity-90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-portfolio-muted focus-visible:ring-offset-2 focus-visible:ring-offset-portfolio-background lg:inline-flex">
+<span class="material-symbols-outlined text-[16px]">description</span>
+<span class="font-mono text-[10px] font-medium">View CV</span>
+<span class="material-symbols-outlined text-[14px] transition-transform duration-200 group-hover:-translate-y-[1px] group-hover:translate-x-[2px]">arrow_outward</span>
+</button>
+
+<!-- MOBILE CV QUICK ACTION -->
+<button type="button" @click="openCV()" aria-label="View curriculum vitae" class="inline-flex h-11 w-11 items-center justify-center rounded-lg text-portfolio-dark transition-colors duration-200 hover:bg-portfolio-surface focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-portfolio-muted lg:hidden"><span class="material-symbols-outlined text-[20px]">description</span></button>
+
+<!-- MOBILE MENU -->
+<button type="button" @click="toggleMenu()" :aria-expanded="mobileOpen.toString()" aria-controls="mobile-navigation" :aria-label="mobileOpen?'Close navigation menu':'Open navigation menu'" class="inline-flex h-11 w-11 items-center justify-center rounded-lg text-portfolio-dark transition-colors duration-200 hover:bg-portfolio-surface focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-portfolio-muted lg:hidden"><span class="material-symbols-outlined text-[21px]" x-text="mobileOpen?'close':'menu'"></span></button>
+
+</div>
+</div>
+
+<!-- MOBILE BACKDROP: FIXED, DOES NOT ALTER DOCUMENT HEIGHT -->
+<div x-show="mobileOpen" x-cloak x-transition.opacity.duration.150ms @click="closeMenu()" class="fixed inset-x-0 bottom-0 top-[72px] -z-10 bg-[#393E46]/10 backdrop-blur-[1px] lg:hidden"></div>
+
+<!-- MOBILE MENU: ABSOLUTE OVERLAY, NO LAYOUT SHIFT -->
+<div id="mobile-navigation" x-show="mobileOpen" x-cloak @click.outside="closeMenu()" x-transition:enter="transition ease-out duration-180" x-transition:enter-start="-translate-y-[3px] opacity-0" x-transition:enter-end="translate-y-0 opacity-100" x-transition:leave="transition ease-in duration-120" x-transition:leave-start="translate-y-0 opacity-100" x-transition:leave-end="-translate-y-[3px] opacity-0" class="absolute inset-x-0 top-full border-b border-portfolio-surface bg-portfolio-background lg:hidden">
+
+<div class="mx-auto max-w-portfolio px-5 pb-5 pt-3 sm:px-6">
+
+<div class="grid grid-cols-1">
+
+<a href="#work" target="_parent" @click="closeMenu()" class="group flex min-h-[52px] items-center gap-4 border-b border-portfolio-surface py-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-portfolio-muted"><span class="w-5 font-mono text-[8px] text-portfolio-muted">01</span><span class="flex-1 text-[13px] font-medium text-portfolio-dark">Work</span><span class="material-symbols-outlined -translate-x-1 text-[16px] text-portfolio-muted opacity-0 transition-[opacity,transform] duration-200 group-hover:translate-x-0 group-hover:opacity-100">arrow_forward</span></a>
+
+<a href="#capabilities" target="_parent" @click="closeMenu()" class="group flex min-h-[52px] items-center gap-4 border-b border-portfolio-surface py-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-portfolio-muted"><span class="w-5 font-mono text-[8px] text-portfolio-muted">02</span><span class="flex-1 text-[13px] font-medium text-portfolio-dark">Capabilities</span><span class="material-symbols-outlined -translate-x-1 text-[16px] text-portfolio-muted opacity-0 transition-[opacity,transform] duration-200 group-hover:translate-x-0 group-hover:opacity-100">arrow_forward</span></a>
+
+<a href="#ai-engineering" target="_parent" @click="closeMenu()" class="group flex min-h-[52px] items-center gap-4 border-b border-portfolio-surface py-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-portfolio-muted"><span class="w-5 font-mono text-[8px] text-portfolio-muted">03</span><span class="flex-1 text-[13px] font-medium text-portfolio-dark">AI Engineering</span><span class="material-symbols-outlined -translate-x-1 text-[16px] text-portfolio-muted opacity-0 transition-[opacity,transform] duration-200 group-hover:translate-x-0 group-hover:opacity-100">arrow_forward</span></a>
+
+<a href="#more-work" target="_parent" @click="closeMenu()" class="group flex min-h-[52px] items-center gap-4 border-b border-portfolio-surface py-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-portfolio-muted"><span class="w-5 font-mono text-[8px] text-portfolio-muted">04</span><span class="flex-1 text-[13px] font-medium text-portfolio-dark">Experience</span><span class="material-symbols-outlined -translate-x-1 text-[16px] text-portfolio-muted opacity-0 transition-[opacity,transform] duration-200 group-hover:translate-x-0 group-hover:opacity-100">arrow_forward</span></a>
+
+<a href="#project-archive" target="_parent" @click="closeMenu()" class="group flex min-h-[52px] items-center gap-4 border-b border-portfolio-surface py-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-portfolio-muted"><span class="w-5 font-mono text-[8px] text-portfolio-muted">05</span><span class="flex-1 text-[13px] font-medium text-portfolio-dark">Project Archive</span><span class="material-symbols-outlined -translate-x-1 text-[16px] text-portfolio-muted opacity-0 transition-[opacity,transform] duration-200 group-hover:translate-x-0 group-hover:opacity-100">arrow_forward</span></a>
+
+<a href="#contact" target="_parent" @click="closeMenu()" class="group flex min-h-[52px] items-center gap-4 py-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-portfolio-muted"><span class="w-5 font-mono text-[8px] text-portfolio-muted">06</span><span class="flex-1 text-[13px] font-medium text-portfolio-dark">Contact</span><span class="material-symbols-outlined -translate-x-1 text-[16px] text-portfolio-muted opacity-0 transition-[opacity,transform] duration-200 group-hover:translate-x-0 group-hover:opacity-100">arrow_forward</span></a>
+
+</div>
+
+<!-- MOBILE CV -->
+<button type="button" @click="openCV()" class="group mt-4 flex min-h-[58px] w-full items-center gap-3 rounded-xl bg-portfolio-dark px-4 text-left text-white transition-opacity duration-200 hover:opacity-90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-portfolio-muted">
+<span class="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-white/10"><span class="material-symbols-outlined text-[18px]">picture_as_pdf</span></span>
+<span class="min-w-0 flex-1"><span class="block text-[12px] font-medium">View Curriculum Vitae</span><span class="mt-0.5 block font-mono text-[8px] uppercase tracking-[.1em] text-white/55">Preview · Open · Download</span></span>
+<span class="material-symbols-outlined text-[16px] transition-transform duration-200 group-hover:translate-x-[2px]">arrow_forward</span>
+</button>
+
+</div>
+</div>
+
+</nav>
+
+<!-- ============================================================
+     CV VIEWER
+============================================================ -->
+<div x-show="cvOpen" x-cloak class="fixed inset-0 z-[80] flex items-center justify-center p-0 sm:p-5">
+
+<div @click="closeCV()" x-transition.opacity.duration.150ms class="absolute inset-0 bg-[#232830]/35 backdrop-blur-[2px]"></div>
+
+<section x-trap.noscroll="cvOpen" role="dialog" aria-modal="true" aria-labelledby="cv-dialog-title" x-transition:enter="transition ease-out duration-180" x-transition:enter-start="translate-y-[4px] opacity-0" x-transition:enter-end="translate-y-0 opacity-100" x-transition:leave="transition ease-in duration-120" x-transition:leave-start="translate-y-0 opacity-100" x-transition:leave-end="translate-y-[4px] opacity-0" class="relative flex h-[100svh] w-full flex-col overflow-hidden bg-portfolio-background sm:h-[min(90svh,860px)] sm:max-w-[1080px] sm:rounded-xl sm:border sm:border-portfolio-surface">
+
+<!-- CV HEADER -->
+<header class="flex h-[64px] shrink-0 items-center justify-between gap-4 border-b border-portfolio-surface bg-portfolio-background px-4 sm:px-5">
+<div class="flex min-w-0 items-center gap-3"><div class="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-portfolio-surface"><span class="material-symbols-outlined text-[18px]">description</span></div><div class="min-w-0"><p class="font-mono text-[7.5px] uppercase tracking-[.15em] text-portfolio-muted">Curriculum Vitae · PDF</p><h2 id="cv-dialog-title" class="mt-0.5 truncate text-[12px] font-medium sm:text-[13px]">Afyuadri Putra — Full-Stack Software Engineer</h2></div></div>
+
+<div class="flex shrink-0 items-center gap-1.5">
+<a href="./cv.laravel.pdf" target="_blank" rel="noopener noreferrer" class="hidden h-9 items-center gap-1.5 rounded-lg border border-portfolio-surface bg-white px-3 text-portfolio-dark transition-colors duration-200 hover:border-portfolio-muted hover:bg-portfolio-surface sm:inline-flex"><span class="material-symbols-outlined text-[15px]">open_in_new</span><span class="font-mono text-[8px]">Open PDF</span></a>
+<a href="./cv.laravel.pdf" download="Afyuadri-Putra-CV.pdf" class="hidden h-9 items-center gap-1.5 rounded-lg bg-portfolio-dark px-3 text-white transition-opacity duration-200 hover:opacity-90 sm:inline-flex"><span class="material-symbols-outlined text-[15px]">download</span><span class="font-mono text-[8px]">Download</span></a>
+<button type="button" @click="closeCV()" aria-label="Close CV preview" class="inline-flex h-9 w-9 items-center justify-center rounded-lg transition-colors duration-200 hover:bg-portfolio-surface focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-portfolio-muted"><span class="material-symbols-outlined text-[19px]">close</span></button>
+</div>
+</header>
+
+<!-- DESKTOP PDF PREVIEW -->
+<div class="hidden min-h-0 flex-1 bg-[#E8E8E8] p-2 md:block">
+<template x-if="cvOpen">
+<object data="./cv.laravel.pdf" type="application/pdf" class="h-full w-full rounded-lg bg-white">
+<div class="flex h-full flex-col items-center justify-center p-8 text-center"><span class="material-symbols-outlined text-[36px] text-portfolio-muted">picture_as_pdf</span><p class="mt-4 text-sm font-medium">PDF preview is unavailable in this browser.</p><a href="./cv.laravel.pdf" target="_blank" rel="noopener noreferrer" class="mt-4 inline-flex h-11 items-center gap-2 rounded-lg bg-portfolio-dark px-5 font-mono text-[10px] text-white"><span class="material-symbols-outlined text-[16px]">open_in_new</span>Open CV</a></div>
+</object>
+</template>
+</div>
+
+<!-- MOBILE CV -->
+<div class="flex min-h-0 flex-1 flex-col justify-between p-5 md:hidden">
+<div class="pt-8"><div class="flex h-14 w-14 items-center justify-center rounded-xl border border-portfolio-surface bg-white"><span class="material-symbols-outlined text-[26px]">picture_as_pdf</span></div><p class="font-mono mt-5 text-[8px] uppercase tracking-[.15em] text-portfolio-muted">PDF Resume</p><h3 class="mt-2 text-[26px] font-semibold leading-tight tracking-[-.035em]">Curriculum Vitae</h3><p class="mt-3 max-w-sm text-[12px] leading-5 text-portfolio-muted">Open the CV using your browser's native PDF viewer or save a copy to your device.</p></div>
+<div class="space-y-2 pb-3"><a href="./cv.laravel.pdf" target="_blank" rel="noopener noreferrer" class="flex min-h-[52px] items-center gap-3 rounded-xl bg-portfolio-dark px-4 text-white"><span class="material-symbols-outlined text-[18px]">visibility</span><span class="flex-1 text-[12px] font-medium">Open CV in Browser</span><span class="material-symbols-outlined text-[15px]">arrow_outward</span></a><a href="./cv.laravel.pdf" download="Afyuadri-Putra-CV.pdf" class="flex min-h-[52px] items-center gap-3 rounded-xl border border-portfolio-surface bg-white px-4"><span class="material-symbols-outlined text-[18px]">download</span><span class="flex-1 text-[12px] font-medium">Download CV</span><span class="material-symbols-outlined text-[15px]">arrow_downward</span></a></div>
+</div>
+
+</section>
+</div>
+
+</div>
+
+<!-- ============================================================
+     HERO SECTION
+     VISUAL / COPY / SPACING KEPT FROM EXISTING SECTION
+============================================================ -->
+<section class="mx-auto flex min-h-[100svh] max-w-portfolio items-center px-5 pb-10 pt-[104px] sm:px-6 lg:px-8 lg:pb-7 lg:pt-[92px]">
+
+<div class="grid w-full grid-cols-1 items-center gap-10 lg:grid-cols-12 lg:gap-12 xl:gap-16">
+
+<!-- HERO CONTENT -->
+<div class="flex flex-col items-start lg:col-span-7">
+
+<span class="mb-5 font-mono text-[11px] font-medium uppercase tracking-[0.16em] text-portfolio-muted sm:text-xs">FULL-STACK SOFTWARE ENGINEER</span>
+
+<h1 class="max-w-[760px] text-[42px] font-semibold leading-[1.03] tracking-[-0.045em] text-portfolio-dark sm:text-[50px] lg:text-[58px] xl:text-[64px]">I build production-ready digital products.</h1>
+
+<p class="mt-6 max-w-[620px] text-[16px] leading-7 text-portfolio-muted sm:text-[17px] sm:leading-7">Full-Stack Software Engineer specializing in Laravel, modern web development, system integration, testing, deployment, and AI-powered applications.</p>
+
+<div class="mt-8 flex w-full flex-col gap-5 sm:w-auto sm:flex-row sm:items-center sm:gap-7">
+
+<!-- ONLY NAVIGATION BEHAVIOR CHANGED: target=_parent -->
+<a href="#work" target="_parent" class="inline-flex min-h-[54px] w-full items-center justify-center rounded-lg bg-portfolio-dark px-7 font-mono text-[13px] font-medium text-white transition-all duration-200 hover:opacity-90 focus:outline-none focus:ring-2 focus:ring-portfolio-muted focus:ring-offset-2 focus:ring-offset-portfolio-background sm:w-auto">Explore My Work</a>
+
+<div class="flex items-center gap-6">
+
+<a href="https://github.com/Afyuadriputra" target="_blank" rel="noopener noreferrer" class="group inline-flex items-center gap-1.5 font-mono text-[12px] font-medium text-portfolio-dark transition-colors duration-200 hover:text-portfolio-muted">GitHub <span class="material-symbols-outlined text-[16px] transition-transform duration-200 group-hover:-translate-y-[2px] group-hover:translate-x-[2px]">arrow_outward</span></a>
+
+<a href="https://www.linkedin.com/in/afyuadri-putra-3ab1a140a/" target="_blank" rel="noopener noreferrer" class="group inline-flex items-center gap-1.5 font-mono text-[12px] font-medium text-portfolio-dark transition-colors duration-200 hover:text-portfolio-muted">LinkedIn <span class="material-symbols-outlined text-[16px] transition-transform duration-200 group-hover:-translate-y-[2px] group-hover:translate-x-[2px]">arrow_outward</span></a>
+
+</div>
+</div>
+
+<div class="mt-8 w-full max-w-[650px] border-t border-portfolio-surface pt-5"><p class="font-mono text-[11px] leading-6 text-portfolio-muted sm:text-xs"><span class="mr-2 font-medium text-portfolio-dark">CORE STACK:</span>Laravel · PHP · MySQL · TypeScript · REST API · Git · AI/LLM</p></div>
+
+</div>
+
+<!-- HERO VISUAL -->
+<div class="flex w-full justify-center lg:col-span-5 lg:justify-end">
+
+<div class="relative w-full max-w-[560px] lg:max-w-[410px] xl:max-w-[440px]">
+
+<div class="aspect-[16/10] overflow-hidden rounded-xl border border-portfolio-surface bg-white p-2.5 sm:aspect-[16/9] lg:aspect-[4/5] lg:p-3">
+<div class="h-full w-full overflow-hidden rounded-lg bg-portfolio-surface"><img src="duck-jump-rope.gif" alt="Animated visual for Afyuadri Putra portfolio" class="h-full w-full object-cover object-center"></div>
+</div>
+
+<div aria-hidden="true" class="absolute -right-3 -top-3 hidden h-20 w-20 border-r border-t border-portfolio-muted/30 lg:block"></div>
+<div aria-hidden="true" class="absolute -bottom-3 -left-3 hidden h-20 w-20 border-b border-l border-portfolio-muted/30 lg:block"></div>
+
+</div>
+</div>
+
+</div>
+</section>
+
+<script>
+function portfolioNav(){return{
+mobileOpen:false,cvOpen:false,parentBodyOverflow:null,parentHtmlOverflow:null,
+toggleMenu(){this.mobileOpen=!this.mobileOpen},
+closeMenu(){this.mobileOpen=false},
+escape(){if(this.cvOpen)this.closeCV();else if(this.mobileOpen)this.closeMenu()},
+openCV(){this.mobileOpen=false;this.cvOpen=true;this.lockParent()},
+closeCV(){this.cvOpen=false;this.unlockParent()},
+lockParent(){try{if(window.parent===window)return;const body=window.parent.document.body,html=window.parent.document.documentElement;this.parentBodyOverflow=body.style.overflow;this.parentHtmlOverflow=html.style.overflow;body.style.overflow="hidden";html.style.overflow="hidden"}catch(error){}},
+unlockParent(){try{if(window.parent===window)return;const body=window.parent.document.body,html=window.parent.document.documentElement;if(this.parentBodyOverflow!==null)body.style.overflow=this.parentBodyOverflow;if(this.parentHtmlOverflow!==null)html.style.overflow=this.parentHtmlOverflow;this.parentBodyOverflow=null;this.parentHtmlOverflow=null}catch(error){}}
+}}
+</script>
+
+</body>
+</html>

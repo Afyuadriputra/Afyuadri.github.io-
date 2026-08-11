@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Afyuadri Putra — Full-Stack Software Engineer</title>
+<meta name="description" content="Portfolio Afyuadri Putra — Full-Stack Software Engineer specializing in Laravel, modern web development, software engineering, and AI integration.">
+
+<!-- Tailwind + Flowbite provide the responsive navigation component. -->
+<script src="https://cdn.tailwindcss.com"></script>
+<script>tailwind.config={theme:{extend:{colors:{portfolio:{background:"#F7F7F7",surface:"#EEEEEE",dark:"#393E46",muted:"#929AAB",white:"#FFFFFF"}},fontFamily:{sans:["Geist","Inter","sans-serif"],mono:["JetBrains Mono","monospace"]},maxWidth:{portfolio:"1240px"}}}}</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<style>
+*{box-sizing:border-box}html{margin:0;padding:0;scroll-behavior:smooth;background:#F7F7F7;scrollbar-gutter:stable}body{margin:0;padding:0;overflow-x:hidden;background:#F7F7F7}main{width:100%;margin:0;padding:0}.section-wrapper{position:relative;width:100%;margin:0;padding:0;scroll-margin-top:72px;background:#F7F7F7}.section-frame{display:block;width:100%;height:100svh;min-height:100svh;margin:0;padding:0;border:0;overflow:hidden;background:#F7F7F7;vertical-align:top}.section-frame[data-loaded="false"]{background:#F7F7F7}.site-nav-link{position:relative;color:#6b7280;transition:color .18s ease}.site-nav-link::after{position:absolute;right:0;bottom:-6px;left:0;height:1px;background:#393e46;content:"";transform:scaleX(0);transition:transform .18s ease}.site-nav-link:hover,.site-nav-link:focus-visible,.site-nav-link.is-active{color:#393e46}.site-nav-link:hover::after,.site-nav-link:focus-visible::after,.site-nav-link.is-active::after{transform:scaleX(1)}.site-nav-link:focus-visible{outline:2px solid #929aab;outline-offset:5px;border-radius:2px}@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.site-nav-link,.site-nav-link::after{transition:none}}
+</style>
+</head>
+
+<body>
+
+<!-- Flowbite responsive navbar: placed in the parent document so it remains visible across every iframe section. -->
+<header class="sticky top-0 z-[100] border-b border-portfolio-surface/90 bg-portfolio-background/95 font-sans backdrop-blur-md">
+  <nav class="mx-auto flex min-h-[72px] max-w-portfolio flex-wrap items-center justify-between gap-x-4 px-5 sm:px-6 lg:px-8" aria-label="Primary navigation">
+    <a href="#home" class="inline-flex min-h-11 items-center gap-2 rounded-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-portfolio-muted focus-visible:ring-offset-2 focus-visible:ring-offset-portfolio-background" aria-label="Afyuadri Putra — Home">
+      <span class="text-[27px] font-semibold tracking-[-.055em] text-portfolio-dark">AP.</span>
+      <span class="hidden h-1 w-1 rounded-full bg-portfolio-muted sm:block"></span>
+      <span class="hidden font-mono text-[8px] uppercase tracking-[.14em] text-portfolio-muted sm:block">Full-Stack Engineer</span>
+    </a>
+
+    <div class="flex items-center gap-2 lg:order-2">
+      <a href="./cv.laravel.pdf" target="_blank" rel="noopener noreferrer" class="hidden min-h-11 items-center gap-2 rounded-lg bg-portfolio-dark px-4 font-mono text-[10px] font-medium text-white transition-opacity hover:opacity-90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-portfolio-muted focus-visible:ring-offset-2 focus-visible:ring-offset-portfolio-background sm:inline-flex">
+        <svg aria-hidden="true" class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6M8 13h8M8 17h6"/></svg>
+        View CV
+      </a>
+      <button data-collapse-toggle="portfolio-navigation" type="button" class="inline-flex h-11 w-11 items-center justify-center rounded-lg text-portfolio-dark transition-colors hover:bg-portfolio-surface focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-portfolio-muted lg:hidden" aria-controls="portfolio-navigation" aria-expanded="false" aria-label="Open navigation menu">
+        <svg class="h-5 w-5" aria-hidden="true" fill="none" viewBox="0 0 17 14" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" d="M1 1h15M1 7h15M1 13h15"/></svg>
+      </button>
+    </div>
+
+    <div class="hidden w-full lg:order-1 lg:block lg:w-auto" id="portfolio-navigation">
+      <ul class="mt-2 flex flex-col rounded-xl border border-portfolio-surface bg-white p-2 font-mono text-[10px] font-medium lg:mt-0 lg:flex-row lg:items-center lg:gap-5 lg:border-0 lg:bg-transparent lg:p-0">
+        <li><a class="site-nav-link block rounded-lg px-3 py-3 lg:px-0 lg:py-1" href="#work">Work</a></li>
+        <li><a class="site-nav-link block rounded-lg px-3 py-3 lg:px-0 lg:py-1" href="#capabilities">Capabilities</a></li>
+        <li><a class="site-nav-link block rounded-lg px-3 py-3 lg:px-0 lg:py-1" href="#ai-engineering">AI</a></li>
+        <li><a class="site-nav-link block rounded-lg px-3 py-3 lg:px-0 lg:py-1" href="#more-work">Experience</a></li>
+        <li><a class="site-nav-link block rounded-lg px-3 py-3 lg:px-0 lg:py-1" href="#project-archive">Archive</a></li>
+        <li><a class="site-nav-link block rounded-lg px-3 py-3 lg:px-0 lg:py-1" href="#contact">Contact</a></li>
+        <li class="sm:hidden"><a href="./cv.laravel.pdf" target="_blank" rel="noopener noreferrer" class="mt-1 flex min-h-11 items-center justify-center rounded-lg bg-portfolio-dark px-3 text-white">View CV ↗</a></li>
+      </ul>
+    </div>
+  </nav>
+</header>
+
+<main id="portfolio">
+
+<section id="home" class="section-wrapper"><iframe class="section-frame" src="./section1.html" title="Afyuadri Putra — Hero" loading="eager" fetchpriority="high" data-section="section1" data-loaded="false"></iframe></section>
+
+<section id="work" class="section-wrapper"><iframe class="section-frame" src="./section2.html" title="Selected Work" loading="eager" data-section="section2" data-loaded="false"></iframe></section>
+
+<section id="capabilities" class="section-wrapper"><iframe class="section-frame" src="./section3.html" title="Engineering Capabilities" loading="lazy" data-section="section3" data-loaded="false"></iframe></section>
+
+<section id="ai-engineering" class="section-wrapper"><iframe class="section-frame" src="./section4.html" title="AI Engineering Edge" loading="lazy" data-section="section4" data-loaded="false"></iframe></section>
+
+<section id="section-5" class="section-wrapper"><iframe class="section-frame" src="./section5.html" title="Portfolio Section Five" loading="lazy" data-section="section5" data-loaded="false"></iframe></section>
+
+<section id="more-work" class="section-wrapper"><iframe class="section-frame" src="./section6-work.html" title="More Selected Work" loading="lazy" data-section="section6-work" data-loaded="false"></iframe></section>
+
+<section id="project-archive" class="section-wrapper"><iframe class="section-frame" src="./section6-archive.html" title="Project Archive" loading="lazy" data-section="section6-archive" data-loaded="false"></iframe></section>
+
+<section id="contact" class="section-wrapper"><iframe class="section-frame" src="./section7.html" title="Contact Afyuadri Putra" loading="lazy" data-section="section7" data-loaded="false"></iframe></section>
+
+</main>
+
+<script>
+const frames=[...document.querySelectorAll(".section-frame")],resizeJobs=new WeakMap(),previousHeights=new WeakMap(),frameObservers=new WeakMap(),navigationReady=new WeakSet();
+
+const anchorAliases={
+"#home":"#home",
+"#work":"#work",
+"#projects":"#work",
+"#capabilities":"#capabilities",
+"#skills":"#capabilities",
+"#ai-engineering":"#ai-engineering",
+"#ai":"#ai-engineering",
+"#more-work":"#more-work",
+"#experience":"#more-work",
+"#project-archive":"#project-archive",
+"#archive":"#project-archive",
+"#contact":"#contact"
+};
+
+function frameDocument(frame){try{return frame.contentDocument||frame.contentWindow?.document||null}catch{return null}}
+
+function measureFrame(frame){const doc=frameDocument(frame);if(!doc)return 0;const body=doc.body,html=doc.documentElement;return Math.ceil(Math.max(body?.scrollHeight||0,body?.offsetHeight||0,html?.scrollHeight||0,html?.offsetHeight||0))}
+
+function resizeFrame(frame){const oldJob=resizeJobs.get(frame);if(oldJob)cancelAnimationFrame(oldJob);const job=requestAnimationFrame(()=>{const height=measureFrame(frame);if(!height)return;const previous=previousHeights.get(frame)||0;if(Math.abs(height-previous)<=2)return;frame.style.height=`${height}px`;frame.style.minHeight="0";previousHeights.set(frame,height)});resizeJobs.set(frame,job)}
+
+function resolveTarget(hash){if(!hash||hash==="#")return null;const resolved=anchorAliases[hash]||hash;try{return document.querySelector(resolved)}catch{return null}}
+
+function navigateTo(hash,updateHistory=true){const target=resolveTarget(hash);if(!target)return false;target.scrollIntoView({behavior:window.matchMedia("(prefers-reduced-motion: reduce)").matches?"auto":"smooth",block:"start"});if(updateHistory)history.replaceState(null,"",hash);return true}
+
+function setupInternalNavigation(frame){if(navigationReady.has(frame))return;const doc=frameDocument(frame);if(!doc)return;doc.addEventListener("click",event=>{const link=event.target.closest?.('a[href^="#"]');if(!link)return;const hash=link.getAttribute("href");if(!hash||hash==="#")return;if(!resolveTarget(hash))return;event.preventDefault();navigateTo(hash,true)});navigationReady.add(frame)}
+
+function observeFrame(frame){const oldObserver=frameObservers.get(frame);if(oldObserver)oldObserver.disconnect();const doc=frameDocument(frame);if(!doc||typeof ResizeObserver==="undefined")return;let scheduled=false;const observer=new ResizeObserver(()=>{if(scheduled)return;scheduled=true;requestAnimationFrame(()=>{scheduled=false;resizeFrame(frame)})});observer.observe(doc.documentElement);if(doc.body)observer.observe(doc.body);frameObservers.set(frame,observer)}
+
+function observeImages(frame){const doc=frameDocument(frame);if(!doc)return;doc.querySelectorAll("img").forEach(image=>{if(!image.complete)image.addEventListener("load",()=>resizeFrame(frame),{once:true})})}
+
+function observeFonts(frame){const doc=frameDocument(frame);if(!doc?.fonts?.ready)return;doc.fonts.ready.then(()=>resizeFrame(frame)).catch(()=>{})}
+
+function setupFrame(frame){frame.dataset.loaded="true";resizeFrame(frame);setupInternalNavigation(frame);observeFrame(frame);observeImages(frame);observeFonts(frame);requestAnimationFrame(()=>resizeFrame(frame));setTimeout(()=>resizeFrame(frame),120)}
+
+frames.forEach(frame=>frame.addEventListener("load",()=>setupFrame(frame)));
+
+let viewportTimer=null;
+window.addEventListener("resize",()=>{clearTimeout(viewportTimer);viewportTimer=setTimeout(()=>frames.forEach(resizeFrame),120)},{passive:true});
+
+window.addEventListener("orientationchange",()=>setTimeout(()=>frames.forEach(resizeFrame),180),{passive:true});
+
+window.addEventListener("load",()=>{frames.forEach(frame=>{if(frame.contentDocument?.readyState==="complete")setupFrame(frame)});if(!location.hash)return;setTimeout(()=>navigateTo(location.hash,false),300)});
+
+window.addEventListener("hashchange",()=>{if(location.hash)navigateTo(location.hash,false)});
+
+const stickyLinks=[...document.querySelectorAll(".site-nav-link")];
+const observedSections=[...document.querySelectorAll("main > section[id]")];
+const sectionObserver=new IntersectionObserver(entries=>{const visible=entries.filter(entry=>entry.isIntersecting).sort((a,b)=>b.intersectionRatio-a.intersectionRatio)[0];if(!visible)return;const hash=`#${visible.target.id}`;stickyLinks.forEach(link=>link.classList.toggle("is-active",link.getAttribute("href")===hash));},{rootMargin:"-25% 0px -65% 0px",threshold:[0.05,.2,.5]});
+observedSections.forEach(section=>sectionObserver.observe(section));
+
+document.querySelectorAll("#portfolio-navigation a[href^='#']").forEach(link=>link.addEventListener("click",()=>{const navigation=document.getElementById("portfolio-navigation");const toggle=document.querySelector("[data-collapse-toggle='portfolio-navigation']");if(window.innerWidth<1024&&navigation.classList.contains("block")){navigation.classList.add("hidden");navigation.classList.remove("block");toggle?.setAttribute("aria-expanded","false")}}));
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/flowbite@3.1.2/dist/flowbite.min.js"></script>
+
+</body>
+</html>

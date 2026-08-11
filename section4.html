@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>AI Engineering Edge - Engineer Portfolio</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600&amp;family=JetBrains+Mono:wght@500;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-tint": "#5a5f67",
+                        "surface-container-low": "#f3f3f3",
+                        "background": "#f9f9f9",
+                        "on-tertiary-fixed-variant": "#454747",
+                        "surface-container-high": "#e8e8e8",
+                        "tertiary-container": "#3c3e3e",
+                        "on-secondary-container": "#5b6372",
+                        "on-error-container": "#93000a",
+                        "secondary-fixed-dim": "#bfc7d9",
+                        "on-error": "#ffffff",
+                        "on-surface-variant": "#45474b",
+                        "outline-variant": "#c5c6cb",
+                        "tertiary-fixed": "#e2e2e2",
+                        "tertiary": "#262829",
+                        "inverse-on-surface": "#f1f1f1",
+                        "primary": "#232830",
+                        "surface-container": "#eeeeee",
+                        "on-surface": "#1a1c1c",
+                        "primary-fixed": "#dee2ed",
+                        "on-tertiary-container": "#a8a9a9",
+                        "error": "#ba1a1a",
+                        "primary-container": "#393e46",
+                        "primary-fixed-dim": "#c2c7d0",
+                        "on-secondary-fixed-variant": "#3f4756",
+                        "on-secondary": "#ffffff",
+                        "surface-variant": "#e2e2e2",
+                        "on-primary-fixed-variant": "#42474f",
+                        "secondary-fixed": "#dbe3f5",
+                        "on-tertiary": "#ffffff",
+                        "on-tertiary-fixed": "#1a1c1c",
+                        "surface-bright": "#f9f9f9",
+                        "on-primary-container": "#a4a9b2",
+                        "surface-container-lowest": "#ffffff",
+                        "surface-container-highest": "#e2e2e2",
+                        "secondary": "#575f6e",
+                        "tertiary-fixed-dim": "#c6c6c7",
+                        "on-background": "#1a1c1c",
+                        "surface-dim": "#dadada",
+                        "on-secondary-fixed": "#141c29",
+                        "on-primary": "#ffffff",
+                        "secondary-container": "#d8e0f2",
+                        "on-primary-fixed": "#171c23",
+                        "outline": "#75777c",
+                        "inverse-surface": "#2f3131",
+                        "inverse-primary": "#c2c7d0",
+                        "surface": "#f9f9f9",
+                        "error-container": "#ffdad6"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "section-gap": "120px",
+                        "base": "8px",
+                        "margin-mobile": "20px",
+                        "container-max": "1200px",
+                        "gutter": "24px"
+                    },
+                    "fontFamily": {
+                        "headline-md": ["Geist"],
+                        "hero-lg": ["Geist"],
+                        "body-md": ["Geist"],
+                        "body-lg": ["Geist"],
+                        "caption": ["Geist"],
+                        "hero-lg-mobile": ["Geist"],
+                        "label-mono": ["JetBrains Mono"]
+                    },
+                    "fontSize": {
+                        "headline-md": ["32px", { "lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "500" }],
+                        "hero-lg": ["72px", { "lineHeight": "1.1", "letterSpacing": "-0.04em", "fontWeight": "600" }],
+                        "body-md": ["16px", { "lineHeight": "1.6", "letterSpacing": "0", "fontWeight": "400" }],
+                        "body-lg": ["18px", { "lineHeight": "1.6", "letterSpacing": "0", "fontWeight": "400" }],
+                        "caption": ["13px", { "lineHeight": "1.4", "letterSpacing": "0", "fontWeight": "400" }],
+                        "hero-lg-mobile": ["40px", { "lineHeight": "1.1", "letterSpacing": "-0.03em", "fontWeight": "600" }],
+                        "label-mono": ["14px", { "lineHeight": "1.4", "letterSpacing": "0.05em", "fontWeight": "500" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .bg-f7 { background-color: #F7F7F7; }
+        .text-39 { color: #393E46; }
+        .border-39 { border-color: #393E46; }
+        .text-92 { color: #929AAB; }
+        .border-ee { border-color: #EEEEEE; }
+    </style>
+</head>
+<body class="bg-f7 text-39 antialiased min-h-screen flex flex-col font-body-md text-body-md overflow-x-hidden">
+<!-- Main Content Area: Fits within 1440x900 viewport (700-820px height) -->
+<main class="flex-grow flex items-center justify-center pt-24 pb-16 px-gutter max-w-container-max mx-auto w-full min-h-[700px] max-h-[900px]">
+<div class="w-full max-w-6xl flex flex-col gap-12 md:gap-16">
+<!-- Header Section -->
+<header class="flex flex-col gap-4 text-center md:text-left max-w-3xl">
+<span class="font-label-mono text-label-mono text-92 tracking-widest uppercase">AI ENGINEERING EDGE</span>
+<h1 class="font-headline-md text-headline-md text-39 md:font-hero-lg-mobile md:text-hero-lg-mobile">AI integrated into real software.</h1>
+<p class="font-body-lg text-body-lg text-secondary max-w-2xl text-balance">
+                    I combine software engineering with machine learning, retrieval systems, and LLM integration to build intelligent capabilities directly into modern applications.
+                </p>
+</header>
+<!-- Architecture Diagram -->
+<div class="relative w-full">
+<!-- Connecting Line (Desktop Only) -->
+<div class="hidden lg:block absolute top-[4.5rem] left-[5%] right-[5%] h-px bg-[#393E46] opacity-20 z-0"></div>
+<div class="flex flex-col lg:flex-row justify-between gap-6 lg:gap-4 relative z-10 w-full">
+<!-- Component 01: DATA -->
+<div class="flex-1 bg-white border border-ee p-6 hover:bg-surface-container-lowest transition-colors group flex flex-col gap-4">
+<div class="flex justify-between items-start">
+<span class="font-label-mono text-label-mono font-bold text-39">01</span>
+<span class="font-label-mono text-label-mono text-[10px] text-92 bg-[#F7F7F7] px-2 py-1 uppercase tracking-wider">INPUT</span>
+</div>
+<div class="flex flex-col gap-1">
+<h3 class="font-headline-md text-[20px] font-medium text-39 group-hover:text-black transition-colors">DATA</h3>
+<div class="flex items-center gap-2 mt-2">
+<span class="material-symbols-outlined text-[16px] text-92" data-icon="database">database</span>
+<span class="font-label-mono text-[12px] text-92">PostgreSQL, S3</span>
+</div>
+</div>
+</div>
+<!-- Connection Arrow (Mobile) -->
+<div class="lg:hidden flex justify-center text-92 opacity-50">
+<span class="material-symbols-outlined" data-icon="arrow_downward">arrow_downward</span>
+</div>
+<!-- Component 02: AI MODEL -->
+<div class="flex-1 bg-white border border-ee p-6 hover:bg-surface-container-lowest transition-colors group flex flex-col gap-4">
+<div class="flex justify-between items-start">
+<span class="font-label-mono text-label-mono font-bold text-39">02</span>
+<span class="font-label-mono text-label-mono text-[10px] text-92 bg-[#F7F7F7] px-2 py-1 uppercase tracking-wider">INTELLIGENCE</span>
+</div>
+<div class="flex flex-col gap-1">
+<h3 class="font-headline-md text-[20px] font-medium text-39 group-hover:text-black transition-colors">AI MODEL</h3>
+<div class="flex items-center gap-2 mt-2">
+<span class="material-symbols-outlined text-[16px] text-92" data-icon="memory">memory</span>
+<span class="font-label-mono text-[12px] text-92">PyTorch, HuggingFace</span>
+</div>
+</div>
+</div>
+<!-- Connection Arrow (Mobile) -->
+<div class="lg:hidden flex justify-center text-92 opacity-50">
+<span class="material-symbols-outlined" data-icon="arrow_downward">arrow_downward</span>
+</div>
+<!-- Component 03: RAG / LLM -->
+<div class="flex-1 bg-[#393E46] border border-39 p-6 shadow-sm group flex flex-col gap-4 relative">
+<!-- Highlight indicator -->
+<div class="absolute -top-1 left-0 right-0 h-1 bg-[#929AAB] opacity-50"></div>
+<div class="flex justify-between items-start">
+<span class="font-label-mono text-label-mono font-bold text-white">03</span>
+<span class="font-label-mono text-label-mono text-[10px] text-[#929AAB] bg-[#232830] px-2 py-1 uppercase tracking-wider border border-[#454747]">KNOWLEDGE</span>
+</div>
+<div class="flex flex-col gap-1">
+<h3 class="font-headline-md text-[20px] font-medium text-white">RAG / LLM</h3>
+<div class="flex items-center gap-2 mt-2">
+<span class="material-symbols-outlined text-[16px] text-[#929AAB]" data-icon="hub">hub</span>
+<span class="font-label-mono text-[12px] text-[#929AAB]">ChromaDB, LangChain</span>
+</div>
+</div>
+</div>
+<!-- Connection Arrow (Mobile) -->
+<div class="lg:hidden flex justify-center text-92 opacity-50">
+<span class="material-symbols-outlined" data-icon="arrow_downward">arrow_downward</span>
+</div>
+<!-- Component 04: API -->
+<div class="flex-1 bg-white border border-ee p-6 hover:bg-surface-container-lowest transition-colors group flex flex-col gap-4">
+<div class="flex justify-between items-start">
+<span class="font-label-mono text-label-mono font-bold text-39">04</span>
+<span class="font-label-mono text-label-mono text-[10px] text-92 bg-[#F7F7F7] px-2 py-1 uppercase tracking-wider">INTEGRATION</span>
+</div>
+<div class="flex flex-col gap-1">
+<h3 class="font-headline-md text-[20px] font-medium text-39 group-hover:text-black transition-colors">API LAYER</h3>
+<div class="flex items-center gap-2 mt-2">
+<span class="material-symbols-outlined text-[16px] text-92" data-icon="api">api</span>
+<span class="font-label-mono text-[12px] text-92">FastAPI, Python</span>
+</div>
+</div>
+</div>
+<!-- Connection Arrow (Mobile) -->
+<div class="lg:hidden flex justify-center text-92 opacity-50">
+<span class="material-symbols-outlined" data-icon="arrow_downward">arrow_downward</span>
+</div>
+<!-- Component 05: WEB APP -->
+<div class="flex-1 bg-white border border-ee p-6 hover:bg-surface-container-lowest transition-colors group flex flex-col gap-4">
+<div class="flex justify-between items-start">
+<span class="font-label-mono text-label-mono font-bold text-39">05</span>
+<span class="font-label-mono text-label-mono text-[10px] text-92 bg-[#F7F7F7] px-2 py-1 uppercase tracking-wider">PRODUCT</span>
+</div>
+<div class="flex flex-col gap-1">
+<h3 class="font-headline-md text-[20px] font-medium text-39 group-hover:text-black transition-colors">WEB APP</h3>
+<div class="flex items-center gap-2 mt-2">
+<span class="material-symbols-outlined text-[16px] text-92" data-icon="web">web</span>
+<span class="font-label-mono text-[12px] text-92">React, Tailwind</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Positioning Statement -->
+<div class="border-t border-[#393E46]/10 pt-6 mt-4">
+<p class="font-label-mono text-label-mono text-secondary text-center max-w-4xl mx-auto">
+                    "AI is not a separate layer in my workflow — I integrate it as part of the application architecture."
+                </p>
+</div>
+</div>
+</main>
+</body></html>

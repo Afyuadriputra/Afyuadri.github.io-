@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Project Archive — Afyuadri Putra</title>
+
+<!-- Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
+
+<!-- daisyUI + Tailwind CSS Browser -->
+<link href="https://cdn.jsdelivr.net/npm/daisyui@5" rel="stylesheet" type="text/css">
+<script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+
+<!-- Alpine Collapse + Alpine Core -->
+<script defer src="https://cdn.jsdelivr.net/npm/@alpinejs/collapse@3.16.0/dist/cdn.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.16.0/dist/cdn.min.js"></script>
+
+<style>
+[x-cloak]{display:none!important}html,body{margin:0;background:#F7F7F7;scrollbar-gutter:stable}*{box-sizing:border-box}body{font-family:"Geist",sans-serif;color:#393E46}.mono{font-family:"JetBrains Mono",monospace}.material-symbols-outlined{font-variation-settings:"FILL" 0,"wght" 400,"GRAD" 0,"opsz" 20}.archive-scroll{scrollbar-width:thin;scrollbar-color:#C9CDD3 transparent;scrollbar-gutter:stable}.archive-scroll::-webkit-scrollbar{width:5px}.archive-scroll::-webkit-scrollbar-track{background:transparent}.archive-scroll::-webkit-scrollbar-thumb{background:#C9CDD3;border-radius:999px}.archive-scroll::-webkit-scrollbar-thumb:hover{background:#929AAB}.detail-stage{contain:layout paint}.detail-content{will-change:opacity,transform}.project-row{transform:translateZ(0)}::selection{background:#393E46;color:#fff}@media(min-width:1024px) and (max-height:780px){.archive-shell{padding-top:20px!important;padding-bottom:20px!important}.archive-header{padding-bottom:14px!important}.archive-title{font-size:34px!important}.archive-controls{padding-top:12px!important;padding-bottom:12px!important}.archive-main{min-height:410px!important}.detail-padding{padding:22px!important}}@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}}
+</style>
+</head>
+
+<body class="m-0 overflow-x-hidden bg-[#F7F7F7] antialiased">
+
+<section x-data="projectArchive()" x-init="init()" class="w-full bg-[#F7F7F7] lg:flex lg:h-[100svh] lg:min-h-[720px] lg:max-h-[920px] lg:overflow-hidden">
+<div class="archive-shell mx-auto flex w-full max-w-[1240px] flex-col px-5 py-10 sm:px-6 md:py-12 lg:px-8 lg:py-8 xl:px-10">
+
+<!-- ============================================================
+     HEADER
+============================================================ -->
+<header class="archive-header grid shrink-0 grid-cols-1 gap-4 border-b border-[#EEEEEE] pb-5 lg:grid-cols-12 lg:items-end lg:gap-8">
+<div class="lg:col-span-8">
+<p class="mono mb-2.5 text-[10px] font-medium uppercase tracking-[.18em] text-[#929AAB] sm:text-[11px]">Project Archive</p>
+<h2 class="archive-title max-w-[760px] text-[34px] font-semibold leading-[1.04] tracking-[-.045em] text-[#393E46] sm:text-[40px] lg:text-[44px] xl:text-[48px]">Explore more of my engineering work.</h2>
+</div>
+
+<div class="lg:col-span-4 lg:pb-1">
+<p class="text-[13px] leading-6 text-[#929AAB] sm:text-sm">28 projects across software engineering, AI, machine learning, data analytics, computer vision, NLP, RAG/LLM, GIS and applied research.</p>
+<div class="mt-3 flex items-center gap-3">
+<span class="mono text-[9px] uppercase tracking-[.14em] text-[#393E46]">28 Projects</span>
+<span class="h-1 w-1 rounded-full bg-[#929AAB]"></span>
+<span class="mono text-[9px] uppercase tracking-[.14em] text-[#929AAB]">Research + Production</span>
+</div>
+</div>
+</header>
+
+<!-- ============================================================
+     SEARCH + FILTER
+============================================================ -->
+<div class="archive-controls shrink-0 py-4">
+
+<div class="flex flex-col gap-3 lg:flex-row lg:items-center lg:justify-between">
+
+<!-- SEARCH -->
+<label class="input h-11 w-full rounded-lg border-[#EEEEEE] bg-white shadow-none focus-within:border-[#929AAB] focus-within:outline-none lg:max-w-[360px]">
+<span class="material-symbols-outlined text-[18px] text-[#929AAB]">search</span>
+<input x-model.debounce.150ms="searchQuery" @input="ensureSelection()" type="search" class="grow bg-transparent text-[13px] text-[#393E46] placeholder:text-[#929AAB] focus:outline-none" placeholder="Search projects, technologies or domains..." aria-label="Search projects">
+<kbd x-show="searchQuery" @click="searchQuery='';ensureSelection()" class="kbd kbd-sm cursor-pointer border-0 bg-[#EEEEEE] text-[9px] text-[#929AAB]">ESC</kbd>
+</label>
+
+<!-- FILTERS -->
+<div class="flex max-w-full items-center gap-1.5 overflow-x-auto pb-1 lg:overflow-visible lg:pb-0" role="tablist" aria-label="Project categories">
+
+<template x-for="category in categories" :key="category.key">
+<button type="button" @click="setCategory(category.key)" :aria-selected="activeCategory===category.key" :class="activeCategory===category.key?'border-[#393E46] bg-[#393E46] text-white':'border-[#EEEEEE] bg-white text-[#929AAB] hover:border-[#929AAB] hover:text-[#393E46]'" class="btn btn-sm h-9 min-h-9 shrink-0 rounded-lg border px-3 shadow-none transition-[background-color,border-color,color] duration-200">
+<span class="material-symbols-outlined text-[14px]" x-text="category.icon"></span>
+<span class="mono text-[9px] font-medium uppercase tracking-[.08em]" x-text="category.label"></span>
+</button>
+</template>
+
+</div>
+</div>
+
+<div class="mt-3 flex items-center justify-between">
+<p class="mono text-[8.5px] uppercase tracking-[.14em] text-[#929AAB]"><span x-text="filteredProjects.length"></span> projects found</p>
+<button x-show="activeCategory!=='all'||searchQuery" @click="resetFilters()" class="group inline-flex min-h-8 items-center gap-1.5 text-[10px] font-medium text-[#929AAB] transition-colors hover:text-[#393E46]">
+<span class="material-symbols-outlined text-[14px]">restart_alt</span>Reset filters
+</button>
+</div>
+
+</div>
+
+<!-- ============================================================
+     DESKTOP MASTER / DETAIL EXPLORER
+============================================================ -->
+<div class="archive-main hidden min-h-0 flex-1 overflow-hidden rounded-xl border border-[#EEEEEE] bg-white lg:grid lg:grid-cols-12">
+
+<!-- LEFT PROJECT INDEX -->
+<aside class="col-span-5 flex min-h-0 flex-col border-r border-[#EEEEEE]" aria-label="Project index">
+
+<div class="flex h-11 shrink-0 items-center justify-between border-b border-[#EEEEEE] bg-[#FAFAFA] px-4">
+<div class="flex items-center gap-2"><span class="material-symbols-outlined text-[15px] text-[#929AAB]">list_alt</span><span class="mono text-[8.5px] uppercase tracking-[.15em] text-[#929AAB]">Project Index</span></div>
+<span class="mono text-[8px] text-[#929AAB]" x-text="filteredProjects.length+' / 28'"></span>
+</div>
+
+<div class="archive-scroll min-h-0 flex-1 overflow-y-auto p-2">
+
+<template x-for="project in filteredProjects" :key="project.id">
+<button type="button" @click="selectProject(project.id)" :aria-current="selectedId===project.id?'true':'false'" :class="selectedId===project.id?'border-[#393E46] bg-[#393E46] text-white':'border-transparent bg-transparent text-[#393E46] hover:bg-[#F3F3F3]'" class="project-row group mb-1 flex min-h-[58px] w-full items-center gap-3 rounded-lg border px-3 py-2.5 text-left transition-[background-color,border-color,color] duration-180">
+
+<span :class="selectedId===project.id?'text-white/45':'text-[#929AAB]'" class="mono w-5 shrink-0 text-[8.5px]" x-text="project.id"></span>
+
+<div class="min-w-0 flex-1">
+<p class="truncate text-[12px] font-medium tracking-[-.01em]" x-text="project.name"></p>
+<div class="mt-1 flex min-w-0 items-center gap-1.5">
+<span :class="selectedId===project.id?'text-white/55':'text-[#929AAB]'" class="mono truncate text-[8px] uppercase tracking-[.08em]" x-text="project.shortDomain"></span>
+<template x-if="project.professional"><span :class="selectedId===project.id?'bg-white/10 text-white/60':'bg-[#EEEEEE] text-[#929AAB]'" class="mono rounded px-1.5 py-.5 text-[7px] uppercase">Professional</span></template>
+</div>
+</div>
+
+<span :class="selectedId===project.id?'translate-x-0 text-white':'-translate-x-1 text-[#929AAB] opacity-0 group-hover:translate-x-0 group-hover:opacity-100'" class="material-symbols-outlined shrink-0 text-[16px] transition-[opacity,transform] duration-200">arrow_forward</span>
+
+</button>
+</template>
+
+<div x-show="filteredProjects.length===0" class="flex min-h-[260px] flex-col items-center justify-center px-8 text-center">
+<span class="material-symbols-outlined mb-3 text-[28px] text-[#929AAB]">search_off</span>
+<p class="text-sm font-medium text-[#393E46]">No projects found</p>
+<p class="mt-1 text-[11px] leading-5 text-[#929AAB]">Try a different keyword or category.</p>
+</div>
+
+</div>
+</aside>
+
+<!-- RIGHT DETAIL -->
+<div class="detail-stage col-span-7 min-h-0 bg-white">
+
+<div :class="detailVisible?'translate-y-0 opacity-100':'translate-y-[3px] opacity-0'" class="detail-content detail-padding flex h-full flex-col p-7 transition-[opacity,transform] duration-150 ease-out" x-cloak>
+
+<!-- DETAIL HEADER -->
+<div class="shrink-0">
+
+<div class="flex items-start justify-between gap-6">
+
+<div>
+<div class="mb-3 flex flex-wrap items-center gap-2">
+<span class="mono rounded-md bg-[#EEEEEE] px-2 py-1 text-[8px] uppercase tracking-[.12em] text-[#929AAB]" x-text="selectedProject.id+' / '+selectedProject.shortDomain"></span>
+<template x-if="selectedProject.professional"><span class="mono rounded-md border border-[#EEEEEE] px-2 py-1 text-[8px] uppercase tracking-[.1em] text-[#929AAB]">Professional Work</span></template>
+<template x-if="selectedProject.research"><span class="mono rounded-md border border-[#EEEEEE] px-2 py-1 text-[8px] uppercase tracking-[.1em] text-[#929AAB]">Research</span></template>
+</div>
+
+<h3 class="max-w-[620px] text-[27px] font-semibold leading-[1.12] tracking-[-.035em] text-[#393E46] xl:text-[30px]" x-text="selectedProject.name"></h3>
+</div>
+
+<div class="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl border border-[#EEEEEE] bg-[#F7F7F7]">
+<span class="material-symbols-outlined text-[20px] text-[#393E46]" x-text="domainIcon(selectedProject.filter)"></span>
+</div>
+
+</div>
+
+<p class="mt-5 max-w-[720px] text-[12px] leading-[1.7] text-[#6F7785]" x-text="selectedProject.description"></p>
+
+</div>
+
+<!-- CATEGORY -->
+<div class="mt-5 border-t border-[#EEEEEE] pt-4">
+<div class="mb-2.5 flex items-center gap-2"><span class="material-symbols-outlined text-[14px] text-[#929AAB]">category</span><p class="mono text-[8px] uppercase tracking-[.16em] text-[#929AAB]">Project Classification</p></div>
+<div class="flex flex-wrap gap-1.5">
+<template x-for="tag in selectedProject.tags" :key="tag"><span class="badge h-7 rounded-md border border-[#EEEEEE] bg-[#F7F7F7] px-2.5 text-[9px] font-medium text-[#393E46]" x-text="tag"></span></template>
+</div>
+</div>
+
+<!-- TECHNOLOGY -->
+<div x-show="selectedProject.tech.length" class="mt-4 border-t border-[#EEEEEE] pt-4">
+<div class="mb-2.5 flex items-center gap-2"><span class="material-symbols-outlined text-[14px] text-[#929AAB]">terminal</span><p class="mono text-[8px] uppercase tracking-[.16em] text-[#929AAB]">Technology</p></div>
+<div class="grid grid-cols-2 gap-2 sm:grid-cols-3">
+<template x-for="tech in selectedProject.tech" :key="tech">
+<div class="flex min-h-[36px] items-center gap-2 rounded-lg bg-[#F7F7F7] px-3"><span class="material-symbols-outlined text-[13px] text-[#929AAB]">code</span><span class="truncate text-[10px] font-medium text-[#393E46]" x-text="tech"></span></div>
+</template>
+</div>
+</div>
+
+<!-- ACTIONS -->
+<div class="mt-auto border-t border-[#EEEEEE] pt-5">
+
+<p class="mono mb-3 text-[8px] uppercase tracking-[.16em] text-[#929AAB]">Explore Project</p>
+
+<div class="flex flex-wrap gap-2">
+
+<template x-if="selectedProject.github">
+<a :href="selectedProject.github" target="_blank" rel="noopener noreferrer" class="btn h-11 min-h-11 rounded-lg border-0 bg-[#393E46] px-5 text-white shadow-none transition-opacity duration-200 hover:bg-[#393E46] hover:opacity-90">
+<svg aria-hidden="true" viewBox="0 0 24 24" fill="currentColor" class="h-[16px] w-[16px]"><path d="M12 .7a11.5 11.5 0 0 0-3.64 22.41c.58.11.79-.25.79-.56v-2.24c-3.22.7-3.9-1.37-3.9-1.37-.52-1.34-1.28-1.7-1.28-1.7-1.05-.72.08-.71.08-.71 1.16.08 1.77 1.19 1.77 1.19 1.03 1.77 2.71 1.26 3.37.96.1-.75.4-1.26.73-1.55-2.57-.29-5.27-1.29-5.27-5.72 0-1.26.45-2.3 1.19-3.11-.12-.29-.52-1.47.11-3.07 0 0 .97-.31 3.16 1.19a10.9 10.9 0 0 1 5.75 0c2.19-1.5 3.16-1.19 3.16-1.19.63 1.6.23 2.78.11 3.07.74.81 1.19 1.85 1.19 3.11 0 4.44-2.71 5.43-5.29 5.72.42.36.79 1.07.79 2.16v3.2c0 .31.21.67.8.56A11.5 11.5 0 0 0 12 .7Z"></path></svg>
+<span class="text-[10px] font-medium">GitHub Repository</span>
+<span class="material-symbols-outlined text-[14px]">open_in_new</span>
+</a>
+</template>
+
+<template x-if="selectedProject.website">
+<a :href="selectedProject.website" target="_blank" rel="noopener noreferrer" class="btn h-11 min-h-11 rounded-lg border border-[#EEEEEE] bg-white px-5 text-[#393E46] shadow-none transition-[background-color,border-color] duration-200 hover:border-[#929AAB] hover:bg-[#F7F7F7]">
+<span class="material-symbols-outlined text-[16px]">language</span>
+<span class="text-[10px] font-medium">Visit Website</span>
+<span class="material-symbols-outlined text-[14px]">open_in_new</span>
+</a>
+</template>
+
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+
+<!-- ============================================================
+     MOBILE / TABLET PROJECT ARCHIVE
+============================================================ -->
+<div class="space-y-2 lg:hidden">
+
+<template x-for="project in filteredProjects" :key="'mobile-'+project.id">
+
+<article class="overflow-hidden rounded-xl border border-[#EEEEEE] bg-white">
+
+<button type="button" @click="toggleMobile(project.id)" :aria-expanded="mobileOpen===project.id" class="flex min-h-[70px] w-full items-center gap-3 px-4 py-3 text-left transition-colors duration-200 hover:bg-[#F7F7F7]">
+
+<div class="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-[#F7F7F7]">
+<span class="material-symbols-outlined text-[17px] text-[#393E46]" x-text="domainIcon(project.filter)"></span>
+</div>
+
+<div class="min-w-0 flex-1">
+<div class="flex items-center gap-2"><span class="mono text-[8px] text-[#929AAB]" x-text="project.id"></span><span class="mono truncate text-[8px] uppercase tracking-[.1em] text-[#929AAB]" x-text="project.shortDomain"></span></div>
+<h3 class="mt-1 truncate text-[13px] font-medium text-[#393E46]" x-text="project.name"></h3>
+</div>
+
+<span :class="mobileOpen===project.id?'rotate-180':''" class="material-symbols-outlined shrink-0 text-[18px] text-[#929AAB] transition-transform duration-200">expand_more</span>
+
+</button>
+
+<div x-show="mobileOpen===project.id" x-collapse.duration.200ms>
+<div class="border-t border-[#EEEEEE] px-4 pb-5 pt-4">
+
+<p class="text-[12px] leading-[1.7] text-[#6F7785]" x-text="project.description"></p>
+
+<div class="mt-4 flex flex-wrap gap-1.5">
+<template x-for="tag in project.tags" :key="'mobile-tag-'+tag"><span class="badge h-7 rounded-md border border-[#EEEEEE] bg-[#F7F7F7] px-2.5 text-[9px] text-[#393E46]" x-text="tag"></span></template>
+</div>
+
+<div x-show="project.tech.length" class="mt-4">
+<p class="mono mb-2 text-[8px] uppercase tracking-[.14em] text-[#929AAB]">Technology</p>
+<div class="flex flex-wrap gap-1.5"><template x-for="tech in project.tech" :key="'mobile-tech-'+tech"><span class="inline-flex min-h-8 items-center gap-1.5 rounded-lg border border-[#EEEEEE] px-2.5 text-[9px] font-medium"><span class="material-symbols-outlined text-[12px] text-[#929AAB]">code</span><span x-text="tech"></span></span></template></div>
+</div>
+
+<div class="mt-5 flex flex-col gap-2 sm:flex-row">
+
+<template x-if="project.github">
+<a :href="project.github" target="_blank" rel="noopener noreferrer" class="btn h-11 min-h-11 flex-1 rounded-lg border-0 bg-[#393E46] text-white shadow-none hover:bg-[#393E46] hover:opacity-90">
+<svg aria-hidden="true" viewBox="0 0 24 24" fill="currentColor" class="h-[16px] w-[16px]"><path d="M12 .7a11.5 11.5 0 0 0-3.64 22.41c.58.11.79-.25.79-.56v-2.24c-3.22.7-3.9-1.37-3.9-1.37-.52-1.34-1.28-1.7-1.28-1.7-1.05-.72.08-.71.08-.71 1.16.08 1.77 1.19 1.77 1.19 1.03 1.77 2.71 1.26 3.37.96.1-.75.4-1.26.73-1.55-2.57-.29-5.27-1.29-5.27-5.72 0-1.26.45-2.3 1.19-3.11-.12-.29-.52-1.47.11-3.07 0 0 .97-.31 3.16 1.19a10.9 10.9 0 0 1 5.75 0c2.19-1.5 3.16-1.19 3.16-1.19.63 1.6.23 2.78.11 3.07.74.81 1.19 1.85 1.19 3.11 0 4.44-2.71 5.43-5.29 5.72.42.36.79 1.07.79 2.16v3.2c0 .31.21.67.8.56A11.5 11.5 0 0 0 12 .7Z"></path></svg>
+<span class="text-[10px]">GitHub Repository</span>
+</a>
+</template>
+
+<template x-if="project.website">
+<a :href="project.website" target="_blank" rel="noopener noreferrer" class="btn h-11 min-h-11 flex-1 rounded-lg border border-[#EEEEEE] bg-white text-[#393E46] shadow-none hover:bg-[#F7F7F7]">
+<span class="material-symbols-outlined text-[16px]">language</span>
+<span class="text-[10px]">Visit Website</span>
+</a>
+</template>
+
+</div>
+</div>
+</div>
+
+</article>
+
+</template>
+
+<div x-show="filteredProjects.length===0" class="rounded-xl border border-[#EEEEEE] bg-white px-6 py-12 text-center">
+<span class="material-symbols-outlined text-[30px] text-[#929AAB]">search_off</span>
+<p class="mt-3 text-sm font-medium text-[#393E46]">No projects found</p>
+<p class="mt-1 text-[11px] text-[#929AAB]">Try changing the keyword or filter.</p>
+</div>
+
+</div>
+
+<!-- ============================================================
+     BOTTOM STATUS
+============================================================ -->
+<div class="mt-3 flex shrink-0 flex-col gap-3 border-t border-[#EEEEEE] pt-3 sm:flex-row sm:items-center sm:justify-between">
+
+<div class="flex flex-wrap items-center gap-2.5">
+<span class="mono text-[8px] uppercase tracking-[.14em] text-[#393E46]">28 Projects</span>
+<span class="h-1 w-1 rounded-full bg-[#929AAB]"></span>
+<span class="mono text-[8px] uppercase tracking-[.14em] text-[#929AAB]">AI · Software · Data · GIS · Research</span>
+</div>
+
+<a href="https://github.com/Afyuadriputra" target="_blank" rel="noopener noreferrer" class="group inline-flex min-h-9 items-center gap-2 text-[10px] font-medium text-[#393E46]">
+<svg aria-hidden="true" viewBox="0 0 24 24" fill="currentColor" class="h-[15px] w-[15px]"><path d="M12 .7a11.5 11.5 0 0 0-3.64 22.41c.58.11.79-.25.79-.56v-2.24c-3.22.7-3.9-1.37-3.9-1.37-.52-1.34-1.28-1.7-1.28-1.7-1.05-.72.08-.71.08-.71 1.16.08 1.77 1.19 1.77 1.19 1.03 1.77 2.71 1.26 3.37.96.1-.75.4-1.26.73-1.55-2.57-.29-5.27-1.29-5.27-5.72 0-1.26.45-2.3 1.19-3.11-.12-.29-.52-1.47.11-3.07 0 0 .97-.31 3.16 1.19a10.9 10.9 0 0 1 5.75 0c2.19-1.5 3.16-1.19 3.16-1.19.63 1.6.23 2.78.11 3.07.74.81 1.19 1.85 1.19 3.11 0 4.44-2.71 5.43-5.29 5.72.42.36.79 1.07.79 2.16v3.2c0 .31.21.67.8.56A11.5 11.5 0 0 0 12 .7Z"></path></svg>
+<span>View GitHub Profile</span>
+<span class="material-symbols-outlined text-[13px] transition-transform duration-200 group-hover:-translate-y-[1px] group-hover:translate-x-[2px]">open_in_new</span>
+</a>
+
+</div>
+
+</div>
+</section>
+
+<script>
+function projectArchive(){return{
+activeCategory:"all",searchQuery:"",selectedId:"01",mobileOpen:null,detailVisible:true,
+categories:[
+{key:"all",label:"All",icon:"apps"},
+{key:"ai",label:"AI / ML",icon:"neurology"},
+{key:"cv",label:"Computer Vision",icon:"image_search"},
+{key:"nlp",label:"NLP / RAG",icon:"chat"},
+{key:"data",label:"Data",icon:"analytics"},
+{key:"gis",label:"GIS",icon:"map"},
+{key:"web",label:"Web",icon:"language"}
+],
+
+projects:[
+
+{id:"01",name:"Scraping Data MagangHub",filter:"data",shortDomain:"Python · Data Analytics",tags:["Python","Data Analytics","Web Scraping"],tech:["Python","Pandas","Playwright","OpenPyXL"],description:"Mengembangkan scraper Python untuk mengambil, membersihkan, memfilter, dan menganalisis data lowongan MagangHub berdasarkan kota, jenjang pendidikan, program studi, kuota, dan jumlah pelamar. Data disimpan dalam format CSV dan dilengkapi analisis tingkat persaingan.",github:"https://github.com/Afyuadriputra/Scarping-data-magang-hub",website:null,research:false,professional:false},
+
+{id:"02",name:"Data Analytics Competition DAC Find IT 2026",filter:"data",shortDomain:"Data · Competition",tags:["Data Analytics","Python","Competition","Research"],tech:["Python","Data Analytics"],description:"Melakukan pembersihan data, eksplorasi, visualisasi, feature engineering, dan pemodelan untuk menyelesaikan studi kasus pada kompetisi Data Analytics Competition Find IT 2026.",github:"https://github.com/Afyuadriputra/Data-Analytics-Competition-DAC-Find-IT-2026",website:null,research:true,professional:false},
+
+{id:"03",name:"Analisis Prediksi Kelelahan Mental Mahasiswa",filter:"ai",shortDomain:"AI / ML · Research",tags:["Data Analytics","Machine Learning","Python","Research"],tech:["Python","Machine Learning","Data Analytics"],description:"Menganalisis dan memprediksi kelelahan mental mahasiswa menggunakan machine learning serta augmentasi data sintetis untuk memperbaiki kualitas dan keseimbangan data.",github:"https://github.com/Afyuadriputra/Analisis-Prediksi-Kelelahan-Mental-Mahasiswa-dengan-Augmentasi-Data-Sintetis",website:null,research:true,professional:false},
+
+{id:"04",name:"Phishing URL Detection",filter:"ai",shortDomain:"Machine Learning · Research",tags:["Machine Learning","Data Analytics","Python","Research"],tech:["Python","Machine Learning","Data Analytics"],description:"Mengembangkan model klasifikasi untuk mendeteksi URL phishing dan URL legitimate berdasarkan fitur-fitur URL. Proyek mencakup preprocessing, pelatihan model, evaluasi, confusion matrix, ROC-AUC, dan feature importance.",github:"https://github.com/Afyuadriputra/Phishing-URL-Detection",website:null,research:true,professional:false},
+
+{id:"05",name:"Prediksi Curah Hujan dan Deteksi Potensi Banjir Hybrid LSTM–XGBoost",filter:"ai",shortDomain:"Deep Learning · Time Series",tags:["Deep Learning","Time-Series Analytics","Python","Research"],tech:["Python","LSTM","XGBoost"],description:"Mengembangkan model hybrid LSTM dan XGBoost untuk memprediksi curah hujan serta mendukung analisis potensi banjir berdasarkan data historis cuaca.",github:"https://github.com/Afyuadriputra/Prediksi-Curah-Hujan-dan-Deteksi-Potensi-Banjir-Hybrid-LSTM-XGBoost-",website:null,research:true,professional:false},
+
+{id:"06",name:"Kombinasi LSTM dan XGBoost untuk Prediksi Curah Hujan Pekanbaru",filter:"ai",shortDomain:"Deep Learning · Time Series",tags:["Deep Learning","Time-Series Analytics","Python","Research"],tech:["Python","LSTM","XGBoost"],description:"Mengembangkan implementasi prediksi curah hujan di Pekanbaru menggunakan kombinasi LSTM dan XGBoost dengan feature engineering data cuaca untuk analisis potensi banjir.",github:"https://github.com/Afyuadriputra/KOMBINASI-LSTM-DAN-XGBOST-DALAM-PREDIKSI-CURAH-HUJAN-UNTUK-ANALISIS-POTENSI-BANJIR-DI-PEKANBARU",website:null,research:true,professional:false},
+
+{id:"07",name:"Sistem RAG dan Klasifikasi Penyakit Kuku",filter:"cv",shortDomain:"Computer Vision · RAG",tags:["Computer Vision","Deep Learning","RAG / LLM","Python","Research"],tech:["Python","Deep Learning","Computer Vision","RAG / LLM"],description:"Mengembangkan sistem klasifikasi penyakit kuku berbasis citra menggunakan deep learning dan mengintegrasikannya dengan RAG untuk memberikan informasi pendukung yang relevan terhadap hasil klasifikasi.",github:"https://github.com/Afyuadriputra/SKRIPSI_AFYU",website:null,research:true,professional:false},
+
+{id:"08",name:"Klasifikasi Penyakit Kuku Menggunakan EfficientNet-B0",filter:"cv",shortDomain:"Computer Vision · Deep Learning",tags:["Computer Vision","Deep Learning","Python","Research"],tech:["Python","EfficientNet-B0","Deep Learning"],description:"Mengembangkan model EfficientNet-B0 untuk mengklasifikasikan kondisi dan penyakit kuku berdasarkan citra digital.",github:"https://github.com/Afyuadriputra/Klasifikasi-Penyakit-Kuku-Menggunakan-EfficientNet-B0-V1",website:null,research:true,professional:false},
+
+{id:"09",name:"Comparative Analysis of Lightweight CNN Architectures for Agricultural Pest Classification",filter:"cv",shortDomain:"Computer Vision · Research",tags:["Computer Vision","Deep Learning","Model Comparison","Research"],tech:["Deep Learning","CNN"],description:"Membandingkan berbagai arsitektur CNN ringan untuk menentukan model yang akurat dan efisien dalam klasifikasi hama pertanian otomatis.",github:"https://github.com/Afyuadriputra/Comparative-Analysis-of-Lightweight-CNN-Architectures-for-Automated-Agricultural-Pest-Classification",website:null,research:true,professional:false},
+
+{id:"10",name:"Optimasi Klasifikasi Penyakit Padi dengan Transfer Learning dan Fine-Tuning",filter:"cv",shortDomain:"Computer Vision · Deep Learning",tags:["Computer Vision","Deep Learning","Python","Research"],tech:["Python","Transfer Learning","Fine-Tuning"],description:"Mengoptimalkan klasifikasi penyakit tanaman padi menggunakan transfer learning dan fine-tuning untuk meningkatkan performa model.",github:"https://github.com/Afyuadriputra/Optimasi-Klasifikasi-Penyakit-Padi-Studi-Transfer-Learning-Fine-Tuning",website:null,research:true,professional:false},
+
+{id:"11",name:"Pest Detection System Using MobileNetV2 and PyTorch",filter:"cv",shortDomain:"Computer Vision · PyTorch",tags:["Computer Vision","Deep Learning","Python"],tech:["Python","MobileNetV2","PyTorch"],description:"Mengembangkan sistem klasifikasi hama menggunakan MobileNetV2 dengan framework PyTorch untuk menghasilkan model yang ringan dan efisien.",github:"https://github.com/Afyuadriputra/Pest-Detection-System-using-MobileNetV2-PyTorch-",website:null,research:false,professional:false},
+
+{id:"12",name:"Deteksi Penyakit Tanaman Padi Menggunakan EfficientNetV2",filter:"cv",shortDomain:"Computer Vision · Deep Learning",tags:["Computer Vision","Deep Learning","Python"],tech:["Python","EfficientNetV2","Deep Learning"],description:"Mengembangkan model EfficientNetV2 untuk mendeteksi dan mengklasifikasikan penyakit tanaman padi berdasarkan citra daun.",github:"https://github.com/Afyuadriputra/Deteksi-Penyakit-Tanaman-Padi-Menggunakan-Deep-Learning-EfficientNetV2-",website:null,research:false,professional:false},
+
+{id:"13",name:"Ocular AI – Eye Disease Detection System",filter:"cv",shortDomain:"Computer Vision · Mobile",tags:["Computer Vision","Deep Learning","Mobile Application","API"],tech:["Flask","React Native","Expo","Deep Learning"],description:"Mengembangkan sistem deteksi penyakit mata berbasis AI menggunakan backend Flask dan aplikasi React Native Expo.",github:"https://github.com/Afyuadriputra/Ocular-AI---Eye-Disease-Detection-System-react-native-expo-Flask-",website:null,research:false,professional:false},
+
+{id:"14",name:"Klasifikasi Tanaman Invasif dan Non-Invasif",filter:"cv",shortDomain:"Computer Vision · Deep Learning",tags:["Computer Vision","Deep Learning","Python"],tech:["Python","Deep Learning","Image Classification"],description:"Mengembangkan model klasifikasi citra untuk membedakan tanaman invasif dan non-invasif secara otomatis.",github:"https://github.com/Afyuadriputra/Klasifikasi-tanaman-invasif-dan-non-invasif",website:null,research:false,professional:false},
+
+{id:"15",name:"Squid Game AI – Red Light Green Light",filter:"cv",shortDomain:"Computer Vision · Interactive AI",tags:["Computer Vision","Artificial Intelligence","Python"],tech:["Python","Computer Vision","Movement Detection"],description:"Mengembangkan permainan interaktif berbasis computer vision untuk mendeteksi pergerakan tubuh pengguna secara real-time.",github:"https://github.com/Afyuadriputra/Squid-Game-AI-Red-Light-Green-Light-Computer-Vision-",website:null,research:false,professional:false},
+
+{id:"16",name:"AI Bicep Curl",filter:"cv",shortDomain:"Computer Vision · Pose",tags:["Computer Vision","Pose Estimation","Python"],tech:["Python","Computer Vision","Pose Estimation"],description:"Mengembangkan sistem computer vision untuk mendeteksi pose tubuh dan menghitung repetisi latihan bicep curl secara otomatis.",github:"https://github.com/Afyuadriputra/AI-bicep-curl-",website:null,research:false,professional:false},
+
+{id:"17",name:"Menghitung Push-Up Menggunakan Computer Vision",filter:"cv",shortDomain:"Computer Vision · Pose",tags:["Computer Vision","Pose Estimation","Python"],tech:["Python","Computer Vision","Pose Estimation"],description:"Mengembangkan aplikasi yang mendeteksi gerakan tubuh dan menghitung jumlah push-up berdasarkan perubahan sudut sendi pengguna.",github:"https://github.com/Afyuadriputra/Menghitung-Push-up-Menggunakan-Computer-Vision",website:null,research:false,professional:false},
+
+{id:"18",name:"Fitness AI",filter:"cv",shortDomain:"Computer Vision · Fitness",tags:["Computer Vision","Artificial Intelligence","Python"],tech:["Python","Computer Vision","AI"],description:"Mengembangkan aplikasi AI untuk membantu mendeteksi, memantau, dan menganalisis aktivitas olahraga atau kebugaran pengguna.",github:"https://github.com/Afyuadriputra/fitnes-ai",website:null,research:false,professional:false},
+
+{id:"19",name:"Gojek App Review Word Embeddings",filter:"nlp",shortDomain:"NLP · Text Analytics",tags:["NLP","Text Analytics","Python"],tech:["Python","NLP","Word Embeddings"],description:"Menganalisis ulasan pengguna aplikasi Gojek menggunakan teknik Natural Language Processing dan word embeddings untuk memahami pola, hubungan kata, serta informasi dalam teks.",github:"https://github.com/Afyuadriputra/Gojek-App-Review-Word-Embeddings",website:null,research:false,professional:false},
+
+{id:"20",name:"Sistem Klasifikasi SMS Spam Menggunakan NLP",filter:"nlp",shortDomain:"NLP · Machine Learning",tags:["NLP","Machine Learning","Python"],tech:["Python","NLP","Machine Learning"],description:"Mengembangkan model klasifikasi teks untuk membedakan pesan SMS spam dan non-spam menggunakan pendekatan Natural Language Processing.",github:"https://github.com/Afyuadriputra/Sistem-Klasifikasi-SMS-Spam-menggunakan-pendekatan-Natural-Language-Processing-NLP-",website:null,research:false,professional:false},
+
+{id:"21",name:"Deteksi Ujaran Kebencian dan Bahasa Abusif",filter:"nlp",shortDomain:"NLP · Text Analytics",tags:["NLP","Machine Learning","Text Analytics"],tech:["NLP","Machine Learning","Text Analytics"],description:"Mengembangkan sistem deteksi ujaran kebencian dan bahasa abusif pada data Twitter berbahasa Indonesia.",github:"https://github.com/Afyuadriputra/Deteksi-Ujaran-Kebencian-dan-Bahasa-Abusif-pada-Twitter-Bahasa-Indonesia",website:null,research:false,professional:false},
+
+{id:"22",name:"RAG Project V4",filter:"nlp",shortDomain:"RAG / LLM · NLP",tags:["RAG / LLM","NLP","Python"],tech:["Python","RAG / LLM","NLP"],description:"Mengembangkan sistem Retrieval-Augmented Generation untuk mengambil informasi dari dokumen dan menghasilkan jawaban yang relevan serta kontekstual.",github:"https://github.com/Afyuadriputra/rag-projek-v4",website:null,research:false,professional:false},
+
+{id:"23",name:"Asisten Akademik Cerdas Berbasis RAG dan LLM",filter:"nlp",shortDomain:"RAG / LLM · Django",tags:["RAG / LLM","Django REST API","NLP","Python"],tech:["Python","Django REST API","RAG / LLM","NLP"],description:"Mengembangkan asisten akademik berbasis RAG dan Large Language Model yang terintegrasi dengan Django REST API untuk menjawab pertanyaan berdasarkan dokumen akademik.",github:"https://github.com/Afyuadriputra/Asisten-Akdemik-Cerdas-Berbasi-RAG-dan-LLM-pada-Platform-Django-Rest-API",website:null,research:false,professional:false},
+
+{id:"24",name:"StuntingBot – Asisten Konsultasi Gizi Anak Berbasis AI",filter:"nlp",shortDomain:"AI Assistant · NLP",tags:["AI Assistant","NLP","Web Application","Python"],tech:["Python","NLP","AI Assistant"],description:"Mengembangkan asisten berbasis AI untuk memberikan informasi awal mengenai gizi anak, pertumbuhan, dan risiko stunting.",github:"https://github.com/Afyuadriputra/StuntingBot-Asisten-Konsultasi-Gizi-Anak-Berbasis-AI.",website:null,research:false,professional:false},
+
+{id:"25",name:"Cocoa Farm GIS Data Quality – ofi Indonesia",filter:"gis",shortDomain:"GIS · Professional",tags:["GIS","Data Quality","Professional Project"],tech:["QGIS","Shapefile","KML","GeoJSON","Spatial Data Validation"],description:"Melakukan pengolahan, validasi, pengecekan kualitas, dan konsolidasi data spasial kebun kakao menggunakan QGIS. Pekerjaan mencakup pemeriksaan geometri polygon, atribut, koordinat, duplikasi data, dan penyusunan dataset akhir.",github:"https://github.com/Afyuadriputra/cocoa-farm-gis-data-quality-portfolio",website:null,research:false,professional:true},
+
+{id:"26",name:"Web Sistem Informasi Geografis Pekanbaru",filter:"gis",shortDomain:"GIS · Web Development",tags:["GIS","Web Development","Python","Spatial Data"],tech:["Django","Folium","Pandas","GeoJSON","SQLite","HTML","CSS","JavaScript"],description:"Mengembangkan aplikasi GIS berbasis Django dan Folium untuk menampilkan, mencari, serta mengelola titik fasilitas umum Pekanbaru pada peta interaktif.",github:"https://github.com/Afyuadriputra/Web-SIG",website:null,research:false,professional:false},
+
+{id:"27",name:"Website Riau Eye Center",filter:"web",shortDomain:"Web · Professional",tags:["Web Development","Professional Project"],tech:[],description:"Mengembangkan website resmi Riau Eye Center sebagai media informasi digital untuk menampilkan profil klinik, layanan kesehatan mata, dokter, fasilitas, serta informasi kontak bagi pasien.",github:null,website:"https://riaueyecenter.com/",research:false,professional:true},
+
+{id:"28",name:"Website dan Sistem Informasi UMRI Press",filter:"web",shortDomain:"Web · Professional",tags:["Web Development","Professional Project","University System"],tech:[],description:"Mengembangkan website dan sistem informasi UMRI Press untuk mendukung publikasi, pengelolaan informasi penerbitan, penyampaian layanan, serta akses terhadap informasi buku, jurnal, dan aktivitas penerbitan universitas.",github:null,website:"https://press.umri.ac.id/",research:false,professional:true}
+
+],
+
+get filteredProjects(){const q=this.searchQuery.trim().toLowerCase();return this.projects.filter(p=>{const category=this.activeCategory==="all"||p.filter===this.activeCategory||(this.activeCategory==="ai"&&["ai","cv"].includes(p.filter));const searchable=[p.name,p.shortDomain,p.description,...p.tags,...p.tech].join(" ").toLowerCase();return category&&(!q||searchable.includes(q))})},
+
+get selectedProject(){return this.projects.find(p=>p.id===this.selectedId)||this.filteredProjects[0]||this.projects[0]},
+
+init(){this.ensureSelection()},
+
+domainIcon(filter){return({ai:"neurology",cv:"image_search",nlp:"forum",data:"analytics",gis:"map",web:"language"})[filter]||"code"},
+
+setCategory(category){this.activeCategory=category;this.ensureSelection()},
+
+resetFilters(){this.activeCategory="all";this.searchQuery="";this.ensureSelection()},
+
+ensureSelection(){this.$nextTick(()=>{const available=this.filteredProjects;if(!available.length)return;if(!available.some(p=>p.id===this.selectedId))this.selectProject(available[0].id,true)})},
+
+selectProject(id,instant=false){if(id===this.selectedId)return;if(instant){this.selectedId=id;return}this.detailVisible=false;window.setTimeout(()=>{this.selectedId=id;this.$nextTick(()=>requestAnimationFrame(()=>this.detailVisible=true))},90)},
+
+toggleMobile(id){this.mobileOpen=this.mobileOpen===id?null:id}
+}}
+</script>
+
+</body>
+</html>

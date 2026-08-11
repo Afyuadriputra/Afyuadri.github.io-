@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Selected Work — Afyuadri Putra</title>
+<meta name="description" content="Selected production projects built by Afyuadri Putra across digital media, education technology, and publishing.">
+
+<script defer src="https://cdn.jsdelivr.net/npm/@alpinejs/focus@3.15.12/dist/cdn.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.15.12/dist/cdn.min.js"></script>
+<style>[x-cloak]{display:none!important}.nav-scrollbar{scrollbar-width:thin;scrollbar-color:#929AAB transparent}.nav-scrollbar::-webkit-scrollbar{width:6px}.nav-scrollbar::-webkit-scrollbar-track{background:transparent}.nav-scrollbar::-webkit-scrollbar-thumb{background:#929AAB;border-radius:999px}@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important;scroll-behavior:auto!important}}</style>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<script src="https://cdn.tailwindcss.com"></script>
+<script>tailwind.config={theme:{extend:{colors:{portfolio:{background:"#F7F7F7",surface:"#EEEEEE",dark:"#393E46",muted:"#929AAB",white:"#FFFFFF"}},fontFamily:{sans:["Inter","sans-serif"],mono:["JetBrains Mono","monospace"]},maxWidth:{portfolio:"1240px"}}}}</script>
+
+<script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+
+<style>
+[x-cloak]{display:none!important}
+html,body{margin:0;background:#F7F7F7;scrollbar-gutter:stable}
+*{box-sizing:border-box}
+::selection{background:#393E46;color:#fff}
+.project-panel{grid-column:1;grid-row:1;will-change:opacity,transform}
+.project-preview{background:linear-gradient(135deg,#EEEEEE,#F7F7F7)}
+.preview-image{transform:translateZ(0);backface-visibility:hidden}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{scroll-behavior:auto!important;animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}}
+</style>
+</head>
+
+<body class="m-0 overflow-x-hidden bg-portfolio-background font-sans text-portfolio-dark antialiased">
+
+<section id="selected-work" x-data="selectedWork()" x-init="init()" class="relative flex min-h-screen w-full bg-portfolio-background lg:h-[100svh] lg:min-h-[760px] lg:max-h-[920px]">
+<div class="mx-auto flex w-full max-w-portfolio flex-col px-5 py-8 sm:px-6 md:py-9 lg:px-8 lg:py-7 xl:px-10">
+
+<!-- HEADER -->
+<header class="grid shrink-0 grid-cols-1 gap-4 border-b border-portfolio-surface pb-5 lg:grid-cols-12 lg:items-end lg:gap-8">
+<div class="lg:col-span-7">
+<p class="mb-2.5 font-mono text-[10px] font-medium uppercase tracking-[.18em] text-portfolio-muted sm:text-[11px]">Selected Work</p>
+<h2 class="max-w-[720px] text-[33px] font-semibold leading-[1.03] tracking-[-.045em] text-portfolio-dark sm:text-[39px] lg:text-[43px] xl:text-[47px]">Products I've built and shipped.</h2>
+</div>
+<div class="lg:col-span-5 lg:pb-1">
+<p class="max-w-[500px] text-[13px] leading-6 text-portfolio-muted sm:text-sm lg:ml-auto">A selection of production systems I've designed and developed across digital media, education, and publishing.</p>
+</div>
+</header>
+
+<!-- PROJECT SELECTOR -->
+<div class="shrink-0 py-3.5">
+<div class="grid grid-cols-1 gap-2 sm:grid-cols-3" role="tablist" aria-label="Selected projects">
+
+<template x-for="(project,index) in projects" :key="project.slug">
+<button type="button" role="tab" :id="'project-tab-'+index" :aria-controls="'project-panel-'+index" :aria-selected="active===index" :tabindex="active===index?0:-1" @click="setActive(index)" @keydown.right.prevent="next(true)" @keydown.left.prevent="previous(true)" @keydown.home.prevent="setActive(0,true)" @keydown.end.prevent="setActive(projects.length-1,true)" :class="active===index?'border-portfolio-dark bg-portfolio-dark text-white':'border-portfolio-surface bg-transparent text-portfolio-dark hover:border-portfolio-muted hover:bg-portfolio-surface/60'" class="group flex min-h-[57px] items-center justify-between rounded-lg border px-4 py-2.5 text-left transition-[background-color,border-color,color] duration-200 focus:outline-none focus:ring-2 focus:ring-portfolio-muted focus:ring-offset-2 focus:ring-offset-portfolio-background lg:min-h-[60px]">
+
+<span class="flex min-w-0 items-center gap-3">
+<span :class="active===index?'text-white/55':'text-portfolio-muted'" class="font-mono text-[9px] tracking-[.14em]" x-text="'0'+(index+1)"></span>
+<span class="min-w-0">
+<span class="block truncate text-[13px] font-semibold tracking-[-.02em]" x-text="project.name"></span>
+<span :class="active===index?'text-white/60':'text-portfolio-muted'" class="mt-.5 block truncate text-[10px]" x-text="project.shortCategory"></span>
+</span>
+</span>
+
+<svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" :class="active===index?'translate-x-0 opacity-100':'-translate-x-1 opacity-0 group-hover:translate-x-0 group-hover:opacity-100'" class="ml-3 h-4 w-4 shrink-0 transition-[opacity,transform] duration-200"><path d="M5 12h14"></path><path d="m13 6 6 6-6 6"></path></svg>
+
+</button>
+</template>
+
+</div>
+</div>
+
+<!-- ============================================================
+     STABLE PROJECT STAGE
+     Semua panel berada di grid-cell yang sama.
+     Panel tidak di-display:none sehingga tinggi layout tidak berubah.
+============================================================= -->
+<div class="grid min-h-0 flex-1" x-cloak>
+
+<template x-for="(project,index) in projects" :key="'panel-'+project.slug">
+
+<article :id="'project-panel-'+index" role="tabpanel" :aria-labelledby="'project-tab-'+index" :aria-hidden="active!==index" :inert="active!==index" :class="active===index?'visible pointer-events-auto translate-y-0 opacity-100':'invisible pointer-events-none translate-y-[3px] opacity-0'" class="project-panel h-full transition-[opacity,transform] duration-200 ease-out">
+
+<div class="grid h-full grid-cols-1 gap-6 lg:grid-cols-12 lg:items-stretch lg:gap-8 xl:gap-9">
+
+<!-- ============================================================
+     WEBSITE PREVIEW
+============================================================= -->
+<div class="order-1 min-h-0 lg:col-span-7">
+
+<div class="project-preview group relative flex h-full min-h-[255px] overflow-hidden rounded-xl border border-portfolio-surface p-2.5 sm:min-h-[335px] lg:min-h-0 lg:p-3">
+
+<a :href="project.liveUrl" target="_blank" rel="noopener noreferrer" :aria-label="'Open '+project.name+' website'" class="relative block h-full w-full overflow-hidden rounded-lg bg-white focus:outline-none focus:ring-2 focus:ring-portfolio-muted">
+
+<!-- SCREENSHOT -->
+<img :src="project.previewImage" :alt="'Preview of '+project.name+' live website'" loading="lazy" decoding="async" @error="previewFallback($event,project)" class="preview-image absolute inset-0 h-full w-full object-cover object-top transition-transform duration-500 ease-out group-hover:scale-[1.01]">
+
+<!-- BROWSER CHROME -->
+<div class="pointer-events-none absolute inset-x-0 top-0 z-10 flex h-[38px] items-center border-b border-black/5 bg-white/95 px-3 shadow-[0_1px_0_rgba(0,0,0,.03)] backdrop-blur-md">
+
+<div class="flex shrink-0 items-center gap-1.5">
+<span class="h-2 w-2 rounded-full bg-portfolio-muted/55"></span>
+<span class="h-2 w-2 rounded-full bg-portfolio-muted/35"></span>
+<span class="h-2 w-2 rounded-full bg-portfolio-muted/20"></span>
+</div>
+
+<div class="mx-auto flex max-w-[65%] items-center gap-1.5 rounded-md border border-portfolio-surface bg-portfolio-background px-3 py-1">
+<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" class="h-3 w-3 shrink-0 text-portfolio-muted"><rect x="5" y="11" width="14" height="10" rx="2"></rect><path d="M8 11V7a4 4 0 0 1 8 0v4"></path></svg>
+<span class="truncate font-mono text-[8px] text-portfolio-muted" x-text="project.domain"></span>
+</div>
+
+<div class="w-[34px]"></div>
+</div>
+
+<!-- SOFT OVERLAY -->
+<div class="pointer-events-none absolute inset-x-0 bottom-0 h-28 bg-gradient-to-t from-black/20 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100"></div>
+
+<!-- ROLE -->
+<div class="pointer-events-none absolute bottom-3 left-3 hidden rounded-lg border border-white/60 bg-white/95 px-3 py-2 shadow-sm backdrop-blur-md sm:block">
+<p class="font-mono text-[8px] uppercase tracking-[.14em] text-portfolio-muted">My Role</p>
+<p class="mt-1 text-[11px] font-medium text-portfolio-dark" x-text="project.role"></p>
+</div>
+
+<!-- PRODUCTION STATUS -->
+<div class="pointer-events-none absolute bottom-3 right-3 hidden items-center gap-2 rounded-lg border border-white/60 bg-white/95 px-3 py-2 shadow-sm backdrop-blur-md sm:flex">
+<span class="relative flex h-2 w-2"><span class="absolute inline-flex h-full w-full rounded-full bg-portfolio-muted opacity-25"></span><span class="relative inline-flex h-2 w-2 rounded-full bg-portfolio-dark"></span></span>
+<span class="font-mono text-[8px] uppercase tracking-[.12em] text-portfolio-muted">Live Production</span>
+</div>
+
+<!-- HOVER OPEN -->
+<div class="pointer-events-none absolute left-1/2 top-1/2 flex -translate-x-1/2 -translate-y-1/2 translate-y-1 items-center gap-2 rounded-lg bg-portfolio-dark px-4 py-2.5 text-[10px] font-medium text-white opacity-0 shadow-lg transition-all duration-200 group-hover:translate-y-0 group-hover:opacity-100">
+<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" class="h-4 w-4"><path d="M15 3h6v6"></path><path d="M10 14 21 3"></path><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path></svg>
+Open Website
+</div>
+
+</a>
+</div>
+</div>
+
+<!-- ============================================================
+     PROJECT INFORMATION
+============================================================= -->
+<div class="order-2 flex min-h-0 flex-col lg:col-span-5">
+
+<div class="shrink-0">
+<div class="mb-1.5 flex items-center justify-between gap-4">
+<p class="truncate text-[11px] font-medium text-portfolio-muted" x-text="project.category"></p>
+<p class="shrink-0 font-mono text-[9px] uppercase tracking-[.14em] text-portfolio-muted" x-text="project.industry"></p>
+</div>
+<h3 class="text-[27px] font-semibold leading-tight tracking-[-.035em] text-portfolio-dark lg:text-[29px] xl:text-[31px]" x-text="project.name"></h3>
+</div>
+
+<!-- PROBLEM & SOLUTION -->
+<div class="mt-3.5 grid grid-cols-1 gap-4 sm:grid-cols-2">
+
+<div class="border-t border-portfolio-surface pt-2.5">
+<div class="mb-1.5 flex items-center gap-2">
+<svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" class="h-3.5 w-3.5 text-portfolio-muted"><circle cx="12" cy="12" r="9"></circle><path d="M12 8v5"></path><path d="M12 16h.01"></path></svg>
+<p class="font-mono text-[9px] font-medium uppercase tracking-[.16em] text-portfolio-muted">Problem</p>
+</div>
+<p class="text-[11.5px] leading-[1.52] text-portfolio-dark xl:text-[12px]" x-text="project.problem"></p>
+</div>
+
+<div class="border-t border-portfolio-surface pt-2.5">
+<div class="mb-1.5 flex items-center gap-2">
+<svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" class="h-3.5 w-3.5 text-portfolio-muted"><path d="M9 18h6"></path><path d="M10 22h4"></path><path d="M8.5 14.5A7 7 0 1 1 15.5 14.5c-.8.6-1.3 1.5-1.5 2.5h-4c-.2-1-.7-1.9-1.5-2.5Z"></path></svg>
+<p class="font-mono text-[9px] font-medium uppercase tracking-[.16em] text-portfolio-muted">Solution</p>
+</div>
+<p class="text-[11.5px] leading-[1.52] text-portfolio-muted xl:text-[12px]" x-text="project.solution"></p>
+</div>
+
+</div>
+
+<!-- TECH STACK + HIGHLIGHTS -->
+<div class="mt-3.5 grid grid-cols-1 gap-4 border-t border-portfolio-surface pt-3 sm:grid-cols-2">
+
+<div>
+<div class="mb-2 flex items-center gap-2">
+<svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" class="h-3.5 w-3.5 text-portfolio-muted"><path d="m8 9-4 3 4 3"></path><path d="m16 9 4 3-4 3"></path><path d="m14 5-4 14"></path></svg>
+<p class="font-mono text-[9px] font-medium uppercase tracking-[.16em] text-portfolio-muted">Tech Stack</p>
+</div>
+
+<div class="flex flex-wrap gap-1.5">
+<template x-for="tech in project.tech" :key="tech">
+<span class="inline-flex min-h-[24px] items-center rounded-md bg-portfolio-surface px-2.5 py-1 font-mono text-[8.7px] text-portfolio-dark" x-text="tech"></span>
+</template>
+</div>
+</div>
+
+<div>
+<div class="mb-2 flex items-center gap-2">
+<svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" class="h-3.5 w-3.5 text-portfolio-muted"><path d="M12 3 9.6 8.1 4 9l4 4-.9 5.7L12 16l4.9 2.7L16 13l4-4-5.6-.9L12 3Z"></path></svg>
+<p class="font-mono text-[9px] font-medium uppercase tracking-[.16em] text-portfolio-muted">Engineering Highlights</p>
+</div>
+
+<div class="grid grid-cols-2 gap-x-2 gap-y-1">
+<template x-for="highlight in project.highlights" :key="highlight">
+<div class="relative pl-3 text-[9.7px] leading-4 text-portfolio-dark before:absolute before:left-0 before:top-[6px] before:h-1 before:w-1 before:rounded-full before:bg-portfolio-muted" x-text="highlight"></div>
+</template>
+</div>
+</div>
+
+</div>
+
+<!-- ACTION BUTTONS -->
+<div class="mt-auto flex flex-col gap-2.5 pt-3.5 sm:flex-row sm:items-center">
+
+<a :href="project.liveUrl" target="_blank" rel="noopener noreferrer" :aria-label="'Open '+project.name+' live website'" class="group inline-flex min-h-[46px] flex-1 items-center justify-center gap-2 rounded-lg bg-portfolio-dark px-4 text-[10.5px] font-medium text-white transition-[opacity,transform] duration-200 hover:-translate-y-[1px] hover:opacity-90 focus:outline-none focus:ring-2 focus:ring-portfolio-muted focus:ring-offset-2 focus:ring-offset-portfolio-background sm:flex-none sm:px-5">
+<svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="h-[16px] w-[16px]"><path d="M15 3h6v6"></path><path d="M10 14 21 3"></path><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path></svg>
+<span>View Live Site</span>
+</a>
+
+<a :href="project.githubUrl" target="_blank" rel="noopener noreferrer" :aria-label="'Open '+project.name+' source code on GitHub'" class="group inline-flex min-h-[46px] flex-1 items-center justify-center gap-2 rounded-lg border border-portfolio-surface bg-transparent px-4 text-[10.5px] font-medium text-portfolio-dark transition-[background-color,border-color] duration-200 hover:border-portfolio-muted hover:bg-portfolio-surface focus:outline-none focus:ring-2 focus:ring-portfolio-muted focus:ring-offset-2 focus:ring-offset-portfolio-background sm:flex-none sm:px-5">
+<svg aria-hidden="true" viewBox="0 0 24 24" fill="currentColor" class="h-[17px] w-[17px]"><path d="M12 .7a11.5 11.5 0 0 0-3.64 22.41c.58.11.79-.25.79-.56v-2.24c-3.22.7-3.9-1.37-3.9-1.37-.52-1.34-1.28-1.7-1.28-1.7-1.05-.72.08-.71.08-.71 1.16.08 1.77 1.19 1.77 1.19 1.03 1.77 2.71 1.26 3.37.96.1-.75.4-1.26.73-1.55-2.57-.29-5.27-1.29-5.27-5.72 0-1.26.45-2.3 1.19-3.11-.12-.29-.52-1.47.11-3.07 0 0 .97-.31 3.16 1.19a10.9 10.9 0 0 1 5.75 0c2.19-1.5 3.16-1.19 3.16-1.19.63 1.6.23 2.78.11 3.07.74.81 1.19 1.85 1.19 3.11 0 4.44-2.71 5.43-5.29 5.72.42.36.79 1.07.79 2.16v3.2c0 .31.21.67.8.56A11.5 11.5 0 0 0 12 .7Z"></path></svg>
+<span>View Source</span>
+</a>
+
+</div>
+
+</div>
+</div>
+
+</article>
+
+</template>
+</div>
+
+<!-- BOTTOM PROJECT NAVIGATION -->
+<div class="mt-3 flex shrink-0 items-center justify-between border-t border-portfolio-surface pt-2.5">
+
+<p class="font-mono text-[8.5px] uppercase tracking-[.14em] text-portfolio-muted">
+<span x-text="'0'+(active+1)"></span><span class="mx-1">/</span><span>03 Selected Project</span>
+</p>
+
+<div class="flex items-center gap-2">
+
+<button @click="previous()" type="button" aria-label="Previous project" class="group inline-flex h-9 w-9 items-center justify-center rounded-md border border-portfolio-surface text-portfolio-dark transition-[background-color,border-color] duration-200 hover:border-portfolio-muted hover:bg-portfolio-surface focus:outline-none focus:ring-2 focus:ring-portfolio-muted">
+<svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4 transition-transform duration-200 group-hover:-translate-x-[2px]"><path d="M19 12H5"></path><path d="m11 18-6-6 6-6"></path></svg>
+</button>
+
+<button @click="next()" type="button" aria-label="Next project" class="group inline-flex h-9 w-9 items-center justify-center rounded-md border border-portfolio-surface text-portfolio-dark transition-[background-color,border-color] duration-200 hover:border-portfolio-muted hover:bg-portfolio-surface focus:outline-none focus:ring-2 focus:ring-portfolio-muted">
+<svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4 transition-transform duration-200 group-hover:translate-x-[2px]"><path d="M5 12h14"></path><path d="m13 6 6 6-6 6"></path></svg>
+</button>
+
+</div>
+</div>
+
+</div>
+</section>
+
+<script>
+function selectedWork(){return{active:0,projects:[
+{slug:"beritarohul",name:"BeritaRohul.ID",shortCategory:"News Portal & CMS",category:"News Portal & Editorial CMS",industry:"Digital Media",role:"Full-Stack Laravel Developer",domain:"beritarohul.id",problem:"A regional digital newsroom needed a centralized platform to create, review, manage, and publish news while controlling access across editorial roles.",solution:"Developed a production Laravel news portal and CMS supporting editorial workflows, role-based access, advertising management, multilingual content, comments, and SEO configuration.",tech:["Laravel 11","PHP 8.2+","MySQL","Blade","JavaScript","Vite","Spatie RBAC"],highlights:["CMS Architecture","RBAC","Multi-Guard Auth","Editorial Workflow","SEO","Production Deployment"],liveUrl:"https://beritarohul.id/",githubUrl:"https://github.com/Afyuadriputra/BeritaRohul.ID-",previewImage:"https://beritarohul.id/uploads/9T3o1V7k1PDQ03r9UhrlTfgTv4FcVq.png",fallbackImage:"https://lh3.googleusercontent.com/aida-public/AB6AXuDE3KSmNjbiSTW6xnqfgyN8zAFyBMhsTsaH9YoAmmjjs915ce1OsY5Tl-JTzTNFlUoBpMZSBVQ8MzX2Xc7AFBIgYwEGczxYfUl6LljXrBd9MuaU7bq-XOGdKjXSX0a6leyqmm8KfDaD0l2F37JvwinxatKlIK0XgTI877w2iUQkNn-ICItECz51jbYfADVA2hmAvcPmMHM1YsL9hHmizN9xk9XTfR4z78G9d-36qMQxHA12Ir9Bd0g3DA"},
+{slug:"yptq",name:"YPTQ Asy-Syams",shortCategory:"Education Platform",category:"Integrated Education Management Platform",industry:"Education Technology",role:"Full-Stack Laravel Developer",domain:"yptqasysyams.id",problem:"Academic, administrative, attendance, assessment, admissions, and payment workflows needed to be centralized into one integrated digital platform.",solution:"Developed an integrated education management system covering admissions, students, classes, attendance, assessments, dashboards, role-based access, and online payment processing.",tech:["Laravel 12","PHP","MySQL","Filament v3","Livewire","Tailwind CSS","Midtrans","PHPUnit"],highlights:["Service Layer","RBAC","Midtrans","Secure Webhook","PHPUnit Testing","Deployment"],liveUrl:"https://yptqasysyams.id/",githubUrl:"https://github.com/Afyuadriputra/Aplikasi-asysyams-",previewImage:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRRmNeiulEr5YZgxl_yx1vC28Ui50I2OjUA7lY24U706fvmycYDti_Yi00&s=10",fallbackImage:"https://lh3.googleusercontent.com/aida-public/AB6AXuAtIDVx2_tMqT0g9opaOTPik5g5vIZw2E9aHT4BDn8k-FHEBCun2TYNYucqGZ6DakZKHV8bUwRyKnhiYNPUIiZYf8ErnCxg9pwM4BpZCltz5P1cXZdDYfu49bjTqP8o-izb7GFVC_wy_0ynO4cGeJHkFDSSjDdgZY-Rv0G50lyiqGbvfahgXHfnF1on__1NJzJ_AZx7wp1VEXNjEMxyvDuwZFyjIfnXlziFnSl8L2_3AAoATGmp06pTGQ"},
+{slug:"umri-press",name:"UMRI Press",shortCategory:"Publishing MIS",category:"Publishing Management Information System",industry:"Publishing",role:"Full-Stack Laravel Developer",domain:"press.umri.ac.id",problem:"A university publishing unit needed a centralized system for managing books, authors, publishing activities, sales, royalties, and administrative data.",solution:"Developed a Laravel-based publishing management platform integrating administrative workflows, centralized database management, books, authors, sales, and royalty records.",tech:["Laravel","PHP","MySQL","HTML","CSS","JavaScript","Plesk"],highlights:["Database Design","Admin Dashboard","Books & Authors","Sales Management","Royalty Management","Deployment"],liveUrl:"https://press.umri.ac.id/",githubUrl:"https://github.com/Afyuadriputra/Umri_Press-Universitas-Muhammadiyah-Riau-",previewImage:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSubmjumqxamuDIrHIoTD0qxifraQdlBfj9lu7vKrpR97LOsAbIVlKV2VI&s=10",fallbackImage:"https://lh3.googleusercontent.com/aida-public/AB6AXuCUvnwpYxneVH7oLlFdZa8xpWw63hiCvjAML6T2HwmhW2x6CUDPAToX3l1X6UxMRpRnFfNrwTgy5kaZWrJZHWI9Zyrp_kZJnYS9aA9YMMVT6il5O5tu0chqVEm559gvUSd6pQhB0Y24HN4OyZSc_V9MTzK5HncKF5LFB38_6EOM17seqnEqclPZJdAi4OLQYtbsdmO1Spd7mD9B1_kWxLKORs98CALL5MI1IdkPiDLmtW-o1sYJqEW1aQ"}
+],init(){const slug=window.location.hash.replace("#","");const index=this.projects.findIndex(project=>project.slug===slug);if(index>=0)this.active=index},setActive(index,focus=false){if(index===this.active)return;this.active=index;if(focus)this.focusActiveTab()},next(focus=false){this.active=(this.active+1)%this.projects.length;if(focus)this.focusActiveTab()},previous(focus=false){this.active=(this.active-1+this.projects.length)%this.projects.length;if(focus)this.focusActiveTab()},focusActiveTab(){this.$nextTick(()=>document.getElementById("project-tab-"+this.active)?.focus({preventScroll:true}))},previewFallback(event,project){const image=event.currentTarget;if(image.dataset.fallback==="true")return;image.dataset.fallback="true";image.src=project.fallbackImage}}}
+</script>
+
+</body>
+</html>
