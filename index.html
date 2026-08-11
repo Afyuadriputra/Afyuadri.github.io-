@@ -15,27 +15,44 @@
 
 <style>
 *{box-sizing:border-box}html{margin:0;padding:0;scroll-behavior:smooth;background:#F7F7F7;scrollbar-gutter:stable}body{margin:0;padding:0;overflow-x:hidden;background:#F7F7F7}main{width:100%;margin:0;padding:0}.section-wrapper{position:relative;width:100%;margin:0;padding:0;scroll-margin-top:72px;background:#F7F7F7}.section-frame{display:block;width:100%;height:100svh;min-height:100svh;margin:0;padding:0;border:0;overflow:hidden;background:#F7F7F7;vertical-align:top}.section-frame[data-loaded="false"]{background:#F7F7F7}.site-nav-link{position:relative;color:#6b7280;transition:color .18s ease}.site-nav-link::after{position:absolute;right:0;bottom:-6px;left:0;height:1px;background:#393e46;content:"";transform:scaleX(0);transition:transform .18s ease}.site-nav-link:hover,.site-nav-link:focus-visible,.site-nav-link.is-active{color:#393e46}.site-nav-link:hover::after,.site-nav-link:focus-visible::after,.site-nav-link.is-active::after{transform:scaleX(1)}.site-nav-link:focus-visible{outline:2px solid #929aab;outline-offset:5px;border-radius:2px}.compact-context{position:absolute;left:50%;display:flex;align-items:center;gap:8px;max-width:calc(100% - 190px);color:#393e46;font:500 9px/1 "JetBrains Mono",monospace;letter-spacing:.13em;text-transform:uppercase;opacity:0;pointer-events:none;transform:translate(-50%,4px);transition:opacity .18s ease,transform .18s ease}.compact-context::before{width:5px;height:5px;border-radius:999px;background:#929aab;content:""}#site-header{height:0;transition:background-color .2s ease,border-color .2s ease}#site-header::before{position:absolute;inset:0 0 auto;height:72px;border-bottom:1px solid rgba(238,238,238,.9);background:rgba(247,247,247,.95);content:"";pointer-events:none;transition:opacity .2s ease}#site-header .site-nav-inner{min-height:72px;transition:min-height .2s ease,margin .2s ease,width .2s ease,max-width .2s ease,padding .2s ease,border-radius .2s ease,background-color .2s ease,box-shadow .2s ease,border-color .2s ease}#site-header .site-navigation{transition:opacity .16s ease,transform .16s ease}#site-header.is-compact{border-color:transparent;background:transparent}#site-header.is-compact::before{opacity:0}#site-header.is-compact .site-nav-inner{width:fit-content;min-height:48px;margin-top:8px;margin-right:auto;margin-bottom:8px;margin-left:8px;padding-right:4px;padding-left:8px;justify-content:flex-start;border:1px solid rgba(146,154,171,.36);border-radius:12px;background:rgba(247,247,247,.92);box-shadow:0 10px 22px rgba(57,62,70,.09)}#site-header.is-compact .site-navigation{position:absolute;opacity:0;pointer-events:none;transform:translateY(-4px);visibility:hidden}#site-header.is-compact .compact-context{opacity:0;visibility:hidden}#site-header.is-compact .brand-meta,#site-header.is-compact .cv-action{display:none}#site-header.is-compact .compact-menu-button{width:40px;height:40px}#site-header.is-compact .cv-label{display:none}@media(min-width:1024px){#site-header.is-compact .compact-menu-button{display:inline-flex}}@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.site-nav-link,.site-nav-link::after,#site-header,#site-header::before,#site-header .site-nav-inner,#site-header .site-navigation,.compact-context{transition:none!important}}
+#site-header.is-compact .language-toggle{display:none}
+#site-header .site-nav-inner{z-index:1}
+#site-header.is-compact .site-nav-inner{position:fixed;z-index:101;bottom:12px;left:12px;margin:0}
+@media(min-width:1024px){#site-header.is-menu-open .compact-menu-button{display:inline-flex}}
+#site-header.is-compact .site-nav-inner{position:fixed;z-index:101;bottom:20px;left:20px;width:56px;min-height:56px;height:56px;margin:0;padding:6px;justify-content:center;border-radius:999px}
+#site-header.is-compact .site-brand{display:none}
+#site-header.is-compact .compact-menu-button{width:44px;height:44px;border-radius:999px}
+#site-header.is-compact #menu-toggle{display:flex!important;align-items:center;justify-content:center;background:#393e46;color:#fff;box-shadow:0 6px 16px rgba(57,62,70,.22)}
+#site-header.is-compact #menu-toggle .menu-icon{display:block!important;width:36px;height:36px;border:2px solid #f7f7f7}
+#site-header.is-menu-open #menu-toggle{display:flex!important}
+.floating-nav-trigger{position:fixed;z-index:300;bottom:20px;left:20px;display:none;width:56px;height:56px;padding:4px;border:2px solid #f7f7f7;border-radius:999px;background:#393e46;box-shadow:0 10px 24px rgba(57,62,70,.24);cursor:pointer}.floating-nav-trigger img{display:block;width:100%;height:100%;border-radius:999px;object-fit:cover}.nav-scrolled .floating-nav-trigger{display:block}.floating-nav-trigger.hidden,.is-menu-open~.floating-nav-trigger{display:none!important}
+.floating-nav-panel{position:fixed;z-index:301;bottom:20px;left:20px;display:none;width:min(280px,calc(100vw - 40px));overflow:hidden;border:1px solid rgba(146,154,171,.38);border-radius:18px;background:rgba(247,247,247,.97);box-shadow:0 18px 48px rgba(57,62,70,.20);backdrop-filter:blur(14px)}.floating-nav-panel.is-open{display:block}.floating-nav-panel a{display:flex;min-height:44px;align-items:center;border-bottom:1px solid #eee;padding:0 16px;color:#393e46;font:500 11px/1 "JetBrains Mono",monospace;text-decoration:none}.floating-nav-panel a:hover{background:#eee}.floating-nav-panel header{display:flex;height:56px;align-items:center;justify-content:space-between;padding:0 8px 0 16px;color:#393e46;font:600 10px/1 "JetBrains Mono",monospace;letter-spacing:.12em}.floating-nav-panel button{display:grid;width:40px;height:40px;place-items:center;border:0;border-radius:12px;background:transparent;color:#393e46;cursor:pointer}.floating-nav-panel button:hover{background:#eee}
+.splash{position:fixed;z-index:1000;inset:0;border:0;width:100%;height:100%;opacity:1;transition:opacity .35s ease}.splash.is-hidden{opacity:0;pointer-events:none}.section-frame[data-loaded="false"]{background:linear-gradient(100deg,#f7f7f7 35%,#eee 50%,#f7f7f7 65%);background-size:200% 100%;animation:skeleton 1.25s infinite}@keyframes skeleton{to{background-position:-200% 0}}@media(prefers-reduced-motion:reduce){.section-frame[data-loaded="false"]{animation:none}}
 </style>
 </head>
 
 <body>
 
+<iframe id="splash" class="splash" src="./loading.html" title="Loading portfolio"></iframe>
+
 <!-- Flowbite responsive navbar: placed in the parent document so it remains visible across every iframe section. -->
 <header id="site-header" class="fixed inset-x-0 top-0 z-[100] border-b border-portfolio-surface/90 bg-portfolio-background/95 font-sans backdrop-blur-md">
   <nav class="site-nav-inner relative mx-auto flex max-w-portfolio flex-wrap items-center justify-between gap-x-4 px-5 sm:px-6 lg:px-8" aria-label="Primary navigation">
-    <a href="#home" class="inline-flex min-h-11 items-center gap-2 rounded-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-portfolio-muted focus-visible:ring-offset-2 focus-visible:ring-offset-portfolio-background" aria-label="Afyuadri Putra — Home">
+    <a href="#home" class="site-brand inline-flex min-h-11 items-center gap-2 rounded-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-portfolio-muted focus-visible:ring-offset-2 focus-visible:ring-offset-portfolio-background" aria-label="Afyuadri Putra — Home">
       <span class="text-[27px] font-semibold tracking-[-.055em] text-portfolio-dark">AP.</span>
       <span class="brand-meta hidden h-1 w-1 rounded-full bg-portfolio-muted sm:block"></span>
       <span class="brand-meta hidden font-mono text-[8px] uppercase tracking-[.14em] text-portfolio-muted sm:block">Full-Stack Engineer</span>
     </a>
 
     <div class="flex items-center gap-2 lg:order-2">
+      <button id="language-toggle" type="button" class="language-toggle inline-flex h-11 min-w-11 items-center justify-center rounded-lg border border-portfolio-surface bg-white px-3 font-mono text-[10px] font-medium text-portfolio-dark transition-colors hover:bg-portfolio-surface focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-portfolio-muted" aria-label="Switch language">EN</button>
       <a href="./cv.laravel.pdf" target="_blank" rel="noopener noreferrer" class="cv-action hidden min-h-11 items-center gap-2 rounded-lg bg-portfolio-dark px-4 font-mono text-[10px] font-medium text-white transition-opacity hover:opacity-90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-portfolio-muted focus-visible:ring-offset-2 focus-visible:ring-offset-portfolio-background sm:inline-flex">
         <svg aria-hidden="true" class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6M8 13h8M8 17h6"/></svg>
         <span class="cv-label">View CV</span>
       </a>
-      <button data-collapse-toggle="portfolio-navigation" type="button" class="compact-menu-button inline-flex h-11 w-11 items-center justify-center rounded-lg text-portfolio-dark transition-colors hover:bg-portfolio-surface focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-portfolio-muted lg:hidden" aria-controls="portfolio-navigation" aria-expanded="false" aria-label="Open navigation menu">
-        <svg class="h-5 w-5" aria-hidden="true" fill="none" viewBox="0 0 17 14" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" d="M1 1h15M1 7h15M1 13h15"/></svg>
+      <button id="menu-toggle" type="button" class="compact-menu-button inline-flex h-11 w-11 items-center justify-center rounded-lg text-portfolio-dark transition-colors hover:bg-portfolio-surface focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-portfolio-muted lg:hidden" aria-controls="portfolio-navigation" aria-expanded="false" aria-label="Open navigation menu">
+        <img class="menu-icon h-9 w-9 rounded-full object-cover" src="./duck-jump-rope.gif" alt="Open navigation menu">
+        <svg class="close-icon hidden h-5 w-5" aria-hidden="true" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" d="m6 6 12 12M18 6 6 18"/></svg>
       </button>
     </div>
 
@@ -49,11 +66,14 @@
         <li><a class="site-nav-link block rounded-lg px-3 py-3 lg:px-0 lg:py-1" href="#more-work">Experience</a></li>
         <li><a class="site-nav-link block rounded-lg px-3 py-3 lg:px-0 lg:py-1" href="#project-archive">Archive</a></li>
         <li><a class="site-nav-link block rounded-lg px-3 py-3 lg:px-0 lg:py-1" href="#contact">Contact</a></li>
+        <li class="border-t border-portfolio-surface px-3 py-3 text-[10px] text-portfolio-muted lg:hidden"><span class="mr-3">Language</span><button class="language-choice text-portfolio-dark underline underline-offset-4" type="button" data-language="en">English</button><span class="mx-2">/</span><button class="language-choice" type="button" data-language="id">Bahasa Indonesia</button></li>
         <li class="sm:hidden"><a href="./cv.laravel.pdf" target="_blank" rel="noopener noreferrer" class="mt-1 flex min-h-11 items-center justify-center rounded-lg bg-portfolio-dark px-3 text-white">View CV ↗</a></li>
       </ul>
     </div>
   </nav>
 </header>
+<button id="floating-nav-trigger" class="floating-nav-trigger" type="button" aria-label="Open navigation menu"><img src="./duck-jump-rope.gif" alt="Open navigation menu"></button>
+<aside id="floating-nav-panel" class="floating-nav-panel" aria-label="Quick navigation" aria-hidden="true"><header>MENU <button id="floating-nav-close" type="button" aria-label="Close navigation menu"><svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" d="m6 6 12 12M18 6 6 18"/></svg></button></header><a href="#work">Work</a><a href="#capabilities">Capabilities</a><a href="#ai-engineering">AI Engineering</a><a href="#more-work">Experience</a><a href="#project-archive">Project Archive</a><a href="#contact">Contact</a></aside>
 
 <main id="portfolio">
 
@@ -133,25 +153,44 @@ observedSections.forEach(section=>sectionObserver.observe(section));
 
 const siteHeader=document.getElementById("site-header");
 const navigation=document.getElementById("portfolio-navigation");
-const menuToggle=document.querySelector("[data-collapse-toggle='portfolio-navigation']");
+const menuToggle=document.getElementById("menu-toggle");
+const floatingNavTrigger=document.getElementById("floating-nav-trigger");
+const floatingNavPanel=document.getElementById("floating-nav-panel");
+const floatingNavClose=document.getElementById("floating-nav-close");
+const languageToggle=document.getElementById("language-toggle");
+function applyLanguage(language){localStorage.setItem("portfolio-language",language);document.documentElement.lang=language;languageToggle.textContent=language.toUpperCase();window.portfolioI18n?.apply(language);frames.forEach(frame=>frame.contentWindow?.postMessage({type:"portfolio-language",language},"*"));}
+languageToggle?.addEventListener("click",()=>applyLanguage((localStorage.getItem("portfolio-language")||"en")==="en"?"id":"en"));
+document.querySelectorAll(".language-choice").forEach(button=>button.addEventListener("click",()=>applyLanguage(button.dataset.language)));
+applyLanguage(localStorage.getItem("portfolio-language")||"en");
 let lastScrollY=window.scrollY,collapseTimer=null;
 
-function isMenuOpen(){return window.innerWidth<1024&&!navigation.classList.contains("hidden")}
+function isMenuOpen(){return navigation.classList.contains("menu-open")}
 function setCompact(compact){if(isMenuOpen())return;siteHeader.classList.toggle("is-compact",compact)}
 function scheduleCompact(){clearTimeout(collapseTimer);collapseTimer=setTimeout(()=>{if(window.scrollY>108&&!isMenuOpen()&&!siteHeader.contains(document.activeElement))setCompact(true)},180)}
 
-window.addEventListener("scroll",()=>{const currentY=window.scrollY;const delta=currentY-lastScrollY;if(currentY<108){setCompact(false)}else if(delta>12){setCompact(true)}lastScrollY=currentY},{passive:true});
+function updateStickyUI(){document.body.classList.toggle("nav-scrolled",window.scrollY>=108&&!isMenuOpen())}
+window.addEventListener("scroll",()=>{const currentY=window.scrollY;const delta=currentY-lastScrollY;if(currentY<108){setCompact(false)}else if(delta>12){setCompact(true)}lastScrollY=currentY;updateStickyUI()},{passive:true});
 
 siteHeader.addEventListener("focusin",()=>{clearTimeout(collapseTimer);setCompact(false)});
 siteHeader.addEventListener("focusout",()=>requestAnimationFrame(()=>{if(!siteHeader.contains(document.activeElement))scheduleCompact()}));
 
-menuToggle?.addEventListener("click",()=>requestAnimationFrame(()=>{const open=isMenuOpen();siteHeader.classList.toggle("is-menu-open",open);if(open||window.innerWidth>=1024)setCompact(false)}));
+function setMenuOpen(open){navigation.classList.toggle("menu-open",open);navigation.classList.toggle("hidden",!open);siteHeader.classList.toggle("is-menu-open",open);menuToggle?.setAttribute("aria-expanded",open.toString());menuToggle?.setAttribute("aria-label",open?"Close navigation menu":"Open navigation menu");menuToggle?.querySelector(".menu-icon")?.classList.toggle("hidden",open);menuToggle?.querySelector(".close-icon")?.classList.toggle("hidden",!open);if(open)setCompact(false);else if(window.scrollY>=108)setCompact(true);updateStickyUI()}
+menuToggle?.addEventListener("click",()=>setMenuOpen(!isMenuOpen()));
+function setFloatingPanel(open){floatingNavPanel?.classList.toggle("is-open",open);floatingNavPanel?.setAttribute("aria-hidden",(!open).toString());floatingNavTrigger?.classList.toggle("hidden",open)}
+floatingNavTrigger?.addEventListener("click",()=>setFloatingPanel(true));
+floatingNavClose?.addEventListener("click",()=>setFloatingPanel(false));
+floatingNavPanel?.querySelectorAll("a").forEach(link=>link.addEventListener("click",()=>setFloatingPanel(false)));
 
-document.querySelectorAll("#portfolio-navigation a[href^='#']").forEach(link=>link.addEventListener("click",()=>{if(window.innerWidth<1024&&isMenuOpen()){navigation.classList.add("hidden");navigation.classList.remove("block");menuToggle?.setAttribute("aria-expanded","false");siteHeader.classList.remove("is-menu-open")}setCompact(false)}));
+document.querySelectorAll("#portfolio-navigation a[href^='#']").forEach(link=>link.addEventListener("click",()=>setCompact(false)));
 
 if(window.scrollY>=108)setCompact(true);
+updateStickyUI();
+
+const splash=document.getElementById("splash");
+setTimeout(()=>{splash.classList.add("is-hidden");setTimeout(()=>splash.remove(),400)},3000);
 </script>
 
+<script src="./i18n.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/flowbite@3.1.2/dist/flowbite.min.js"></script>
 
 </body>

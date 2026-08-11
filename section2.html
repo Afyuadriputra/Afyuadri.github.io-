@@ -256,5 +256,6 @@ function selectedWork(){return{active:0,projects:[
 ],init(){const slug=window.location.hash.replace("#","");const index=this.projects.findIndex(project=>project.slug===slug);if(index>=0)this.active=index},setActive(index,focus=false){if(index===this.active)return;this.active=index;if(focus)this.focusActiveTab()},next(focus=false){this.active=(this.active+1)%this.projects.length;if(focus)this.focusActiveTab()},previous(focus=false){this.active=(this.active-1+this.projects.length)%this.projects.length;if(focus)this.focusActiveTab()},focusActiveTab(){this.$nextTick(()=>document.getElementById("project-tab-"+this.active)?.focus({preventScroll:true}))},previewFallback(event,project){const image=event.currentTarget;if(image.dataset.fallback==="true")return;image.dataset.fallback="true";image.src=project.fallbackImage}}}
 </script>
 
+<script src="./i18n.js"></script>
 </body>
 </html>
