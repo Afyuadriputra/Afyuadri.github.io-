@@ -17,177 +17,228 @@
 <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.15.12/dist/cdn.min.js"></script>
 
 <style>
-[x-cloak]{display:none!important}html,body{margin:0;background:#F7F7F7;scrollbar-gutter:stable}*{box-sizing:border-box}body{font-family:"Geist",sans-serif;color:#393E46}.mono{font-family:"JetBrains Mono",monospace}.material-symbols-outlined{font-variation-settings:"FILL" 0,"wght" 400,"GRAD" 0,"opsz" 20}.work-stage{contain:layout paint}.work-content{will-change:opacity,transform}.tech-icon{font-size:18px;line-height:1}.truncate-2{display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:2;line-clamp:2;overflow:hidden}::selection{background:#393E46;color:#fff}
-
-@media(max-height:760px){.work-shell{padding-top:18px!important;padding-bottom:16px!important}.work-header{padding-bottom:14px!important}.work-title{font-size:34px!important}.work-selector{padding-top:10px!important;padding-bottom:10px!important}.work-visual{padding:16px!important}.work-detail{padding:18px!important}.work-description{margin-top:10px!important}.workflow-block{margin-top:12px!important}.capability-block{margin-top:12px!important}.technology-block{margin-top:12px!important}.work-footer{margin-top:8px!important;padding-top:8px!important}}
-@media(max-width:1023px) and (max-height:700px){.work-title{font-size:28px!important}.header-description{display:none}.work-selector-button{min-height:48px!important;padding:7px!important}.selector-subtitle{display:none}.work-visual{min-height:82px!important;padding:12px!important}.visual-description{display:none}.work-detail{padding:14px!important}.work-detail-title{font-size:21px!important}.work-description{font-size:10.5px!important;line-height:1.5!important}.workflow-block{padding:9px!important}.capability-item{min-height:34px!important}.technology-block{margin-top:8px!important}.tech-item{height:30px!important}.work-action{height:40px!important;min-height:40px!important}}
+[x-cloak]{display:none!important}*{box-sizing:border-box}html,body{margin:0;width:100%;height:100%;background:#F7F7F7;scrollbar-gutter:stable}body{font-family:"Geist",sans-serif;color:#393E46;overflow:hidden}.mono{font-family:"JetBrains Mono",monospace}.material-symbols-outlined{font-variation-settings:"FILL" 0,"wght" 400,"GRAD" 0,"opsz" 20}.tech-icon{font-size:18px;line-height:1}.work-stage{contain:layout paint}.stage-scroll{scrollbar-width:thin;scrollbar-color:#D4D6DA transparent;scrollbar-gutter:stable}.stage-scroll::-webkit-scrollbar{width:4px}.stage-scroll::-webkit-scrollbar-track{background:transparent}.stage-scroll::-webkit-scrollbar-thumb{background:#D4D6DA;border-radius:99px}.detail-pulse{animation:detailIn .2s cubic-bezier(.2,.8,.2,1)}::selection{background:#393E46;color:#fff}
+@keyframes detailIn{0%{opacity:.55;transform:translateY(3px)}100%{opacity:1;transform:translateY(0)}}
+@media(max-height:760px){.work-shell{padding-top:14px!important;padding-bottom:12px!important}.work-header{padding-bottom:11px!important}.work-title{font-size:32px!important}.work-selector{padding-top:8px!important;padding-bottom:8px!important}.selector-btn{min-height:54px!important}.work-detail{padding:14px!important}.desktop-visual{padding:18px!important}.detail-description{margin-top:8px!important}.detail-section{margin-top:9px!important}.work-footer{margin-top:7px!important;padding-top:7px!important}}
+@media(max-width:1023px){.work-stage{overflow:hidden}.work-detail{overflow-y:auto}.selector-btn{min-height:62px}.selector-name{white-space:normal;line-height:1.15}.detail-description{font-size:11px;line-height:1.55}.focus-label,.tech-label{white-space:normal;line-height:1.25}}
+@media(max-width:420px){.work-shell{padding-left:14px!important;padding-right:14px!important}.work-title{font-size:27px!important}.selector-btn{padding:7px!important}.selector-icon{width:30px!important;height:30px!important}.selector-name{font-size:9px!important}.mobile-identity-title{font-size:18px!important}.detail-title{font-size:20px!important}.workflow-label{font-size:7px!important}.focus-label,.tech-label{font-size:8px!important}}
+@media(max-width:1023px) and (max-height:680px){.header-description,.header-meta,.mobile-category,.mobile-role{display:none!important}.work-header{padding-bottom:8px!important}.work-selector{padding-top:6px!important;padding-bottom:6px!important}.selector-btn{min-height:48px!important}.detail-description{font-size:10px!important;line-height:1.45!important}.detail-section{margin-top:7px!important}.workflow-card{padding:7px!important}.focus-item,.tech-item{min-height:32px!important}.work-action{height:40px!important;min-height:40px!important}}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}}
 </style>
 </head>
 
-<body class="m-0 overflow-hidden bg-[#F7F7F7] antialiased">
+<body>
 
-<section x-data="moreSelectedWork()" x-init="init()" @keydown.right.window="keyboardNext($event)" @keydown.left.window="keyboardPrevious($event)" class="h-[100svh] w-full overflow-hidden bg-[#F7F7F7]">
-<div class="work-shell mx-auto flex h-full w-full max-w-[1240px] flex-col px-5 py-7 sm:px-6 lg:px-8 xl:px-10">
+<section x-data="moreSelectedWork()" x-init="init()" @keydown.left.window="handleGlobalKey($event,-1)" @keydown.right.window="handleGlobalKey($event,1)" class="h-[100svh] w-full overflow-hidden bg-[#F7F7F7]">
+<div class="work-shell mx-auto flex h-full w-full max-w-[1240px] flex-col px-5 py-6 sm:px-6 lg:px-8 xl:px-10">
 
-<!-- HEADER -->
-<header class="work-header grid shrink-0 grid-cols-1 gap-3 border-b border-[#EEEEEE] pb-5 lg:grid-cols-12 lg:items-end lg:gap-8">
+<!-- =========================================================
+     HEADER
+========================================================= -->
+<header class="work-header grid shrink-0 grid-cols-1 gap-2 border-b border-[#EEEEEE] pb-4 lg:grid-cols-12 lg:items-end lg:gap-8">
+
 <div class="lg:col-span-7">
-<p class="mono mb-2 text-[10px] font-medium uppercase tracking-[.18em] text-[#929AAB] sm:text-[11px]">More Selected Work</p>
-<h2 class="work-title max-w-[680px] text-[31px] font-semibold leading-[1.03] tracking-[-.045em] text-[#393E46] sm:text-[38px] lg:text-[44px]">Beyond the flagship builds.</h2>
+<p class="mono mb-1.5 text-[9px] font-medium uppercase tracking-[.18em] text-[#929AAB] sm:text-[10px]">More Selected Work</p>
+<h2 class="work-title max-w-[680px] text-[30px] font-semibold leading-[1.03] tracking-[-.045em] text-[#393E46] sm:text-[36px] lg:text-[42px]">Beyond the flagship builds.</h2>
 </div>
+
 <div class="lg:col-span-5 lg:pb-1">
-<p class="header-description max-w-[500px] text-[12px] leading-5 text-[#929AAB] sm:text-[13px] lg:ml-auto">Additional experience across healthcare software, applied AI research, and geospatial data.</p>
-<div class="mt-2.5 flex items-center gap-2.5 lg:justify-end"><span class="mono text-[8px] uppercase tracking-[.13em] text-[#393E46]">03 Work Areas</span><span class="h-1 w-1 rounded-full bg-[#929AAB]"></span><span class="mono text-[8px] uppercase tracking-[.13em] text-[#929AAB]">Software · AI · GIS</span></div>
+<p class="header-description max-w-[500px] text-[11px] leading-5 text-[#929AAB] sm:text-[12px] lg:ml-auto">Additional experience across healthcare software, applied AI research, and geospatial data.</p>
+<div class="header-meta mt-2 flex items-center gap-2.5 lg:justify-end"><span class="mono text-[7.5px] uppercase tracking-[.13em] text-[#393E46]">03 Work Areas</span><span class="h-1 w-1 rounded-full bg-[#929AAB]"></span><span class="mono text-[7.5px] uppercase tracking-[.13em] text-[#929AAB]">Software · AI · GIS</span></div>
 </div>
+
 </header>
 
-<!-- SELECTOR -->
-<div class="work-selector shrink-0 py-3">
-<div class="grid grid-cols-3 gap-2" role="tablist" aria-label="Additional professional work">
+<!-- =========================================================
+     SELECTORS
+     No delayed state / no stale data
+========================================================= -->
+<div class="work-selector shrink-0 py-2.5">
+<div class="grid grid-cols-3 gap-1.5 sm:gap-2" role="tablist" aria-label="Professional work areas">
 
 <template x-for="(item,index) in items" :key="item.slug">
-<button type="button" role="tab" :id="'work-tab-'+index" :aria-selected="active===index" :aria-controls="'work-panel'" @click="switchTo(index)" @keydown.right.prevent="next(true)" @keydown.left.prevent="previous(true)" @keydown.home.prevent="switchTo(0,true)" @keydown.end.prevent="switchTo(items.length-1,true)" :class="active===index?'border-[#393E46] bg-[#393E46] text-white':'border-[#EEEEEE] bg-white text-[#393E46] hover:border-[#929AAB] hover:bg-[#EEEEEE]/60'" class="work-selector-button group btn h-auto min-h-[62px] justify-start rounded-xl border px-3 py-2.5 text-left shadow-none transition-[background-color,border-color,color] duration-200 sm:px-4">
+<button type="button" role="tab" :id="'work-tab-'+index" :aria-selected="active===index" aria-controls="work-panel" @click="select(index)" @keydown.right.prevent.stop="select((index+1)%items.length,true)" @keydown.left.prevent.stop="select((index-1+items.length)%items.length,true)" @keydown.home.prevent.stop="select(0,true)" @keydown.end.prevent.stop="select(items.length-1,true)" :class="active===index?'border-[#393E46] bg-[#393E46] text-white':'border-[#EEEEEE] bg-white text-[#393E46] hover:border-[#929AAB] hover:bg-[#F3F3F3]'" class="selector-btn group flex min-h-[64px] w-full items-center gap-2 rounded-xl border px-2.5 py-2 text-left transition-[background-color,border-color,color] duration-200 sm:gap-3 sm:px-3.5">
 
-<div :class="active===index?'border-white/15 bg-white/10':'border-[#EEEEEE] bg-[#F7F7F7]'" class="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg border transition-colors duration-200">
-<span class="material-symbols-outlined text-[18px]" x-text="item.icon"></span>
+<div :class="active===index?'border-white/15 bg-white/10':'border-[#EEEEEE] bg-[#F7F7F7]'" class="selector-icon flex h-9 w-9 shrink-0 items-center justify-center rounded-lg border transition-colors duration-200">
+<span class="material-symbols-outlined text-[17px]" x-text="item.icon"></span>
 </div>
 
 <div class="min-w-0 flex-1">
-<div class="flex items-center gap-2"><span :class="active===index?'text-white/45':'text-[#929AAB]'" class="mono text-[7.5px]" x-text="item.number"></span><span class="truncate text-[10.5px] font-semibold sm:text-[12px]" x-text="item.shortName"></span></div>
-<p :class="active===index?'text-white/55':'text-[#929AAB]'" class="selector-subtitle mt-1 truncate text-[8px] sm:text-[9px]" x-text="item.category"></p>
+<div class="flex items-center gap-1.5"><span :class="active===index?'text-white/45':'text-[#929AAB]'" class="mono hidden text-[7px] sm:block" x-text="item.number"></span><span class="selector-name block text-[9.5px] font-semibold sm:text-[11.5px]" x-text="item.shortName"></span></div>
+<p :class="active===index?'text-white/55':'text-[#929AAB]'" class="mt-1 hidden truncate text-[8px] sm:block" x-text="item.category"></p>
 </div>
 
-<span :class="active===index?'translate-x-0 opacity-100':'-translate-x-1 opacity-0 group-hover:translate-x-0 group-hover:opacity-100'" class="material-symbols-outlined hidden text-[15px] transition-[opacity,transform] duration-200 sm:block">arrow_forward</span>
+<span :class="active===index?'translate-x-0 opacity-100':'-translate-x-1 opacity-0 group-hover:translate-x-0 group-hover:opacity-100'" class="material-symbols-outlined hidden shrink-0 text-[14px] transition-[opacity,transform] duration-200 md:block">arrow_forward</span>
 </button>
 </template>
 
 </div>
 </div>
 
-<!-- FIXED DETAIL STAGE -->
+<!-- =========================================================
+     STABLE DETAIL STAGE
+========================================================= -->
 <main id="work-panel" role="tabpanel" :aria-labelledby="'work-tab-'+active" class="work-stage min-h-0 flex-1 overflow-hidden rounded-xl border border-[#EEEEEE] bg-white" x-cloak>
-<article :class="visible?'translate-y-0 opacity-100':'translate-y-[3px] opacity-0'" class="work-content grid h-full min-h-0 grid-cols-1 transition-[opacity,transform] duration-150 ease-out lg:grid-cols-12">
 
-<!-- LEFT / VISUAL IDENTITY -->
-<div class="work-visual relative flex min-h-[105px] flex-col overflow-hidden border-b border-[#EEEEEE] bg-[#F3F3F3] p-4 sm:min-h-[120px] lg:col-span-5 lg:min-h-0 lg:border-b-0 lg:border-r lg:p-6">
+<article :class="pulse?'detail-pulse':''" class="grid h-full min-h-0 grid-cols-1 lg:grid-cols-12">
 
-<div class="absolute right-0 top-0 h-40 w-40 translate-x-1/3 -translate-y-1/3 rounded-full border border-[#DADDE1] opacity-60"></div>
-<div class="absolute bottom-[-70px] left-[-45px] h-40 w-40 rounded-full border border-[#E1E3E6] opacity-70"></div>
+<!-- =====================================================
+     DESKTOP IDENTITY PANEL
+===================================================== -->
+<aside class="desktop-visual relative hidden min-h-0 flex-col overflow-hidden border-r border-[#EEEEEE] bg-[#F3F3F3] p-6 lg:col-span-5 lg:flex">
+
+<div class="absolute right-[-52px] top-[-52px] h-40 w-40 rounded-full border border-[#DADDE1]"></div>
+<div class="absolute bottom-[-75px] left-[-55px] h-44 w-44 rounded-full border border-[#E1E3E6]"></div>
 
 <div class="relative z-10 flex items-start justify-between gap-4">
-<div>
-<p class="mono text-[8px] uppercase tracking-[.16em] text-[#929AAB]" x-text="current.number+' / EXPERIENCE'"></p>
-<p class="mt-2 text-[10px] font-medium text-[#929AAB]" x-text="current.category"></p>
-</div>
-<div class="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl border border-[#DFE1E4] bg-white text-[#393E46]">
-<span class="material-symbols-outlined text-[22px]" x-text="current.icon"></span>
-</div>
+<div><p class="mono text-[8px] uppercase tracking-[.16em] text-[#929AAB]" x-text="current.number+' / EXPERIENCE'"></p><p class="mt-2 text-[10px] font-medium text-[#929AAB]" x-text="current.category"></p></div>
+<div class="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl border border-[#DFE1E4] bg-white"><span class="material-symbols-outlined text-[21px]" x-text="current.icon"></span></div>
 </div>
 
-<div class="relative z-10 mt-auto lg:mt-8">
+<div class="relative z-10 mt-auto">
 <p class="mono text-[8px] uppercase tracking-[.15em] text-[#929AAB]">Organization / Area</p>
-<h3 class="mt-1.5 text-[20px] font-semibold tracking-[-.03em] text-[#393E46] sm:text-[23px] lg:text-[28px]" x-text="current.name"></h3>
-<p class="mt-1 text-[10.5px] font-medium text-[#6F7785] sm:text-[11px]" x-text="current.role"></p>
-<p class="visual-description mt-4 hidden max-w-[390px] text-[11px] leading-[1.65] text-[#929AAB] lg:block" x-text="current.visualCopy"></p>
+<h3 class="mt-2 text-[27px] font-semibold leading-[1.05] tracking-[-.035em] text-[#393E46]" x-text="current.name"></h3>
+<p class="mt-2 text-[11px] font-medium text-[#6F7785]" x-text="current.role"></p>
+<p class="mt-4 max-w-[390px] text-[11px] leading-[1.65] text-[#929AAB]" x-text="current.visualCopy"></p>
 </div>
 
-<div class="relative z-10 mt-4 hidden items-center gap-2 border-t border-[#DFE1E4] pt-4 lg:flex">
-<span class="material-symbols-outlined text-[14px] text-[#929AAB]">verified</span>
-<span class="mono text-[8px] uppercase tracking-[.12em] text-[#929AAB]" x-text="current.context"></span>
-</div>
+<div class="relative z-10 mt-5 flex items-center gap-2 border-t border-[#DFE1E4] pt-4"><span class="material-symbols-outlined text-[14px] text-[#929AAB]">verified</span><span class="mono text-[8px] uppercase tracking-[.12em] text-[#929AAB]" x-text="current.context"></span></div>
 
-</div>
+</aside>
 
-<!-- RIGHT / DETAIL -->
-<div class="work-detail flex min-h-0 flex-col p-4 sm:p-5 lg:col-span-7 lg:p-6">
+<!-- =====================================================
+     DETAIL CONTENT
+===================================================== -->
+<div class="work-detail stage-scroll flex min-h-0 flex-col overflow-y-auto p-4 sm:p-5 lg:col-span-7 lg:overflow-hidden lg:p-6">
 
-<div class="shrink-0">
-<div class="flex items-start justify-between gap-5">
+<!-- MOBILE IDENTITY -->
+<div class="mb-3 flex items-center justify-between gap-3 border-b border-[#EEEEEE] pb-3 lg:hidden">
 <div class="min-w-0">
-<p class="mono text-[8px] uppercase tracking-[.15em] text-[#929AAB]" x-text="current.label"></p>
-<h3 class="work-detail-title mt-1.5 min-h-[28px] text-[23px] font-semibold leading-[1.08] tracking-[-.035em] text-[#393E46] lg:min-h-[34px] lg:text-[28px]" x-text="current.title"></h3>
+<div class="flex items-center gap-2"><span class="mono text-[7.5px] uppercase tracking-[.14em] text-[#929AAB]" x-text="current.number+' / EXPERIENCE'"></span><span class="mobile-category h-1 w-1 rounded-full bg-[#929AAB]"></span><span class="mobile-category mono truncate text-[7.5px] uppercase tracking-[.1em] text-[#929AAB]" x-text="current.category"></span></div>
+<h3 class="mobile-identity-title mt-1.5 text-[20px] font-semibold leading-tight tracking-[-.03em] text-[#393E46]" x-text="current.name"></h3>
+<p class="mobile-role mt-1 text-[9px] font-medium text-[#6F7785]" x-text="current.role"></p>
 </div>
-<span class="badge hidden h-7 rounded-md border border-[#EEEEEE] bg-[#F7F7F7] px-2.5 text-[8px] font-medium text-[#929AAB] sm:inline-flex" x-text="current.status"></span>
+<div class="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border border-[#EEEEEE] bg-[#F7F7F7]"><span class="material-symbols-outlined text-[19px]" x-text="current.icon"></span></div>
 </div>
 
-<p class="work-description truncate-2 mt-3 min-h-[36px] max-w-[720px] text-[11px] leading-[1.65] text-[#6F7785] sm:text-[11.5px] lg:min-h-[40px] lg:text-[12px]" x-text="current.description"></p>
+<!-- TITLE -->
+<div class="shrink-0">
+<div class="flex items-start justify-between gap-4">
+
+<div class="min-w-0">
+<p class="mono text-[7.5px] uppercase tracking-[.15em] text-[#929AAB]" x-text="current.label"></p>
+<h3 class="detail-title mt-1.5 text-[22px] font-semibold leading-[1.08] tracking-[-.035em] text-[#393E46] sm:text-[24px] lg:text-[28px]" x-text="current.title"></h3>
+</div>
+
+<span class="badge hidden h-7 shrink-0 rounded-md border border-[#EEEEEE] bg-[#F7F7F7] px-2.5 text-[7.5px] font-medium text-[#929AAB] sm:inline-flex" x-text="current.status"></span>
+
+</div>
+
+<p class="detail-description mt-3 max-w-[720px] text-[11px] leading-[1.6] text-[#6F7785] sm:text-[11.5px] lg:text-[12px]" x-text="current.description"></p>
 </div>
 
 <!-- WORKFLOW -->
-<div class="workflow-block mt-4 rounded-lg border border-[#EEEEEE] bg-[#F7F7F7] px-3 py-2.5">
-<div class="mb-2 flex items-center justify-between gap-3"><div class="flex items-center gap-2"><span class="material-symbols-outlined text-[14px] text-[#929AAB]">account_tree</span><span class="mono text-[8px] uppercase tracking-[.15em] text-[#929AAB]">Engineering Workflow</span></div><span class="mono text-[7px] text-[#929AAB]">PROCESS</span></div>
-<div class="flex min-w-0 items-center gap-1.5 overflow-hidden">
-<template x-for="(step,index) in current.workflow" :key="step">
+<div class="detail-section workflow-card mt-3.5 rounded-lg border border-[#EEEEEE] bg-[#F7F7F7] p-2.5">
+
+<div class="mb-2 flex items-center justify-between gap-2">
+<div class="flex items-center gap-1.5"><span class="material-symbols-outlined text-[13px] text-[#929AAB]">account_tree</span><span class="mono text-[7.5px] uppercase tracking-[.14em] text-[#929AAB]">Engineering Workflow</span></div>
+<span class="mono hidden text-[7px] text-[#929AAB] sm:block">PROCESS</span>
+</div>
+
+<!-- MOBILE -->
+<div class="grid grid-cols-5 gap-1 lg:hidden">
+<template x-for="(step,index) in current.workflowMobile" :key="'mobile-flow-'+step">
+<div class="relative min-w-0">
+<div class="flex min-h-[32px] items-center justify-center rounded-md border border-[#E7E7E7] bg-white px-1 text-center"><span class="workflow-label break-words text-[7.5px] font-medium leading-tight text-[#393E46]" x-text="step"></span></div>
+<span x-show="index<current.workflowMobile.length-1" class="absolute -right-[5px] top-1/2 z-10 -translate-y-1/2 bg-[#F7F7F7] px-[1px] text-[8px] text-[#929AAB]">›</span>
+</div>
+</template>
+</div>
+
+<!-- DESKTOP -->
+<div class="hidden items-center gap-1.5 lg:flex">
+<template x-for="(step,index) in current.workflow" :key="'desktop-flow-'+step">
 <div class="contents">
-<span class="min-w-0 flex-1 truncate rounded-md border border-[#E7E7E7] bg-white px-2 py-1.5 text-center text-[8px] font-medium text-[#393E46] sm:text-[9px]" x-text="step"></span>
-<span x-show="index < current.workflow.length-1" class="material-symbols-outlined shrink-0 text-[12px] text-[#929AAB]">arrow_forward</span>
+<span class="min-w-0 flex-1 rounded-md border border-[#E7E7E7] bg-white px-2 py-1.5 text-center text-[8px] font-medium leading-tight text-[#393E46]" x-text="step"></span>
+<span x-show="index<current.workflow.length-1" class="material-symbols-outlined shrink-0 text-[11px] text-[#929AAB]">arrow_forward</span>
 </div>
 </template>
 </div>
+
 </div>
 
-<!-- CAPABILITIES + TECH -->
-<div class="capability-block mt-4 grid grid-cols-1 gap-4 sm:grid-cols-2">
+<!-- FOCUS + TECHNOLOGY -->
+<div class="detail-section mt-3.5 grid grid-cols-2 gap-3 sm:gap-4">
 
-<div>
-<div class="mb-2 flex items-center gap-2"><span class="material-symbols-outlined text-[14px] text-[#929AAB]">checklist</span><p class="mono text-[8px] uppercase tracking-[.15em] text-[#929AAB]">Engineering Focus</p></div>
-<div class="grid grid-cols-2 gap-1.5">
+<!-- ENGINEERING FOCUS -->
+<div class="min-w-0">
+<div class="mb-2 flex items-center gap-1.5"><span class="material-symbols-outlined text-[13px] text-[#929AAB]">checklist</span><p class="mono text-[7.5px] uppercase tracking-[.13em] text-[#929AAB]">Focus</p></div>
+<div class="grid grid-cols-1 gap-1.5 sm:grid-cols-2 lg:grid-cols-2">
+
 <template x-for="capability in current.capabilities" :key="capability">
-<div class="capability-item flex min-h-[38px] items-center gap-2 rounded-lg border border-[#EEEEEE] px-2.5">
-<span class="h-1 w-1 shrink-0 rounded-full bg-[#929AAB]"></span><span class="truncate text-[9px] font-medium text-[#393E46] sm:text-[9.5px]" x-text="capability"></span>
+<div class="focus-item flex min-h-[38px] items-center gap-2 rounded-lg border border-[#EEEEEE] px-2 sm:px-2.5">
+<span class="h-1 w-1 shrink-0 rounded-full bg-[#929AAB]"></span>
+<span class="focus-label min-w-0 text-[8.5px] font-medium text-[#393E46] sm:text-[9px]" x-text="capability"></span>
 </div>
 </template>
+
 </div>
 </div>
 
-<div class="technology-block">
-<div class="mb-2 flex items-center gap-2"><span class="material-symbols-outlined text-[14px] text-[#929AAB]">terminal</span><p class="mono text-[8px] uppercase tracking-[.15em] text-[#929AAB]">Technology</p></div>
-<div class="grid grid-cols-2 gap-1.5">
+<!-- TECHNOLOGY -->
+<div class="min-w-0">
+<div class="mb-2 flex items-center gap-1.5"><span class="material-symbols-outlined text-[13px] text-[#929AAB]">terminal</span><p class="mono text-[7.5px] uppercase tracking-[.13em] text-[#929AAB]">Technology</p></div>
+<div class="grid grid-cols-1 gap-1.5 sm:grid-cols-2 lg:grid-cols-2">
+
 <template x-for="tech in current.tech" :key="tech.name">
-<div class="tech-item flex h-[38px] items-center gap-2 rounded-lg bg-[#F7F7F7] px-2.5">
-<div class="flex h-6 w-6 shrink-0 items-center justify-center text-[#393E46]"><i x-show="tech.icon" :class="[tech.icon,'tech-icon']" aria-hidden="true"></i><span x-show="!tech.icon" class="mono text-[7px] font-medium text-[#929AAB]" x-text="tech.symbol"></span></div>
-<span class="truncate text-[9px] font-medium text-[#393E46]" x-text="tech.name"></span>
+<div class="tech-item flex min-h-[38px] items-center gap-2 rounded-lg bg-[#F7F7F7] px-2 sm:px-2.5">
+<div class="flex h-5 w-5 shrink-0 items-center justify-center"><i x-show="tech.icon" :class="[tech.icon,'tech-icon']" aria-hidden="true"></i><span x-show="!tech.icon" class="mono text-[6px] font-medium text-[#929AAB]" x-text="tech.symbol"></span></div>
+<span class="tech-label min-w-0 text-[8.5px] font-medium text-[#393E46] sm:text-[9px]" x-text="tech.name"></span>
 </div>
 </template>
+
 </div>
 </div>
 
 </div>
 
 <!-- ACTION -->
-<div class="mt-auto flex items-center justify-between gap-3 border-t border-[#EEEEEE] pt-3">
+<div class="mt-auto pt-3">
+<div class="flex items-center justify-between gap-3 border-t border-[#EEEEEE] pt-3">
 
-<div class="hidden items-center gap-2 sm:flex">
-<span class="material-symbols-outlined text-[13px] text-[#929AAB]">open_in_new</span>
-<span class="mono text-[7.5px] uppercase tracking-[.12em] text-[#929AAB]" x-text="current.actionMeta"></span>
-</div>
+<div class="hidden items-center gap-2 sm:flex"><span class="material-symbols-outlined text-[12px] text-[#929AAB]">open_in_new</span><span class="mono text-[7px] uppercase tracking-[.11em] text-[#929AAB]" x-text="current.actionMeta"></span></div>
 
-<a :href="current.url" target="_blank" rel="noopener noreferrer" :aria-label="current.actionLabel+' — '+current.name" class="work-action btn h-11 min-h-11 w-full rounded-lg border-0 bg-[#393E46] px-5 text-white shadow-none transition-[opacity,transform] duration-200 hover:-translate-y-[1px] hover:bg-[#393E46] hover:opacity-90 sm:w-auto">
-<svg x-show="current.actionType==='github'" aria-hidden="true" viewBox="0 0 24 24" fill="currentColor" class="h-[16px] w-[16px]"><path d="M12 .7a11.5 11.5 0 0 0-3.64 22.41c.58.11.79-.25.79-.56v-2.24c-3.22.7-3.9-1.37-3.9-1.37-.52-1.34-1.28-1.7-1.28-1.7-1.05-.72.08-.71.08-.71 1.16.08 1.77 1.19 1.77 1.19 1.03 1.77 2.71 1.26 3.37.96.1-.75.4-1.26.73-1.55-2.57-.29-5.27-1.29-5.27-5.72 0-1.26.45-2.3 1.19-3.11-.12-.29-.52-1.47.11-3.07 0 0 .97-.31 3.16 1.19a10.9 10.9 0 0 1 5.75 0c2.19-1.5 3.16-1.19 3.16-1.19.63 1.6.23 2.78.11 3.07.74.81 1.19 1.85 1.19 3.11 0 4.44-2.71 5.43-5.29 5.72.42.36.79 1.07.79 2.16v3.2c0 .31.21.67.8.56A11.5 11.5 0 0 0 12 .7Z"></path></svg>
-<span x-show="current.actionType==='website'" class="material-symbols-outlined text-[16px]">language</span>
-<span class="text-[10px] font-medium" x-text="current.actionLabel"></span>
-<span class="material-symbols-outlined text-[13px]">open_in_new</span>
+<a :href="current.url" target="_blank" rel="noopener noreferrer" :aria-label="current.actionLabel+' — '+current.name" class="work-action group flex h-11 min-h-11 w-full items-center justify-center gap-2 rounded-lg bg-[#393E46] px-4 text-white transition-[opacity,transform] duration-200 hover:-translate-y-[1px] hover:opacity-90 sm:w-auto">
+
+<svg x-show="current.actionType==='github'" aria-hidden="true" viewBox="0 0 24 24" fill="currentColor" class="h-[15px] w-[15px]"><path d="M12 .7a11.5 11.5 0 0 0-3.64 22.41c.58.11.79-.25.79-.56v-2.24c-3.22.7-3.9-1.37-3.9-1.37-.52-1.34-1.28-1.7-1.28-1.7-1.05-.72.08-.71.08-.71 1.16.08 1.77 1.19 1.77 1.19 1.03 1.77 2.71 1.26 3.37.96.1-.75.4-1.26.73-1.55-2.57-.29-5.27-1.29-5.27-5.72 0-1.26.45-2.3 1.19-3.11-.12-.29-.52-1.47.11-3.07 0 0 .97-.31 3.16 1.19a10.9 10.9 0 0 1 5.75 0c2.19-1.5 3.16-1.19 3.16-1.19.63 1.6.23 2.78.11 3.07.74.81 1.19 1.85 1.19 3.11 0 4.44-2.71 5.43-5.29 5.72.42.36.79 1.07.79 2.16v3.2c0 .31.21.67.8.56A11.5 11.5 0 0 0 12 .7Z"></path></svg>
+
+<span x-show="current.actionType==='website'" class="material-symbols-outlined text-[15px]">language</span>
+<span class="text-[9.5px] font-medium" x-text="current.actionLabel"></span>
+<span class="material-symbols-outlined text-[12px] transition-transform duration-200 group-hover:translate-x-[2px]">open_in_new</span>
+
 </a>
 
+</div>
 </div>
 
 </div>
 </article>
 </main>
 
-<!-- BOTTOM NAV -->
-<footer class="work-footer mt-3 flex shrink-0 items-center justify-between border-t border-[#EEEEEE] pt-3">
+<!-- =========================================================
+     FOOTER CONTROL
+========================================================= -->
+<footer class="work-footer mt-2.5 flex shrink-0 items-center justify-between border-t border-[#EEEEEE] pt-2.5">
 
-<div class="flex items-center gap-2.5">
-<span class="mono text-[8px] uppercase tracking-[.14em] text-[#393E46]" x-text="'0'+(active+1)+' / 03'"></span>
-<span class="h-1 w-1 rounded-full bg-[#929AAB]"></span>
-<span class="mono max-w-[180px] truncate text-[8px] uppercase tracking-[.12em] text-[#929AAB]" x-text="current.shortName"></span>
+<div class="flex min-w-0 items-center gap-2">
+<span class="mono text-[7.5px] uppercase tracking-[.13em] text-[#393E46]" x-text="String(active+1).padStart(2,'0')+' / '+String(items.length).padStart(2,'0')"></span>
+<span class="h-1 w-1 shrink-0 rounded-full bg-[#929AAB]"></span>
+<span class="mono max-w-[170px] truncate text-[7.5px] uppercase tracking-[.1em] text-[#929AAB]" x-text="current.shortName"></span>
 </div>
 
-<div class="flex items-center gap-2">
-<button type="button" @click="previous()" aria-label="Previous work" class="btn btn-square btn-sm h-9 min-h-9 w-9 rounded-lg border border-[#EEEEEE] bg-white text-[#393E46] shadow-none transition-colors hover:border-[#929AAB] hover:bg-[#EEEEEE]"><span class="material-symbols-outlined text-[16px]">arrow_back</span></button>
-<button type="button" @click="next()" aria-label="Next work" class="btn btn-square btn-sm h-9 min-h-9 w-9 rounded-lg border border-[#EEEEEE] bg-white text-[#393E46] shadow-none transition-colors hover:border-[#929AAB] hover:bg-[#EEEEEE]"><span class="material-symbols-outlined text-[16px]">arrow_forward</span></button>
+<div class="flex items-center gap-1.5">
+<button type="button" @click="previous()" aria-label="Previous work" class="flex h-9 w-9 items-center justify-center rounded-lg border border-[#EEEEEE] bg-white transition-colors duration-200 hover:border-[#929AAB] hover:bg-[#EEEEEE] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#929AAB]"><span class="material-symbols-outlined text-[15px]">arrow_back</span></button>
+<button type="button" @click="next()" aria-label="Next work" class="flex h-9 w-9 items-center justify-center rounded-lg border border-[#EEEEEE] bg-white transition-colors duration-200 hover:border-[#929AAB] hover:bg-[#EEEEEE] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#929AAB]"><span class="material-symbols-outlined text-[15px]">arrow_forward</span></button>
 </div>
 
 </footer>
@@ -197,33 +248,47 @@
 
 <script>
 function moreSelectedWork(){return{
-active:0,visible:true,switching:false,
+active:0,pulse:false,pulseTimer:null,
+
 items:[
-{number:"01",slug:"riau-eye-center",shortName:"Riau Eye Center",name:"RIAU EYE CENTER",role:"Software Engineer & IT Support",category:"Healthcare Information Website",label:"SOFTWARE ENGINEERING",title:"Production software for healthcare information.",icon:"medical_services",status:"Production Work",context:"Healthcare · Web · Operations",visualCopy:"A production-facing healthcare information website supported through feature development, maintenance, debugging, testing, and deployment.",description:"Developed and maintained a Laravel-based healthcare profile and information website, including feature improvements, database maintenance, debugging, testing, deployment, and operational support.",workflow:["Feature","Database","Debug","Test","Deploy"],capabilities:["Feature Development","Database Maintenance","Debugging","Deployment"],tech:[{name:"Laravel",icon:"devicon-laravel-original"},{name:"PHP",icon:"devicon-php-plain"},{name:"MySQL",icon:"devicon-mysql-original"},{name:"JavaScript",icon:"devicon-javascript-plain"}],url:"https://riaueyecenter.com/",actionLabel:"Visit Website",actionMeta:"LIVE PRODUCTION WEBSITE",actionType:"website"},
+{number:"01",slug:"riau-eye-center",shortName:"Riau Eye Center",name:"RIAU EYE CENTER",role:"Software Engineer & IT Support",category:"Healthcare Information Website",label:"SOFTWARE ENGINEERING",title:"Production software for healthcare information.",icon:"medical_services",status:"Production Work",context:"Healthcare · Web · Operations",visualCopy:"A production-facing healthcare information website supported through feature development, maintenance, debugging, testing, and deployment.",description:"Developed and maintained a Laravel-based healthcare profile and information website, including feature improvements, database maintenance, debugging, testing, deployment, and operational support.",workflow:["Feature Development","Database","Debugging","Testing","Deployment"],workflowMobile:["Feature","DB","Debug","Test","Deploy"],capabilities:["Feature Development","Database Maintenance","Debugging","Deployment"],tech:[{name:"Laravel",icon:"devicon-laravel-original",symbol:""},{name:"PHP",icon:"devicon-php-plain",symbol:""},{name:"MySQL",icon:"devicon-mysql-original",symbol:""},{name:"JavaScript",icon:"devicon-javascript-plain",symbol:""}],url:"https://riaueyecenter.com/",actionLabel:"Visit Website",actionMeta:"LIVE PRODUCTION WEBSITE",actionType:"website"},
 
-{number:"02",slug:"ai-research",shortName:"AI Research",name:"AI RESEARCH",role:"AI / ML Research Engineer",category:"Applied AI / ML Research",label:"APPLIED AI ENGINEERING",title:"Research models turned into usable software.",icon:"neurology",status:"Research + Prototype",context:"AI · Research · Software Integration",visualCopy:"Applied research covering datasets, training, evaluation, computer vision, NLP, RAG, LLMs, and integration into working software prototypes.",description:"Worked across the AI development lifecycle including dataset preparation, preprocessing, model training, evaluation, optimization, computer vision, NLP, RAG/LLM pipelines, and integration into software prototypes.",workflow:["Image","EfficientNet-B0","RAG","LLM","Response"],capabilities:["Dataset Preparation","Model Training","Evaluation","AI Integration"],tech:[{name:"Python",icon:"devicon-python-plain"},{name:"PyTorch",icon:"devicon-pytorch-original"},{name:"TensorFlow",icon:"devicon-tensorflow-original"},{name:"RAG / LLM",icon:"",symbol:"LLM"}],url:"https://github.com/Afyuadriputra/SKRIPSI_AFYU",actionLabel:"View Featured Build",actionMeta:"FEATURED AI REPOSITORY",actionType:"github"},
+{number:"02",slug:"ai-research",shortName:"AI Research",name:"AI RESEARCH",role:"AI / ML Research Engineer",category:"Applied AI / ML Research",label:"APPLIED AI ENGINEERING",title:"Research models turned into usable software.",icon:"neurology",status:"Research + Prototype",context:"AI · Research · Software Integration",visualCopy:"Applied research covering datasets, training, evaluation, computer vision, NLP, RAG, LLMs, and integration into working software prototypes.",description:"Worked across the AI development lifecycle including dataset preparation, preprocessing, model training, evaluation, optimization, computer vision, NLP, RAG/LLM pipelines, and integration into software prototypes.",workflow:["Image Input","EfficientNet-B0","RAG","LLM","Response"],workflowMobile:["Image","Model","RAG","LLM","Output"],capabilities:["Dataset Preparation","Model Training","Evaluation","AI Integration"],tech:[{name:"Python",icon:"devicon-python-plain",symbol:""},{name:"PyTorch",icon:"devicon-pytorch-original",symbol:""},{name:"TensorFlow",icon:"devicon-tensorflow-original",symbol:""},{name:"RAG / LLM",icon:"",symbol:"LLM"}],url:"https://github.com/Afyuadriputra/SKRIPSI_AFYU",actionLabel:"View Featured Build",actionMeta:"FEATURED AI REPOSITORY",actionType:"github"},
 
-{number:"03",slug:"ofi-indonesia",shortName:"ofi Indonesia",name:"OFI INDONESIA",role:"Freelance GIS Surveyor",category:"GIS & Spatial Data",label:"GEOSPATIAL ENGINEERING",title:"Spatial data prepared for reliable decisions.",icon:"map",status:"Professional Work",context:"GIS · Agriculture · Spatial Data",visualCopy:"Professional geospatial data work focused on cocoa plantation datasets, geometry reliability, coordinate verification, area calculations, and quality control.",description:"Processed and validated geospatial cocoa plantation data using QGIS, including coordinate verification, geometry validation, area calculation, data cleaning, and spatial quality control.",workflow:["Spatial Data","Geometry","Coordinates","Area","QC"],capabilities:["Geometry Validation","Coordinate Verification","Area Calculation","Data Quality"],tech:[{name:"QGIS",icon:"",symbol:"QGIS"},{name:"KML",icon:"",symbol:"KML"},{name:"GeoJSON",icon:"",symbol:"GEO"},{name:"Vector Data",icon:"",symbol:"VEC"}],url:"https://github.com/Afyuadriputra/cocoa-farm-gis-data-quality-portfolio",actionLabel:"View GIS Work",actionMeta:"GIS PROJECT REPOSITORY",actionType:"github"}
+{number:"03",slug:"ofi-indonesia",shortName:"ofi Indonesia",name:"OFI INDONESIA",role:"Freelance GIS Surveyor",category:"GIS & Spatial Data",label:"GEOSPATIAL ENGINEERING",title:"Spatial data prepared for reliable decisions.",icon:"map",status:"Professional Work",context:"GIS · Agriculture · Spatial Data",visualCopy:"Professional geospatial data work focused on cocoa plantation datasets, geometry reliability, coordinate verification, area calculations, and quality control.",description:"Processed and validated geospatial cocoa plantation data using QGIS, including coordinate verification, geometry validation, area calculation, data cleaning, and spatial quality control.",workflow:["Spatial Data","Geometry Validation","Coordinates","Area Calculation","Quality Control"],workflowMobile:["Spatial","Geometry","Coords","Area","QC"],capabilities:["Geometry Validation","Coordinate Verification","Area Calculation","Data Quality"],tech:[{name:"QGIS",icon:"",symbol:"QGIS"},{name:"KML",icon:"",symbol:"KML"},{name:"GeoJSON",icon:"",symbol:"GEO"},{name:"Vector Data",icon:"",symbol:"VEC"}],url:"https://github.com/Afyuadriputra/cocoa-farm-gis-data-quality-portfolio",actionLabel:"View GIS Work",actionMeta:"GIS PROJECT REPOSITORY",actionType:"github"}
 ],
 
 get current(){return this.items[this.active]},
 
-init(){const hash=window.location.hash.replace("#","");const index=this.items.findIndex(item=>item.slug===hash);if(index>=0)this.active=index},
+init(){const slug=window.location.hash.replace("#",""),index=this.items.findIndex(item=>item.slug===slug);if(index>=0)this.active=index},
 
-switchTo(index,focus=false){if(index===this.active||this.switching)return;this.switching=true;this.visible=false;window.setTimeout(()=>{this.active=index;this.$nextTick(()=>requestAnimationFrame(()=>{this.visible=true;this.switching=false;if(focus)this.focusActiveTab()}))},90)},
+select(index,focus=false){
+if(index<0||index>=this.items.length)return;
+if(index===this.active){if(focus)this.focusActiveTab();return;}
+this.active=index;
+this.restartPulse();
+if(focus)this.focusActiveTab();
+},
 
-next(focus=false){this.switchTo((this.active+1)%this.items.length,focus)},
+restartPulse(){
+this.pulse=false;
+clearTimeout(this.pulseTimer);
+requestAnimationFrame(()=>requestAnimationFrame(()=>{this.pulse=true;this.pulseTimer=setTimeout(()=>this.pulse=false,220)}));
+},
 
-previous(focus=false){this.switchTo((this.active-1+this.items.length)%this.items.length,focus)},
+next(focus=false){this.select((this.active+1)%this.items.length,focus)},
+
+previous(focus=false){this.select((this.active-1+this.items.length)%this.items.length,focus)},
 
 focusActiveTab(){this.$nextTick(()=>document.getElementById("work-tab-"+this.active)?.focus({preventScroll:true}))},
 
-keyboardNext(event){if(["INPUT","TEXTAREA","SELECT"].includes(event.target.tagName))return;this.next()},
-
-keyboardPrevious(event){if(["INPUT","TEXTAREA","SELECT"].includes(event.target.tagName))return;this.previous()}
+handleGlobalKey(event,direction){
+if(event.defaultPrevented)return;
+if(["INPUT","TEXTAREA","SELECT","BUTTON","A"].includes(event.target.tagName))return;
+direction>0?this.next():this.previous();
+}
 }}
 </script>
 
-<script src="./i18n.js"></script>
 </body>
 </html>
