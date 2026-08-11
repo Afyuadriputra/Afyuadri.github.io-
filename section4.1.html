@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+
+<html class="scroll-smooth" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>AI Product Engineering - Afyuadri Putra</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script defer="" src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "inverse-on-surface": "#f1f1f1",
+                        "primary-container": "#393e46",
+                        "on-error": "#ffffff",
+                        "outline": "#75777c",
+                        "surface-container-lowest": "#ffffff",
+                        "background": "#f9f9f9",
+                        "surface": "#f9f9f9",
+                        "secondary-fixed-dim": "#bfc7d9",
+                        "on-primary-container": "#a4a9b2",
+                        "error": "#ba1a1a",
+                        "tertiary-fixed": "#e2e2e2",
+                        "on-surface": "#1a1c1c",
+                        "on-tertiary": "#ffffff",
+                        "on-secondary-fixed": "#141c29",
+                        "tertiary": "#262829",
+                        "tertiary-fixed-dim": "#c6c6c7",
+                        "secondary": "#575f6e",
+                        "on-error-container": "#93000a",
+                        "primary": "#232830",
+                        "on-background": "#1a1c1c",
+                        "on-secondary-container": "#5b6372",
+                        "surface-bright": "#f9f9f9",
+                        "secondary-fixed": "#dbe3f5",
+                        "on-tertiary-container": "#a8a9a9",
+                        "outline-variant": "#c5c6cb",
+                        "on-secondary-fixed-variant": "#3f4756",
+                        "primary-fixed": "#dee2ed",
+                        "surface-container-high": "#e8e8e8",
+                        "on-tertiary-fixed": "#1a1c1c",
+                        "on-tertiary-fixed-variant": "#454747",
+                        "tertiary-container": "#3c3e3e",
+                        "surface-container": "#eeeeee",
+                        "surface-container-low": "#f3f3f3",
+                        "on-surface-variant": "#45474b",
+                        "primary-fixed-dim": "#c2c7d0",
+                        "surface-dim": "#dadada",
+                        "error-container": "#ffdad6",
+                        "on-primary-fixed-variant": "#42474f",
+                        "on-primary-fixed": "#171c23",
+                        "surface-container-highest": "#e2e2e2",
+                        "on-primary": "#ffffff",
+                        "inverse-primary": "#c2c7d0",
+                        "on-secondary": "#ffffff",
+                        "surface-variant": "#e2e2e2",
+                        "surface-tint": "#5a5f67",
+                        "inverse-surface": "#2f3131",
+                        "secondary-container": "#d8e0f2"
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    spacing: {
+                        "base": "8px",
+                        "section-gap": "120px",
+                        "margin-mobile": "20px",
+                        "container-max": "1200px",
+                        "gutter": "24px"
+                    },
+                    fontFamily: {
+                        "label-mono": ["JetBrains Mono"],
+                        "hero-lg-mobile": ["Geist"],
+                        "body-lg": ["Geist"],
+                        "headline-md": ["Geist"],
+                        "hero-lg": ["Geist"],
+                        "body-md": ["Geist"],
+                        "caption": ["Geist"]
+                    },
+                    fontSize: {
+                        "label-mono": ["14px", { lineHeight: "1.4", letterSpacing: "0.05em", fontWeight: "500" }],
+                        "hero-lg-mobile": ["40px", { lineHeight: "1.1", letterSpacing: "-0.03em", fontWeight: "600" }],
+                        "body-lg": ["18px", { lineHeight: "1.6", letterSpacing: "0", fontWeight: "400" }],
+                        "headline-md": ["32px", { lineHeight: "1.2", letterSpacing: "-0.02em", fontWeight: "500" }],
+                        "hero-lg": ["72px", { lineHeight: "1.1", letterSpacing: "-0.04em", fontWeight: "600" }],
+                        "body-md": ["16px", { lineHeight: "1.6", letterSpacing: "0", fontWeight: "400" }],
+                        "caption": ["13px", { lineHeight: "1.4", letterSpacing: "0", fontWeight: "400" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .fill-icon {
+            font-variation-settings: 'FILL' 1;
+        }
+        .architecture-node {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 8px 16px;
+            border: 1px solid rgba(57, 62, 70, 0.2);
+            background-color: transparent;
+            color: #393e46;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 13px;
+            white-space: nowrap;
+        }
+        .architecture-arrow {
+            color: #393e46;
+            opacity: 0.5;
+            margin: 0 8px;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background font-body-md min-h-screen flex flex-col antialiased selection:bg-surface-dim selection:text-primary">
+<!-- Main Content -->
+<main class="flex-grow pt-24 pb-section-gap">
+<section class="w-full min-h-[calc(100vh-6rem)] flex items-center" id="work" x-data="{ activeProject: 1 }">
+<div class="max-w-container-max mx-auto px-margin-mobile md:px-gutter w-full">
+<!-- Section Header -->
+<div class="mb-12 border-b border-surface-dim pb-4 flex justify-between items-end">
+<div>
+<h2 class="font-label-mono text-label-mono text-secondary mb-2 uppercase">Domain Focus</h2>
+<h1 class="font-headline-md text-headline-md md:font-hero-lg md:text-hero-lg text-primary tracking-tight">AI PRODUCT ENGINEERING</h1>
+</div>
+</div>
+<!-- Project Selector (Tabs) -->
+<div class="flex space-x-4 mb-8">
+<button :class="activeProject === 1 ? 'bg-primary-container text-white border-transparent' : 'bg-transparent text-primary border-outline-variant/30 hover:bg-surface-container-low'" @click="activeProject = 1" class="px-6 py-2 border transition-colors font-label-mono text-label-mono">
+                        01 arah.ai
+                    </button>
+<button :class="activeProject === 2 ? 'bg-primary-container text-white border-transparent' : 'bg-transparent text-primary border-outline-variant/30 hover:bg-surface-container-low'" @click="activeProject = 2" class="px-6 py-2 border transition-colors font-label-mono text-label-mono">
+                        02 Nail Health AI
+                    </button>
+</div>
+<!-- Stage: Fixed Height Container to prevent layout shift -->
+<div class="grid grid-cols-1 md:grid-cols-12 gap-gutter min-h-[500px]">
+<!-- Left Column: Story (5 cols) -->
+<div class="md:col-span-5 flex flex-col justify-between">
+<!-- Project 1 Story -->
+<div class="space-y-6" x-show="activeProject === 1" x-transition.opacity.duration.300ms="">
+<div>
+<div class="font-label-mono text-label-mono text-secondary mb-1">Role: CTO · AI Product Engineering</div>
+<h3 class="font-headline-md text-headline-md text-primary leading-tight">From academic data to actionable semester plans.</h3>
+</div>
+<p class="font-body-lg text-body-lg text-on-surface-variant">
+                                Architecting a system that translates raw university curriculum data into personalized, actionable degree pathways using advanced RAG and intelligent agents.
+                            </p>
+<div class="mt-8 border border-surface-container-highest p-2 bg-white h-48 relative overflow-hidden group">
+<div class="w-full h-full bg-cover bg-center bg-no-repeat group-hover:scale-105 transition-transform duration-700" data-alt="A clean, minimalist UI mockup of an AI application dashboard showing semester planning data. The design features a modern, light-mode aesthetic with crisp typography, subtle gray borders, and a monochromatic palette with precise structural alignment, echoing professional software engineering tools." style="background-image: url('https://www.gstatic.com/labs-code/stitch/stitch-placeholder-300x300.svg')"></div>
+</div>
+<div class="flex flex-col space-y-3 mt-6">
+<a class="font-label-mono text-label-mono text-primary flex items-center hover:opacity-70 transition-opacity" href="https://arahai.tech/" target="_blank">
+<span class="material-symbols-outlined mr-2 text-[18px]">open_in_new</span> Visit Live Product
+                                </a>
+<a class="font-label-mono text-label-mono text-secondary flex items-center hover:text-primary transition-colors" href="https://github.com/Afyuadriputra/rag-projek-v5" target="_blank">
+<span class="material-symbols-outlined mr-2 text-[18px]">code</span> Engineering Repository
+                                </a>
+</div>
+</div>
+<!-- Project 2 Story -->
+<div class="space-y-6" x-cloak="" x-show="activeProject === 2" x-transition.opacity.duration.300ms="">
+<div>
+<div class="font-label-mono text-label-mono text-secondary mb-1">Role: AI Engineer · Research &amp; Product Integration</div>
+<h3 class="font-headline-md text-headline-md text-primary leading-tight">From image classification to contextual explanation.</h3>
+</div>
+<p class="font-body-lg text-body-lg text-on-surface-variant">
+                                Bridging the gap between raw model outputs and user understanding by coupling an EfficientNet-B0 classifier with a RAG-powered explanation pipeline.
+                            </p>
+<div class="mt-8 border border-surface-container-highest p-2 bg-white h-48 relative overflow-hidden group">
+<div class="w-full h-full bg-cover bg-center bg-no-repeat group-hover:scale-105 transition-transform duration-700" data-alt="A sleek, medical-focused AI chat interface mockup showing image analysis results. The UI is minimalist, using a bright white background, structural 1px borders, and a stark monochromatic style with rigorous spacing, resembling high-end technical documentation." style="background-image: url('https://www.gstatic.com/labs-code/stitch/stitch-placeholder-300x300.svg')"></div>
+</div>
+<div class="flex flex-col space-y-3 mt-6">
+<a class="font-label-mono text-label-mono text-primary flex items-center hover:opacity-70 transition-opacity" href="https://github.com/Afyuadriputra/SKRIPSI_AFYU" target="_blank">
+<span class="material-symbols-outlined mr-2 text-[18px]">biotech</span> View Model / Research
+                                </a>
+<a class="font-label-mono text-label-mono text-secondary flex items-center hover:text-primary transition-colors" href="https://github.com/Afyuadriputra/Integrasi-EfficientNet-B0-dan-RAG-pada-Aplikasi-Chatbot-Kesehatan-Kuku-Berbasis-Django-Svelte" target="_blank">
+<span class="material-symbols-outlined mr-2 text-[18px]">account_tree</span> View Application Architecture
+                                </a>
+</div>
+</div>
+</div>
+<!-- Right Column: Architecture (7 cols) -->
+<div class="md:col-span-7 bg-surface p-8 border border-surface-dim relative h-full flex flex-col">
+<div class="font-label-mono text-label-mono text-primary mb-8 border-b border-outline-variant/20 pb-4">SYSTEM ARCHITECTURE</div>
+<div class="flex-grow flex items-center justify-center">
+<!-- Project 1 Architecture -->
+<div class="w-full overflow-x-auto pb-4" x-show="activeProject === 1" x-transition.opacity.duration.300ms="">
+<div class="flex md:flex-row flex-col items-center justify-start md:justify-center min-w-max md:min-w-0 space-y-4 md:space-y-0">
+<div class="architecture-node">ACADEMIC DATA</div>
+<span class="material-symbols-outlined architecture-arrow md:rotate-0 rotate-90">arrow_right_alt</span>
+<div class="architecture-node">INGESTION</div>
+<span class="material-symbols-outlined architecture-arrow md:rotate-0 rotate-90">arrow_right_alt</span>
+<div class="architecture-node bg-white shadow-sm">KNOWLEDGE / RETRIEVAL</div>
+<span class="material-symbols-outlined architecture-arrow md:rotate-0 rotate-90">arrow_right_alt</span>
+<div class="architecture-node border-primary bg-surface-container-low">AI AGENT</div>
+<span class="material-symbols-outlined architecture-arrow md:rotate-0 rotate-90">arrow_right_alt</span>
+<div class="architecture-node text-white bg-primary-container border-primary-container">STUDENT PLAN</div>
+</div>
+</div>
+<!-- Project 2 Architecture -->
+<div class="w-full overflow-x-auto pb-4" x-cloak="" x-show="activeProject === 2" x-transition.opacity.duration.300ms="">
+<div class="flex md:flex-row flex-col items-center justify-start md:justify-center min-w-max md:min-w-0 space-y-4 md:space-y-0">
+<div class="architecture-node">IMAGE INPUT</div>
+<span class="material-symbols-outlined architecture-arrow md:rotate-0 rotate-90">arrow_right_alt</span>
+<div class="architecture-node bg-white">AI MODEL (EfficientNet-B0)</div>
+<span class="material-symbols-outlined architecture-arrow md:rotate-0 rotate-90">arrow_right_alt</span>
+<div class="architecture-node border-primary">CLASSIFICATION</div>
+<span class="material-symbols-outlined architecture-arrow md:rotate-0 rotate-90">arrow_right_alt</span>
+<div class="architecture-node bg-surface-container-low">RAG KNOWLEDGE</div>
+<span class="material-symbols-outlined architecture-arrow md:rotate-0 rotate-90">arrow_right_alt</span>
+<div class="architecture-node text-white bg-primary-container border-primary-container">APPLICATION</div>
+</div>
+</div>
+</div>
+<!-- Engineering Ownership Tags -->
+<div class="mt-auto pt-8 border-t border-outline-variant/10">
+<div class="font-caption text-caption text-secondary mb-3">ENGINEERING OWNERSHIP</div>
+<div class="flex flex-wrap gap-2">
+<span class="font-label-mono text-label-mono bg-surface-container px-3 py-1 text-primary">AI Architecture</span>
+<span class="font-label-mono text-label-mono bg-surface-container px-3 py-1 text-primary">RAG Pipeline</span>
+<span class="font-label-mono text-label-mono bg-surface-container px-3 py-1 text-primary">Backend</span>
+<span class="font-label-mono text-label-mono bg-surface-container px-3 py-1 text-primary">Product</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Section Footer Statement -->
+<div class="mt-24 text-center border-t border-surface-dim pt-12">
+<p class="font-headline-md text-headline-md text-primary italic font-light">"I do not stop at the model. I engineer the system around it."</p>
+<div class="mt-4 font-label-mono text-label-mono text-secondary tracking-widest flex justify-center space-x-4">
+<span>MODEL</span><span>·</span><span>RETRIEVAL</span><span>·</span><span>BACKEND</span><span>·</span><span>PRODUCT</span>
+</div>
+</div>
+</div>
+</section>
+</main>
+</body></html>
