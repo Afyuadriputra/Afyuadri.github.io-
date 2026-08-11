@@ -1,227 +1,88 @@
 <!DOCTYPE html>
-
-<html class="light" lang="en"><head>
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>AI Engineering Edge - Engineer Portfolio</title>
-<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600&amp;family=JetBrains+Mono:wght@500;700&amp;display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
-<script id="tailwind-config">
-        tailwind.config = {
-            darkMode: "class",
-            theme: {
-                extend: {
-                    "colors": {
-                        "surface-tint": "#5a5f67",
-                        "surface-container-low": "#f3f3f3",
-                        "background": "#f9f9f9",
-                        "on-tertiary-fixed-variant": "#454747",
-                        "surface-container-high": "#e8e8e8",
-                        "tertiary-container": "#3c3e3e",
-                        "on-secondary-container": "#5b6372",
-                        "on-error-container": "#93000a",
-                        "secondary-fixed-dim": "#bfc7d9",
-                        "on-error": "#ffffff",
-                        "on-surface-variant": "#45474b",
-                        "outline-variant": "#c5c6cb",
-                        "tertiary-fixed": "#e2e2e2",
-                        "tertiary": "#262829",
-                        "inverse-on-surface": "#f1f1f1",
-                        "primary": "#232830",
-                        "surface-container": "#eeeeee",
-                        "on-surface": "#1a1c1c",
-                        "primary-fixed": "#dee2ed",
-                        "on-tertiary-container": "#a8a9a9",
-                        "error": "#ba1a1a",
-                        "primary-container": "#393e46",
-                        "primary-fixed-dim": "#c2c7d0",
-                        "on-secondary-fixed-variant": "#3f4756",
-                        "on-secondary": "#ffffff",
-                        "surface-variant": "#e2e2e2",
-                        "on-primary-fixed-variant": "#42474f",
-                        "secondary-fixed": "#dbe3f5",
-                        "on-tertiary": "#ffffff",
-                        "on-tertiary-fixed": "#1a1c1c",
-                        "surface-bright": "#f9f9f9",
-                        "on-primary-container": "#a4a9b2",
-                        "surface-container-lowest": "#ffffff",
-                        "surface-container-highest": "#e2e2e2",
-                        "secondary": "#575f6e",
-                        "tertiary-fixed-dim": "#c6c6c7",
-                        "on-background": "#1a1c1c",
-                        "surface-dim": "#dadada",
-                        "on-secondary-fixed": "#141c29",
-                        "on-primary": "#ffffff",
-                        "secondary-container": "#d8e0f2",
-                        "on-primary-fixed": "#171c23",
-                        "outline": "#75777c",
-                        "inverse-surface": "#2f3131",
-                        "inverse-primary": "#c2c7d0",
-                        "surface": "#f9f9f9",
-                        "error-container": "#ffdad6"
-                    },
-                    "borderRadius": {
-                        "DEFAULT": "0.125rem",
-                        "lg": "0.25rem",
-                        "xl": "0.5rem",
-                        "full": "0.75rem"
-                    },
-                    "spacing": {
-                        "section-gap": "120px",
-                        "base": "8px",
-                        "margin-mobile": "20px",
-                        "container-max": "1200px",
-                        "gutter": "24px"
-                    },
-                    "fontFamily": {
-                        "headline-md": ["Geist"],
-                        "hero-lg": ["Geist"],
-                        "body-md": ["Geist"],
-                        "body-lg": ["Geist"],
-                        "caption": ["Geist"],
-                        "hero-lg-mobile": ["Geist"],
-                        "label-mono": ["JetBrains Mono"]
-                    },
-                    "fontSize": {
-                        "headline-md": ["32px", { "lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "500" }],
-                        "hero-lg": ["72px", { "lineHeight": "1.1", "letterSpacing": "-0.04em", "fontWeight": "600" }],
-                        "body-md": ["16px", { "lineHeight": "1.6", "letterSpacing": "0", "fontWeight": "400" }],
-                        "body-lg": ["18px", { "lineHeight": "1.6", "letterSpacing": "0", "fontWeight": "400" }],
-                        "caption": ["13px", { "lineHeight": "1.4", "letterSpacing": "0", "fontWeight": "400" }],
-                        "hero-lg-mobile": ["40px", { "lineHeight": "1.1", "letterSpacing": "-0.03em", "fontWeight": "600" }],
-                        "label-mono": ["14px", { "lineHeight": "1.4", "letterSpacing": "0.05em", "fontWeight": "500" }]
-                    }
-                }
-            }
-        }
-    </script>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>AI Product Engineering — Afyuadri Putra</title>
+<meta name="description" content="AI Product Engineering case studies across academic AI agents, RAG systems, computer vision, backend integration, and product delivery.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/daisyui@5" rel="stylesheet" type="text/css">
+<script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.16.0/dist/cdn.min.js"></script>
 <style>
-        .material-symbols-outlined {
-            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
-        }
-        .bg-f7 { background-color: #F7F7F7; }
-        .text-39 { color: #393E46; }
-        .border-39 { border-color: #393E46; }
-        .text-92 { color: #929AAB; }
-        .border-ee { border-color: #EEEEEE; }
-    </style>
+[x-cloak]{display:none!important}*{box-sizing:border-box}html,body{margin:0;width:100%;height:100%;background:#F7F7F7;scrollbar-gutter:stable}body{overflow:hidden;font-family:"Geist",sans-serif;color:#393E46}.mono{font-family:"JetBrains Mono",monospace}.material-symbols-outlined{font-variation-settings:"FILL" 0,"wght" 400,"GRAD" 0,"opsz" 20}.stage-scroll{scrollbar-width:thin;scrollbar-color:#D4D6DA transparent;scrollbar-gutter:stable;overscroll-behavior:contain;-webkit-overflow-scrolling:touch}.stage-scroll::-webkit-scrollbar{width:4px}.stage-scroll::-webkit-scrollbar-track{background:transparent}.stage-scroll::-webkit-scrollbar-thumb{background:#D4D6DA;border-radius:999px}.content-pulse{animation:contentIn .18s cubic-bezier(.2,.8,.2,1)}.architecture-line{height:1px;background:#D9DBDE;flex:1;min-width:8px}.architecture-node{transition:border-color .18s ease,background-color .18s ease,color .18s ease}.proof-grid{background-image:linear-gradient(#EEEEEE 1px,transparent 1px),linear-gradient(90deg,#EEEEEE 1px,transparent 1px);background-size:22px 22px}::selection{background:#393E46;color:#fff}@keyframes contentIn{0%{opacity:.58;transform:translateY(3px)}100%{opacity:1;transform:translateY(0)}}
+@media(max-height:780px) and (min-width:1024px){.shell{padding-top:12px!important;padding-bottom:10px!important}.page-header{padding-bottom:9px!important}.page-title{font-size:30px!important}.project-selector{padding-top:7px!important;padding-bottom:7px!important}.project-button{min-height:50px!important}.story-panel,.engineering-panel{padding:14px!important}.project-title{font-size:22px!important}.project-description{margin-top:7px!important;font-size:10px!important}.product-proof{margin-top:9px!important;min-height:104px!important}.architecture-section,.ownership-section{margin-top:9px!important}.footer-bar{margin-top:6px!important;padding-top:6px!important}}
+@media(max-width:1023px){.mobile-stage{overflow-y:auto;touch-action:pan-y}.project-description{display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:3;line-clamp:3;overflow:hidden}}
+@media(max-width:430px){.shell{padding-left:14px!important;padding-right:14px!important}.page-title{font-size:27px!important}.project-button{padding-left:9px!important;padding-right:9px!important}.mobile-project-title{font-size:20px!important}.mobile-architecture-node{font-size:7px!important}.mobile-proof{min-height:103px!important}}
+@media(max-width:1023px) and (max-height:700px){.header-copy,.project-long-copy,.mobile-secondary-meta,.closing-copy{display:none!important}.shell{padding-top:10px!important;padding-bottom:8px!important}.page-header{padding-bottom:7px!important}.page-title{font-size:24px!important}.project-selector{padding-top:5px!important;padding-bottom:5px!important}.project-button{min-height:44px!important}.mobile-stage-inner{padding:10px!important}.mobile-proof{min-height:86px!important}.mobile-architecture,.mobile-ownership,.mobile-actions{margin-top:7px!important}.mobile-action{height:40px!important;min-height:40px!important}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}}
+</style>
 </head>
-<body class="bg-f7 text-39 antialiased min-h-screen flex flex-col font-body-md text-body-md overflow-x-hidden">
-<!-- Main Content Area: Fits within 1440x900 viewport (700-820px height) -->
-<main class="flex-grow flex items-center justify-center pt-24 pb-16 px-gutter max-w-container-max mx-auto w-full min-h-[700px] max-h-[900px]">
-<div class="w-full max-w-6xl flex flex-col gap-12 md:gap-16">
-<!-- Header Section -->
-<header class="flex flex-col gap-4 text-center md:text-left max-w-3xl">
-<span class="font-label-mono text-label-mono text-92 tracking-widest uppercase">AI ENGINEERING EDGE</span>
-<h1 class="font-headline-md text-headline-md text-39 md:font-hero-lg-mobile md:text-hero-lg-mobile">AI integrated into real software.</h1>
-<p class="font-body-lg text-body-lg text-secondary max-w-2xl text-balance">
-                    I combine software engineering with machine learning, retrieval systems, and LLM integration to build intelligent capabilities directly into modern applications.
-                </p>
+<body>
+<section x-data="aiProductExplorer()" x-init="init()" @keydown.left.window="keyboardMove($event,-1)" @keydown.right.window="keyboardMove($event,1)" class="h-[100svh] w-full overflow-hidden bg-[#F7F7F7]">
+<div class="shell mx-auto flex h-full min-h-0 w-full max-w-[1240px] flex-col px-5 py-5 sm:px-6 lg:px-8 xl:px-10">
+<header class="page-header grid shrink-0 grid-cols-1 gap-2 border-b border-[#EEEEEE] pb-4 lg:grid-cols-12 lg:items-end lg:gap-8">
+<div class="lg:col-span-8"><p class="mono mb-1.5 text-[9px] font-medium uppercase tracking-[.18em] text-[#929AAB] sm:text-[10px]">AI Product Engineering</p><h2 class="page-title max-w-[720px] text-[30px] font-semibold leading-[1.03] tracking-[-.045em] text-[#393E46] sm:text-[36px] lg:text-[40px]">I turn AI systems into working products.</h2></div>
+<div class="lg:col-span-4 lg:pb-0.5"><p class="header-copy text-[11px] leading-[1.55] text-[#929AAB] sm:text-[12px] lg:text-right">Two product domains, one engineering approach: connect intelligence, retrieval, backend systems, and usable interfaces.</p><div class="mt-2 flex items-center gap-2 lg:justify-end"><span class="mono text-[7.5px] uppercase tracking-[.13em] text-[#393E46]">02 AI Systems</span><span class="h-1 w-1 rounded-full bg-[#929AAB]"></span><span class="mono text-[7.5px] uppercase tracking-[.13em] text-[#929AAB]">EdTech · Healthcare AI</span></div></div>
 </header>
-<!-- Architecture Diagram -->
-<div class="relative w-full">
-<!-- Connecting Line (Desktop Only) -->
-<div class="hidden lg:block absolute top-[4.5rem] left-[5%] right-[5%] h-px bg-[#393E46] opacity-20 z-0"></div>
-<div class="flex flex-col lg:flex-row justify-between gap-6 lg:gap-4 relative z-10 w-full">
-<!-- Component 01: DATA -->
-<div class="flex-1 bg-white border border-ee p-6 hover:bg-surface-container-lowest transition-colors group flex flex-col gap-4">
-<div class="flex justify-between items-start">
-<span class="font-label-mono text-label-mono font-bold text-39">01</span>
-<span class="font-label-mono text-label-mono text-[10px] text-92 bg-[#F7F7F7] px-2 py-1 uppercase tracking-wider">INPUT</span>
-</div>
-<div class="flex flex-col gap-1">
-<h3 class="font-headline-md text-[20px] font-medium text-39 group-hover:text-black transition-colors">DATA</h3>
-<div class="flex items-center gap-2 mt-2">
-<span class="material-symbols-outlined text-[16px] text-92" data-icon="database">database</span>
-<span class="font-label-mono text-[12px] text-92">PostgreSQL, S3</span>
-</div>
-</div>
-</div>
-<!-- Connection Arrow (Mobile) -->
-<div class="lg:hidden flex justify-center text-92 opacity-50">
-<span class="material-symbols-outlined" data-icon="arrow_downward">arrow_downward</span>
-</div>
-<!-- Component 02: AI MODEL -->
-<div class="flex-1 bg-white border border-ee p-6 hover:bg-surface-container-lowest transition-colors group flex flex-col gap-4">
-<div class="flex justify-between items-start">
-<span class="font-label-mono text-label-mono font-bold text-39">02</span>
-<span class="font-label-mono text-label-mono text-[10px] text-92 bg-[#F7F7F7] px-2 py-1 uppercase tracking-wider">INTELLIGENCE</span>
-</div>
-<div class="flex flex-col gap-1">
-<h3 class="font-headline-md text-[20px] font-medium text-39 group-hover:text-black transition-colors">AI MODEL</h3>
-<div class="flex items-center gap-2 mt-2">
-<span class="material-symbols-outlined text-[16px] text-92" data-icon="memory">memory</span>
-<span class="font-label-mono text-[12px] text-92">PyTorch, HuggingFace</span>
-</div>
-</div>
-</div>
-<!-- Connection Arrow (Mobile) -->
-<div class="lg:hidden flex justify-center text-92 opacity-50">
-<span class="material-symbols-outlined" data-icon="arrow_downward">arrow_downward</span>
-</div>
-<!-- Component 03: RAG / LLM -->
-<div class="flex-1 bg-[#393E46] border border-39 p-6 shadow-sm group flex flex-col gap-4 relative">
-<!-- Highlight indicator -->
-<div class="absolute -top-1 left-0 right-0 h-1 bg-[#929AAB] opacity-50"></div>
-<div class="flex justify-between items-start">
-<span class="font-label-mono text-label-mono font-bold text-white">03</span>
-<span class="font-label-mono text-label-mono text-[10px] text-[#929AAB] bg-[#232830] px-2 py-1 uppercase tracking-wider border border-[#454747]">KNOWLEDGE</span>
-</div>
-<div class="flex flex-col gap-1">
-<h3 class="font-headline-md text-[20px] font-medium text-white">RAG / LLM</h3>
-<div class="flex items-center gap-2 mt-2">
-<span class="material-symbols-outlined text-[16px] text-[#929AAB]" data-icon="hub">hub</span>
-<span class="font-label-mono text-[12px] text-[#929AAB]">ChromaDB, LangChain</span>
-</div>
-</div>
-</div>
-<!-- Connection Arrow (Mobile) -->
-<div class="lg:hidden flex justify-center text-92 opacity-50">
-<span class="material-symbols-outlined" data-icon="arrow_downward">arrow_downward</span>
-</div>
-<!-- Component 04: API -->
-<div class="flex-1 bg-white border border-ee p-6 hover:bg-surface-container-lowest transition-colors group flex flex-col gap-4">
-<div class="flex justify-between items-start">
-<span class="font-label-mono text-label-mono font-bold text-39">04</span>
-<span class="font-label-mono text-label-mono text-[10px] text-92 bg-[#F7F7F7] px-2 py-1 uppercase tracking-wider">INTEGRATION</span>
-</div>
-<div class="flex flex-col gap-1">
-<h3 class="font-headline-md text-[20px] font-medium text-39 group-hover:text-black transition-colors">API LAYER</h3>
-<div class="flex items-center gap-2 mt-2">
-<span class="material-symbols-outlined text-[16px] text-92" data-icon="api">api</span>
-<span class="font-label-mono text-[12px] text-92">FastAPI, Python</span>
-</div>
-</div>
-</div>
-<!-- Connection Arrow (Mobile) -->
-<div class="lg:hidden flex justify-center text-92 opacity-50">
-<span class="material-symbols-outlined" data-icon="arrow_downward">arrow_downward</span>
-</div>
-<!-- Component 05: WEB APP -->
-<div class="flex-1 bg-white border border-ee p-6 hover:bg-surface-container-lowest transition-colors group flex flex-col gap-4">
-<div class="flex justify-between items-start">
-<span class="font-label-mono text-label-mono font-bold text-39">05</span>
-<span class="font-label-mono text-label-mono text-[10px] text-92 bg-[#F7F7F7] px-2 py-1 uppercase tracking-wider">PRODUCT</span>
-</div>
-<div class="flex flex-col gap-1">
-<h3 class="font-headline-md text-[20px] font-medium text-39 group-hover:text-black transition-colors">WEB APP</h3>
-<div class="flex items-center gap-2 mt-2">
-<span class="material-symbols-outlined text-[16px] text-92" data-icon="web">web</span>
-<span class="font-label-mono text-[12px] text-92">React, Tailwind</span>
-</div>
-</div>
-</div>
-</div>
-</div>
-<!-- Positioning Statement -->
-<div class="border-t border-[#393E46]/10 pt-6 mt-4">
-<p class="font-label-mono text-label-mono text-secondary text-center max-w-4xl mx-auto">
-                    "AI is not a separate layer in my workflow — I integrate it as part of the application architecture."
-                </p>
-</div>
-</div>
+
+<div class="project-selector shrink-0 py-2.5"><div class="grid grid-cols-2 gap-2" role="tablist" aria-label="AI product case studies">
+<template x-for="(project,index) in projects" :key="project.slug"><button type="button" role="tab" :id="'project-tab-'+index" :aria-selected="active===index" :tabindex="active===index?0:-1" aria-controls="ai-project-panel" @click="select(index)" @keydown.right.prevent.stop="select((index+1)%projects.length,true)" @keydown.left.prevent.stop="select((index-1+projects.length)%projects.length,true)" @keydown.home.prevent.stop="select(0,true)" @keydown.end.prevent.stop="select(projects.length-1,true)" :class="active===index?'border-[#393E46] bg-[#393E46] text-white':'border-[#EEEEEE] bg-white text-[#393E46] hover:border-[#929AAB] hover:bg-[#F3F3F3]'" class="project-button group flex min-h-[58px] items-center gap-3 rounded-xl border px-3 py-2 text-left transition-[background-color,border-color,color] duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#929AAB] sm:px-4"><div :class="active===index?'border-white/15 bg-white/10':'border-[#EEEEEE] bg-[#F7F7F7]'" class="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg border"><span class="material-symbols-outlined text-[17px]" x-text="project.icon"></span></div><div class="min-w-0 flex-1"><div class="flex items-center gap-2"><span :class="active===index?'text-white/45':'text-[#929AAB]'" class="mono text-[7px]" x-text="project.number"></span><span class="truncate text-[10.5px] font-semibold sm:text-[12px]" x-text="project.name"></span></div><p :class="active===index?'text-white/55':'text-[#929AAB]'" class="mobile-secondary-meta mt-1 truncate text-[7.5px] uppercase tracking-[.08em] sm:text-[8px]" x-text="project.domain"></p></div><span :class="active===index?'translate-x-0 opacity-100':'-translate-x-1 opacity-0 group-hover:translate-x-0 group-hover:opacity-100'" class="material-symbols-outlined hidden shrink-0 text-[14px] transition-[opacity,transform] duration-200 sm:block">arrow_forward</span></button></template>
+</div></div>
+
+<main id="ai-project-panel" role="tabpanel" :aria-labelledby="'project-tab-'+active" aria-live="polite" class="hidden min-h-0 flex-1 overflow-hidden rounded-xl border border-[#EEEEEE] bg-white lg:grid lg:grid-cols-12">
+<section :class="pulse?'content-pulse':''" class="story-panel col-span-5 flex min-h-0 flex-col border-r border-[#EEEEEE] p-5">
+<div class="flex items-start justify-between gap-4"><div class="min-w-0"><div class="flex flex-wrap items-center gap-1.5"><span class="mono rounded-md bg-[#F3F3F3] px-2 py-1 text-[7px] uppercase tracking-[.11em] text-[#929AAB]" x-text="current.number+' / '+current.category"></span><span class="mono rounded-md border border-[#EEEEEE] bg-white px-2 py-1 text-[6.5px] uppercase tracking-[.1em] text-[#929AAB]" x-text="current.domain"></span><span x-show="current.live" class="inline-flex items-center gap-1 text-[7px] font-medium text-[#6F7785]"><span class="h-1.5 w-1.5 rounded-full bg-[#393E46]"></span>LIVE</span></div><h3 class="project-title mt-3 text-[26px] font-semibold leading-[1.05] tracking-[-.035em] text-[#393E46]" x-text="current.name"></h3><p class="mt-1 text-[9px] font-medium text-[#929AAB]" x-text="current.role"></p></div><div class="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl border border-[#EEEEEE] bg-[#F7F7F7]"><span class="material-symbols-outlined text-[21px]" x-text="current.icon"></span></div></div>
+<div class="mt-4"><p class="mono text-[7.5px] uppercase tracking-[.14em] text-[#929AAB]">Product Story</p><h4 class="mt-1.5 max-w-[430px] text-[19px] font-semibold leading-[1.12] tracking-[-.025em] text-[#393E46]" x-text="current.headline"></h4><p class="project-description mt-3 max-w-[450px] text-[11px] leading-[1.6] text-[#6F7785]" x-text="current.description"></p></div>
+<div class="product-proof proof-grid relative mt-4 flex min-h-[135px] flex-1 overflow-hidden rounded-lg border border-[#EEEEEE] bg-[#FAFAFA] p-4"><div class="relative z-10 flex w-full min-h-0 flex-col"><div class="flex items-center justify-between"><div><p class="mono text-[7px] uppercase tracking-[.14em] text-[#929AAB]">Domain Flow</p><p class="mt-1 text-[9px] font-medium text-[#393E46]" x-text="current.productLabel"></p></div><span class="material-symbols-outlined text-[18px] text-[#929AAB]" x-text="current.productIcon"></span></div><div class="mt-auto grid grid-cols-3 gap-2"><template x-for="signal in current.productSignals" :key="signal.label"><div class="rounded-md border border-[#EEEEEE] bg-white px-2.5 py-2"><p class="mono text-[6.5px] uppercase tracking-[.1em] text-[#929AAB]" x-text="signal.label"></p><p class="mt-1 truncate text-[8.5px] font-medium text-[#393E46]" x-text="signal.value"></p></div></template></div></div></div>
+<div class="mt-4 grid grid-cols-2 gap-2"><a :href="current.primaryUrl" target="_blank" rel="noopener noreferrer" class="group flex h-11 items-center justify-center gap-2 rounded-lg bg-[#393E46] px-3 text-white transition-opacity duration-200 hover:opacity-90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#929AAB]"><span class="material-symbols-outlined text-[14px]" x-text="current.primaryIcon"></span><span class="text-[8.5px] font-medium" x-text="current.primaryLabel"></span><span class="material-symbols-outlined text-[12px] transition-transform duration-200 group-hover:-translate-y-[1px] group-hover:translate-x-[1px]">open_in_new</span></a><a :href="current.secondaryUrl" target="_blank" rel="noopener noreferrer" class="group flex h-11 items-center justify-center gap-2 rounded-lg border border-[#EEEEEE] bg-white px-3 text-[#393E46] transition-colors duration-200 hover:border-[#929AAB] hover:bg-[#F7F7F7] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#929AAB]"><span class="material-symbols-outlined text-[14px]">code</span><span class="text-[8.5px] font-medium" x-text="current.secondaryLabel"></span><span class="material-symbols-outlined text-[12px] transition-transform duration-200 group-hover:-translate-y-[1px] group-hover:translate-x-[1px]">open_in_new</span></a></div>
+</section>
+
+<section :class="pulse?'content-pulse':''" class="engineering-panel col-span-7 flex min-h-0 flex-col p-5">
+<div class="flex shrink-0 items-center justify-between gap-4 border-b border-[#EEEEEE] pb-3"><div class="flex items-center gap-2"><span class="material-symbols-outlined text-[14px] text-[#929AAB]">account_tree</span><span class="mono text-[7.5px] uppercase tracking-[.14em] text-[#929AAB]">System Architecture</span></div><span class="mono truncate text-[7px] uppercase tracking-[.1em] text-[#929AAB]" x-text="current.archMeta"></span></div>
+<div class="architecture-section mt-4"><div class="flex items-center"><template x-for="(node,index) in current.architecture" :key="node.name"><div class="contents"><div :class="node.highlight?'border-[#393E46] bg-[#393E46] text-white':'border-[#EEEEEE] bg-[#FAFAFA] text-[#393E46]'" class="architecture-node flex min-h-[68px] min-w-0 flex-1 flex-col justify-center rounded-lg border px-2.5 text-center"><span :class="node.highlight?'text-white/45':'text-[#929AAB]'" class="mono text-[6px] uppercase tracking-[.11em]" x-text="node.type"></span><span class="mt-1 text-[8.5px] font-semibold leading-tight" x-text="node.name"></span><span :class="node.highlight?'text-white/50':'text-[#929AAB]'" class="mt-1 text-[6.5px] leading-tight" x-text="node.meta"></span></div><div x-show="index<current.architecture.length-1" class="flex w-6 shrink-0 items-center"><div class="architecture-line"></div><span class="material-symbols-outlined -ml-1 text-[11px] text-[#929AAB]">chevron_right</span></div></div></template></div></div>
+<div class="mt-4 rounded-lg border border-[#EEEEEE] bg-[#F7F7F7] px-3.5 py-3"><div class="flex items-start gap-3"><div class="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg border border-[#EEEEEE] bg-white"><span class="material-symbols-outlined text-[15px] text-[#393E46]">conversion_path</span></div><div><p class="mono text-[6.8px] uppercase tracking-[.12em] text-[#929AAB]">Engineering Intent</p><p class="project-long-copy mt-1 max-w-[650px] text-[9.5px] leading-[1.5] text-[#6F7785]" x-text="current.engineeringIntent"></p></div></div></div>
+<div class="ownership-section mt-4"><div class="mb-2 flex items-center justify-between"><div class="flex items-center gap-2"><span class="material-symbols-outlined text-[14px] text-[#929AAB]">engineering</span><span class="mono text-[7.5px] uppercase tracking-[.14em] text-[#929AAB]">Engineering Ownership</span></div><span class="mono text-[6.5px] text-[#929AAB]">RESPONSIBILITY</span></div><div class="grid grid-cols-3 gap-2"><template x-for="(item,index) in current.ownership" :key="item"><div class="flex min-h-[43px] items-center gap-2 rounded-lg border border-[#EEEEEE] bg-white px-2.5"><span class="mono text-[6.5px] text-[#929AAB]" x-text="String(index+1).padStart(2,'0')"></span><span class="text-[8.5px] font-medium leading-tight text-[#393E46]" x-text="item"></span></div></template></div></div>
+<div class="mt-auto border-t border-[#EEEEEE] pt-3"><div class="flex items-end justify-between gap-4"><div class="min-w-0"><div class="mb-2 flex items-center gap-2"><p class="mono text-[6.8px] uppercase tracking-[.13em] text-[#929AAB]">Domain & System Scope</p><span class="mono text-[6px] uppercase tracking-[.08em] text-[#929AAB]" x-text="current.domain"></span></div><div class="flex flex-wrap gap-1.5"><template x-for="item in current.scope" :key="item"><span class="badge h-6 rounded-md border-0 bg-[#F3F3F3] px-2 text-[7px] font-medium text-[#6F7785]" x-text="item"></span></template></div></div><span class="mono shrink-0 text-[6.5px] uppercase tracking-[.1em] text-[#929AAB]" x-text="current.category"></span></div></div>
+</section>
 </main>
+
+<main class="mobile-stage stage-scroll min-h-0 flex-1 overflow-y-auto rounded-xl border border-[#EEEEEE] bg-white lg:hidden" @touchstart="startTouch($event)" @touchend="endTouch($event)">
+<article :class="pulse?'content-pulse':''" class="mobile-stage-inner flex min-h-full flex-col p-4">
+<div class="flex items-start justify-between gap-3"><div class="min-w-0"><div class="flex flex-wrap items-center gap-1.5"><span class="mono rounded-md bg-[#F3F3F3] px-2 py-1 text-[6.5px] uppercase tracking-[.1em] text-[#929AAB]" x-text="current.number+' / '+current.category"></span><span class="mono rounded-md border border-[#EEEEEE] bg-white px-2 py-1 text-[6px] uppercase tracking-[.08em] text-[#929AAB]" x-text="current.domain"></span><span x-show="current.live" class="inline-flex items-center gap-1 text-[6.5px] font-medium text-[#6F7785]"><span class="h-1.5 w-1.5 rounded-full bg-[#393E46]"></span>LIVE</span></div><h3 class="mobile-project-title mt-2 text-[22px] font-semibold leading-[1.05] tracking-[-.03em] text-[#393E46]" x-text="current.name"></h3><p class="mt-1 text-[8px] font-medium text-[#929AAB]" x-text="current.role"></p></div><div class="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border border-[#EEEEEE] bg-[#F7F7F7]"><span class="material-symbols-outlined text-[19px]" x-text="current.icon"></span></div></div>
+<div class="mt-3"><h4 class="text-[16px] font-semibold leading-[1.15] tracking-[-.02em] text-[#393E46]" x-text="current.headline"></h4><p class="project-description mt-2 text-[9.5px] leading-[1.5] text-[#6F7785]" x-text="current.description"></p></div>
+<div class="mobile-proof proof-grid relative mt-3 min-h-[120px] shrink-0 overflow-hidden rounded-lg border border-[#EEEEEE] bg-[#FAFAFA] p-3"><div class="relative z-10 flex h-full flex-col"><div class="flex items-center justify-between"><div><p class="mono text-[6px] uppercase tracking-[.12em] text-[#929AAB]">Domain Flow</p><p class="mt-1 text-[8.5px] font-medium text-[#393E46]" x-text="current.productLabel"></p></div><span class="material-symbols-outlined text-[17px] text-[#929AAB]" x-text="current.productIcon"></span></div><div class="mt-auto grid grid-cols-3 gap-1.5"><template x-for="signal in current.productSignals" :key="'mobile-'+signal.label"><div class="rounded-md border border-[#EEEEEE] bg-white px-2 py-1.5"><p class="mono text-[5.5px] uppercase tracking-[.08em] text-[#929AAB]" x-text="signal.label"></p><p class="mt-0.5 truncate text-[7px] font-medium text-[#393E46]" x-text="signal.value"></p></div></template></div></div></div>
+<div class="mobile-architecture mt-3"><div class="mb-2 flex items-center gap-2"><span class="material-symbols-outlined text-[13px] text-[#929AAB]">account_tree</span><p class="mono text-[6.5px] uppercase tracking-[.12em] text-[#929AAB]">System Architecture</p></div><div class="grid grid-cols-4 gap-1"><template x-for="(node,index) in current.mobileArchitecture" :key="'mobile-arch-'+node"><div class="relative min-w-0"><div :class="index===current.mobileArchitecture.length-1?'border-[#393E46] bg-[#393E46] text-white':'border-[#EEEEEE] bg-[#F7F7F7] text-[#393E46]'" class="flex min-h-[36px] items-center justify-center rounded-md border px-1 text-center"><span class="mobile-architecture-node text-[7.5px] font-medium leading-tight" x-text="node"></span></div><span x-show="index<current.mobileArchitecture.length-1" class="absolute -right-[5px] top-1/2 z-10 -translate-y-1/2 bg-white px-[1px] text-[8px] text-[#929AAB]">›</span></div></template></div></div>
+<div class="mobile-ownership mt-3"><div class="mb-2 flex items-center justify-between gap-2"><div class="flex items-center gap-2"><span class="material-symbols-outlined text-[13px] text-[#929AAB]">engineering</span><p class="mono text-[6.5px] uppercase tracking-[.12em] text-[#929AAB]">My Ownership</p></div><span class="mono text-[5.5px] uppercase tracking-[.08em] text-[#929AAB]" x-text="current.domain"></span></div><div class="grid grid-cols-2 gap-1.5"><template x-for="item in current.mobileOwnership" :key="'mobile-owner-'+item"><div class="flex min-h-[33px] items-center gap-1.5 rounded-md border border-[#EEEEEE] px-2"><span class="h-1 w-1 shrink-0 rounded-full bg-[#929AAB]"></span><span class="text-[7.5px] font-medium leading-tight text-[#393E46]" x-text="item"></span></div></template></div></div>
+<div class="mobile-actions mt-3 grid grid-cols-[1fr_auto] gap-2"><a :href="current.primaryUrl" target="_blank" rel="noopener noreferrer" class="mobile-action flex h-11 min-h-11 items-center justify-center gap-2 rounded-lg bg-[#393E46] px-3 text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#929AAB]"><span class="material-symbols-outlined text-[14px]" x-text="current.primaryIcon"></span><span class="text-[8px] font-medium" x-text="current.primaryLabel"></span><span class="material-symbols-outlined text-[11px]">open_in_new</span></a><a :href="current.secondaryUrl" target="_blank" rel="noopener noreferrer" :aria-label="current.secondaryLabel" class="mobile-action flex h-11 min-h-11 w-11 items-center justify-center rounded-lg border border-[#EEEEEE] bg-white text-[#393E46] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#929AAB]"><span class="material-symbols-outlined text-[15px]">code</span></a></div>
+<div class="mt-auto pt-3"><div class="flex items-center justify-center gap-1.5"><template x-for="(_,index) in projects" :key="'progress-'+index"><span :class="active===index?'w-5 bg-[#393E46]':'w-1.5 bg-[#D4D6DA]'" class="h-1.5 rounded-full transition-[width,background-color] duration-200"></span></template></div><div class="mt-3 flex items-center justify-between border-t border-[#EEEEEE] pt-3"><button type="button" @click="previous()" class="btn h-10 min-h-10 rounded-lg border border-[#EEEEEE] bg-white px-3 text-[#393E46] shadow-none hover:bg-[#F3F3F3]"><span class="material-symbols-outlined text-[14px]">arrow_back</span><span class="hidden text-[7.5px] sm:inline">Previous</span></button><span class="mono text-[7px] text-[#929AAB]" x-text="String(active+1).padStart(2,'0')+' / '+String(projects.length).padStart(2,'0')"></span><button type="button" @click="next()" class="btn h-10 min-h-10 rounded-lg border border-[#EEEEEE] bg-white px-3 text-[#393E46] shadow-none hover:bg-[#F3F3F3]"><span class="hidden text-[7.5px] sm:inline">Next</span><span class="material-symbols-outlined text-[14px]">arrow_forward</span></button></div></div>
+</article>
+</main>
+
+<footer class="footer-bar mt-2.5 flex shrink-0 items-center justify-between border-t border-[#EEEEEE] pt-2.5"><div class="min-w-0"><p class="closing-copy text-[9px] font-medium text-[#393E46] sm:text-[10px]">I don't stop at the model. I engineer the system around it.</p><p class="mono mt-0.5 text-[6.5px] uppercase tracking-[.12em] text-[#929AAB]" x-text="current.domain+' · '+current.category"></p></div><div class="hidden items-center gap-1.5 lg:flex"><button type="button" @click="previous()" aria-label="Previous AI project" class="btn btn-square h-9 min-h-9 w-9 rounded-lg border border-[#EEEEEE] bg-white text-[#393E46] shadow-none hover:border-[#929AAB] hover:bg-[#F3F3F3]"><span class="material-symbols-outlined text-[14px]">arrow_back</span></button><span class="mono min-w-[38px] text-center text-[7px] text-[#929AAB]" x-text="String(active+1).padStart(2,'0')+' / '+String(projects.length).padStart(2,'0')"></span><button type="button" @click="next()" aria-label="Next AI project" class="btn btn-square h-9 min-h-9 w-9 rounded-lg border border-[#EEEEEE] bg-white text-[#393E46] shadow-none hover:border-[#929AAB] hover:bg-[#F3F3F3]"><span class="material-symbols-outlined text-[14px]">arrow_forward</span></button></div></footer>
+</div>
+</section>
+
+<script>
+function aiProductExplorer(){return{active:0,pulse:false,pulseTimer:null,touchStartX:0,touchStartY:0,touchStartedAt:0,
+projects:[
+{number:"01",slug:"arah-ai",name:"arah.ai",category:"STARTUP / AI PRODUCT",domain:"EDTECH · ACADEMIC AI",role:"CTO · AI Product Engineering",icon:"psychology",live:true,headline:"From student academic context to grounded academic guidance.",description:"As CTO, I helped shape arah.ai as an academic consultation AI agent that turns student academic context into structured, retrieval-grounded guidance through RAG and AI-agent workflows.",productLabel:"Academic Consultation AI Agent",productIcon:"school",productSignals:[{label:"CONTEXT",value:"Student Data"},{label:"KNOWLEDGE",value:"RAG Retrieval"},{label:"RESPONSE",value:"Academic Guidance"}],architecture:[{type:"CONTEXT",name:"STUDENT CONTEXT",meta:"Grades · Schedule · Docs",highlight:false},{type:"PIPELINE",name:"INGESTION",meta:"Extract · Parse · Normalize",highlight:false},{type:"KNOWLEDGE",name:"RETRIEVAL",meta:"Chunk · Metadata · Search",highlight:false},{type:"INTELLIGENCE",name:"AI AGENT",meta:"Retrieve · Reason · Compose",highlight:true},{type:"PRODUCT",name:"GUIDANCE",meta:"Consultation · Planning",highlight:true}],mobileArchitecture:["CONTEXT","RETRIEVE","AI AGENT","GUIDANCE"],engineeringIntent:"The system organizes student academic context into retrievable knowledge, then uses an AI-agent layer to produce grounded consultation and planning support instead of generic chatbot responses.",ownership:["AI Agent Architecture","RAG / Knowledge Pipeline","Backend Integration","Product Engineering","Technical Direction","System Integration"],mobileOwnership:["AI Agent Architecture","RAG Pipeline","Backend Integration","Technical Direction"],scope:["EdTech","Academic AI","RAG","AI Agent","Backend"],archMeta:"CONTEXT → RETRIEVAL → AGENT → GUIDANCE",primaryLabel:"Visit Live Product",primaryIcon:"language",primaryUrl:"https://arahai.tech/",secondaryLabel:"Engineering Repository",secondaryUrl:"https://github.com/Afyuadriputra/rag-projek-v55"},
+{number:"02",slug:"nail-health-ai",name:"Nail Health AI",category:"THESIS / AI RESEARCH",domain:"HEALTHCARE AI · COMPUTER VISION",role:"AI Engineer · Research & Product Integration",icon:"biotech",live:false,headline:"From visual classification to contextual information.",description:"A thesis AI system that combines EfficientNet-B0 image classification with retrieval-augmented generation, pairing the predicted class with relevant supporting information through a Django-backed web and mobile application architecture.",productLabel:"Nail Health AI Assistant",productIcon:"health_and_safety",productSignals:[{label:"INPUT",value:"Nail Image"},{label:"VISION",value:"EfficientNet-B0"},{label:"CONTEXT",value:"RAG Information"}],architecture:[{type:"INPUT",name:"IMAGE INPUT",meta:"User image",highlight:false},{type:"VISION",name:"EfficientNet-B0",meta:"Image classification",highlight:false},{type:"RESULT",name:"CLASSIFICATION",meta:"Predicted class",highlight:false},{type:"KNOWLEDGE",name:"RAG",meta:"Retrieve supporting context",highlight:true},{type:"DELIVERY",name:"APPLICATION",meta:"Django · Web · Mobile",highlight:true}],mobileArchitecture:["IMAGE","MODEL","RAG","APP"],engineeringIntent:"The architecture connects computer-vision inference with a retrieval layer and application delivery, so a classification result can be accompanied by contextual information through web and mobile interfaces.",ownership:["Dataset / Model Pipeline","EfficientNet-B0","Model Evaluation","RAG Integration","Django Backend Integration","Web / Mobile Integration"],mobileOwnership:["Model Pipeline","Model Evaluation","RAG Integration","Web / Mobile"],scope:["Healthcare AI","Computer Vision","EfficientNet-B0","RAG","Django"],archMeta:"IMAGE → VISION → RETRIEVAL → APPLICATION",primaryLabel:"View Model / Research",primaryIcon:"biotech",primaryUrl:"https://github.com/Afyuadriputra/SKRIPSI_AFYU",secondaryLabel:"Application Architecture",secondaryUrl:"https://github.com/Afyuadriputra/Integrasi-EfficientNet-B0-dan-RAG-pada-Aplikasi-Chatbot-Kesehatan-Kuku-Berbasis-Django-Svelte"}
+],
+get current(){return this.projects[this.active]},
+init(){const hash=window.location.hash.replace("#","");const index=this.projects.findIndex(project=>project.slug===hash);if(index>=0)this.active=index},
+select(index,focus=false){if(!Number.isInteger(index)||index<0||index>=this.projects.length)return;if(index===this.active){if(focus)this.focusActiveTab();return}this.active=index;this.animateContent();if(focus)this.focusActiveTab()},
+next(){this.select((this.active+1)%this.projects.length)},previous(){this.select((this.active-1+this.projects.length)%this.projects.length)},
+animateContent(){this.pulse=false;if(this.pulseTimer)clearTimeout(this.pulseTimer);requestAnimationFrame(()=>requestAnimationFrame(()=>{this.pulse=true;this.pulseTimer=window.setTimeout(()=>{this.pulse=false;this.pulseTimer=null},200)}))},
+focusActiveTab(){this.$nextTick(()=>document.getElementById("project-tab-"+this.active)?.focus({preventScroll:true}))},
+keyboardMove(event,direction){if(event.defaultPrevented||window.innerWidth<1024)return;if(["INPUT","TEXTAREA","SELECT","BUTTON","A"].includes(event.target?.tagName))return;direction>0?this.next():this.previous()},
+startTouch(event){const touch=event.changedTouches?.[0];if(!touch)return;this.touchStartX=touch.clientX;this.touchStartY=touch.clientY;this.touchStartedAt=Date.now()},
+endTouch(event){const touch=event.changedTouches?.[0];if(!touch)return;const dx=touch.clientX-this.touchStartX,dy=touch.clientY-this.touchStartY,duration=Date.now()-this.touchStartedAt;if(duration>800||Math.abs(dx)<55||Math.abs(dx)<=Math.abs(dy)*1.25)return;dx<0?this.next():this.previous()}
+}}
+</script>
 <script src="./i18n.js"></script>
-</body></html>
+</body>
+</html>
