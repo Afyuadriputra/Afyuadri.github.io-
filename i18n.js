@@ -13,8 +13,8 @@
     const dict=lang==="id"?id:{};
     const walker=document.createTreeWalker(document.body,NodeFilter.SHOW_TEXT), nodes=[];
     while(walker.nextNode())nodes.push(walker.currentNode);
-    nodes.forEach(node=>{const parent=node.parentElement;if(!parent||/^(SCRIPT|STYLE)$/i.test(parent.tagName))return;const source=parent.dataset.i18nSource??node.nodeValue;const text=source.trim(),translated=dict[text],next=translated?source.replace(text,translated):source;parent.dataset.i18nSource=source;if(node.nodeValue!==next)node.nodeValue=next});
-    document.querySelectorAll("[title],[placeholder],[aria-label],[alt]").forEach(el=>attrs.forEach(attr=>{if(!el.hasAttribute(attr))return;const data=`i18n${attr.replace(/(^|-)\w/g,part=>part.replace("-","").toUpperCase())}`,source=el.dataset[data]??el.getAttribute(attr),next=dict[source]||source;el.dataset[data]=source;if(el.getAttribute(attr)!==next)el.setAttribute(attr,next)}));
+    nodes.forEach(node=>{const parent=node.parentElement;if(!parent||/^(SCRIPT|STYLE)$/i.test(parent.tagName)||parent.closest("[x-text],[x-html]"))return;const source=parent.dataset.i18nSource??node.nodeValue;const text=source.trim(),translated=dict[text],next=translated?source.replace(text,translated):source;parent.dataset.i18nSource=source;if(node.nodeValue!==next)node.nodeValue=next});
+    document.querySelectorAll("[title],[placeholder],[aria-label],[alt]").forEach(el=>attrs.forEach(attr=>{if(!el.hasAttribute(attr)||el.hasAttribute(`:${attr}`)||el.hasAttribute(`x-bind:${attr}`))return;const data=`i18n${attr.replace(/(^|-)\w/g,part=>part.replace("-","").toUpperCase())}`,source=el.dataset[data]??el.getAttribute(attr),next=dict[source]||source;el.dataset[data]=source;if(el.getAttribute(attr)!==next)el.setAttribute(attr,next)}));
     applying=false;
   }
   window.portfolioI18n={apply,language:()=>localStorage.getItem(key)||"en"};
