@@ -144,59 +144,278 @@
 <!-- ========================================================
      SELECTED CREDENTIAL — 5 COL
 ======================================================== -->
-<section class="preview-panel col-span-5 flex min-h-0 flex-col p-4">
 
-<div :class="pulse?'cred-pulse':''" class="flex min-h-0 flex-1 flex-col">
+<section
+  class="preview-panel col-span-5 flex min-h-0 flex-col p-4"
+>
 
-<!-- PREVIEW HEADER -->
-<div class="flex shrink-0 items-start justify-between gap-3">
-<div><div class="flex items-center gap-2"><span class="mono rounded-md bg-[#F3F3F3] px-2 py-1 text-[7px] uppercase tracking-[.11em] text-[#929AAB]" x-text="current.id+' / '+current.type"></span></div></div>
-<div class="flex h-9 w-9 items-center justify-center rounded-lg border border-[#EEEEEE] bg-[#F7F7F7]"><span class="material-symbols-outlined text-[17px] text-[#393E46]">workspace_premium</span></div>
-</div>
+  <div
+    :class="pulse ? 'cred-pulse' : ''"
+    class="flex min-h-0 flex-1 flex-col"
+  >
 
-<!-- ACTUAL PDF FIRST-PAGE AREA -->
-<div class="preview-document group relative mt-3 min-h-0 flex-1 overflow-hidden rounded-lg border border-[#EEEEEE] bg-[#EDEDED]">
+    <!-- ======================================================
+         PREVIEW HEADER
+    ====================================================== -->
 
-<div class="absolute inset-0 opacity-[.35]" style="background-image:radial-gradient(#929AAB 0.7px,transparent 0.7px);background-size:14px 14px"></div>
+    <div
+      class="flex shrink-0 items-start justify-between gap-3"
+    >
 
-<!-- Desktop browser PDF preview -->
-<div class="pdf-preview absolute inset-3 overflow-hidden rounded-md bg-white shadow-sm">
-<iframe :key="'preview-'+activeCred" :src="current.pdf+'#page=1&view=FitH&toolbar=0&navpanes=0'" :title="current.title+' preview'" loading="eager" class="h-full w-full border-0 bg-white"></iframe>
-</div>
+      <div>
 
-<div class="pointer-events-none absolute inset-0 flex items-end justify-center bg-gradient-to-t from-[#393E46]/20 via-transparent to-transparent opacity-0 transition-opacity duration-200 group-hover:opacity-100">
-<span class="mb-3 inline-flex h-8 items-center gap-1.5 rounded-lg bg-white px-3 text-[8px] font-medium text-[#393E46] shadow-sm"><span class="material-symbols-outlined text-[13px]">visibility</span>View Credential</span>
-</div>
-<button type="button" @click="openViewer()" aria-label="View selected credential" class="absolute inset-0 z-20 cursor-pointer rounded-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-[#929AAB]"></button>
-</div>
+        <div class="flex items-center gap-2">
 
-<!-- DETAILS -->
-<div class="preview-meta shrink-0 pt-3">
+          <span
+            class="mono rounded-md bg-[#F3F3F3] px-2 py-1 text-[7px] uppercase tracking-[.11em] text-[#929AAB]"
+            x-text="
+              credentials[activeCred].id +
+              ' / ' +
+              credentials[activeCred].type
+            "
+          ></span>
 
-<div class="flex items-start justify-between gap-4">
-<div class="min-w-0">
-<p class="mono text-[7px] uppercase tracking-[.13em] text-[#929AAB]" x-text="current.type"></p>
-<h3 class="mt-1 text-[15px] font-semibold leading-[1.2] tracking-[-.02em] text-[#393E46]" x-text="current.title"></h3>
-<p class="mt-1 text-[9px] text-[#929AAB]" x-text="current.issuer+' · '+current.year"></p>
-</div>
+        </div>
 
-<a :href="current.pdf" target="_blank" rel="noopener noreferrer" class="group inline-flex h-9 shrink-0 items-center gap-1.5 rounded-lg border border-[#EEEEEE] bg-white px-3 text-[8px] font-medium text-[#393E46] transition-colors duration-200 hover:border-[#929AAB] hover:bg-[#F7F7F7]"><span>Open PDF</span><span class="material-symbols-outlined text-[13px] transition-transform duration-200 group-hover:-translate-y-[1px] group-hover:translate-x-[1px]">open_in_new</span></a>
-</div>
+      </div>
 
-<div class="footer-control mt-3 flex items-center justify-between border-t border-[#EEEEEE] pt-3">
 
-<button type="button" @click="openViewer()" class="btn h-10 min-h-10 rounded-lg border-0 bg-[#393E46] px-4 text-white shadow-none hover:bg-[#393E46] hover:opacity-90"><span class="material-symbols-outlined text-[14px]">visibility</span><span class="text-[8.5px] font-medium">View Credential</span></button>
+      <div
+        class="flex h-9 w-9 items-center justify-center rounded-lg border border-[#EEEEEE] bg-[#F7F7F7]"
+      >
 
-<div class="flex items-center gap-2">
-<span class="mono mr-1 text-[7px] text-[#929AAB]" x-text="String(activeCred+1).padStart(2,'0')+' / 07'"></span>
-<button type="button" @click="previous()" aria-label="Previous credential" class="btn btn-square h-9 min-h-9 w-9 rounded-lg border border-[#EEEEEE] bg-white text-[#393E46] shadow-none hover:border-[#929AAB] hover:bg-[#F3F3F3]"><span class="material-symbols-outlined text-[14px]">arrow_back</span></button>
-<button type="button" @click="next()" aria-label="Next credential" class="btn btn-square h-9 min-h-9 w-9 rounded-lg border border-[#EEEEEE] bg-white text-[#393E46] shadow-none hover:border-[#929AAB] hover:bg-[#F3F3F3]"><span class="material-symbols-outlined text-[14px]">arrow_forward</span></button>
-</div>
+        <span
+          class="material-symbols-outlined text-[17px] text-[#393E46]"
+        >
+          workspace_premium
+        </span>
 
-</div>
-</div>
+      </div>
 
-</div>
+    </div>
+
+
+    <!-- ======================================================
+         ACTUAL PDF FIRST-PAGE AREA
+    ====================================================== -->
+
+    <div
+      class="preview-document group relative mt-3 min-h-0 flex-1 overflow-hidden rounded-lg border border-[#EEEEEE] bg-[#EDEDED]"
+    >
+
+      <div
+        class="absolute inset-0 opacity-[.35]"
+        style="background-image:radial-gradient(#929AAB 0.7px,transparent 0.7px);background-size:14px 14px"
+      ></div>
+
+
+      <!-- ====================================================
+           DESKTOP BROWSER PDF PREVIEW
+      ==================================================== -->
+
+      <div
+        :key="'preview-' + credentials[activeCred].index"
+        class="pdf-preview absolute inset-3 overflow-hidden rounded-md bg-white shadow-sm"
+      >
+
+        <iframe
+          :src="
+            credentials[activeCred].pdf +
+            '?credential=' +
+            encodeURIComponent(credentials[activeCred].index) +
+            '#page=1&view=FitH&toolbar=0&navpanes=0'
+          "
+          :title="credentials[activeCred].title + ' preview'"
+          loading="eager"
+          class="h-full w-full border-0 bg-white"
+        ></iframe>
+
+      </div>
+
+
+      <!-- ====================================================
+           HOVER OVERLAY
+      ==================================================== -->
+
+      <div
+        class="pointer-events-none absolute inset-0 flex items-end justify-center bg-gradient-to-t from-[#393E46]/20 via-transparent to-transparent opacity-0 transition-opacity duration-200 group-hover:opacity-100"
+      >
+
+        <span
+          class="mb-3 inline-flex h-8 items-center gap-1.5 rounded-lg bg-white px-3 text-[8px] font-medium text-[#393E46] shadow-sm"
+        >
+
+          <span
+            class="material-symbols-outlined text-[13px]"
+          >
+            visibility
+          </span>
+
+          View Credential
+
+        </span>
+
+      </div>
+
+
+      <!-- ====================================================
+           VIEWER HIT AREA
+      ==================================================== -->
+
+      <button
+        type="button"
+        @click="openViewer()"
+        aria-label="View selected credential"
+        class="absolute inset-0 z-20 cursor-pointer rounded-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-[#929AAB]"
+      ></button>
+
+    </div>
+
+
+    <!-- ======================================================
+         DETAILS
+    ====================================================== -->
+
+    <div class="preview-meta shrink-0 pt-3">
+
+      <div
+        class="flex items-start justify-between gap-4"
+      >
+
+        <!-- CREDENTIAL INFORMATION -->
+
+        <div class="min-w-0">
+
+          <p
+            class="mono text-[7px] uppercase tracking-[.13em] text-[#929AAB]"
+            x-text="credentials[activeCred].type"
+          ></p>
+
+
+          <h3
+            class="mt-1 text-[15px] font-semibold leading-[1.2] tracking-[-.02em] text-[#393E46]"
+            x-text="credentials[activeCred].title"
+          ></h3>
+
+
+          <p
+            class="mt-1 text-[9px] text-[#929AAB]"
+            x-text="
+              credentials[activeCred].issuer +
+              ' · ' +
+              credentials[activeCred].year
+            "
+          ></p>
+
+        </div>
+
+
+        <!-- OPEN PDF -->
+
+        <a
+          :href="credentials[activeCred].pdf"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="group inline-flex h-9 shrink-0 items-center gap-1.5 rounded-lg border border-[#EEEEEE] bg-white px-3 text-[8px] font-medium text-[#393E46] transition-colors duration-200 hover:border-[#929AAB] hover:bg-[#F7F7F7]"
+        >
+
+          <span>
+            Open PDF
+          </span>
+
+          <span
+            class="material-symbols-outlined text-[13px] transition-transform duration-200 group-hover:-translate-y-[1px] group-hover:translate-x-[1px]"
+          >
+            open_in_new
+          </span>
+
+        </a>
+
+      </div>
+
+
+      <!-- ====================================================
+           FOOTER CONTROL
+      ==================================================== -->
+
+      <div
+        class="footer-control mt-3 flex items-center justify-between border-t border-[#EEEEEE] pt-3"
+      >
+
+        <!-- VIEW CREDENTIAL -->
+
+        <button
+          type="button"
+          @click="openViewer()"
+          class="btn h-10 min-h-10 rounded-lg border-0 bg-[#393E46] px-4 text-white shadow-none hover:bg-[#393E46] hover:opacity-90"
+        >
+
+          <span
+            class="material-symbols-outlined text-[14px]"
+          >
+            visibility
+          </span>
+
+          <span class="text-[8.5px] font-medium">
+            View Credential
+          </span>
+
+        </button>
+
+
+        <!-- NAVIGATION -->
+
+        <div class="flex items-center gap-2">
+
+          <span
+            class="mono mr-1 text-[7px] text-[#929AAB]"
+            x-text="
+              String(activeCred + 1).padStart(2, '0') +
+              ' / ' +
+              String(credentials.length).padStart(2, '0')
+            "
+          ></span>
+
+
+          <button
+            type="button"
+            @click="previous()"
+            aria-label="Previous credential"
+            class="btn btn-square h-9 min-h-9 w-9 rounded-lg border border-[#EEEEEE] bg-white text-[#393E46] shadow-none hover:border-[#929AAB] hover:bg-[#F3F3F3]"
+          >
+
+            <span
+              class="material-symbols-outlined text-[14px]"
+            >
+              arrow_back
+            </span>
+
+          </button>
+
+
+          <button
+            type="button"
+            @click="next()"
+            aria-label="Next credential"
+            class="btn btn-square h-9 min-h-9 w-9 rounded-lg border border-[#EEEEEE] bg-white text-[#393E46] shadow-none hover:border-[#929AAB] hover:bg-[#F3F3F3]"
+          >
+
+            <span
+              class="material-symbols-outlined text-[14px]"
+            >
+              arrow_forward
+            </span>
+
+          </button>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
 </section>
 
 </div>
@@ -382,40 +601,320 @@
 </div>
 
 <script>
-function credentialExplorer(){return{
-activeView:"education",activeCred:0,viewerOpen:false,pulse:false,pulseTimer:null,touchStartX:0,
+  function credentialExplorer() {
+    return {
+      /* ============================================================
+         STATE
+      ============================================================ */
 
-credentials:[
-{id:"01",title:"Software Engineer with Python",issuer:"SoftUni",year:"2025",type:"PROFESSIONAL",pdf:"./sertifikat/Sertifikasi-Profesional_Software-Engineer-with-Python_SoftUni-Indonesia_2025_Afyuadri-Putra.pdf"},
-{id:"02",title:"PostgreSQL Database",issuer:"SoftUni",year:"2024",type:"DATABASE",pdf:"./sertifikat/Sertifikasi_PostgreSQL-Database_SoftUni-Indonesia_2024_Afyuadri-Putra.pdf"},
-{id:"03",title:"JavaScript Front-End",issuer:"SoftUni",year:"2024",type:"FRONTEND",pdf:"./sertifikat/Sertifikasi_JavaScript-Front-End_SoftUni-Indonesia_2024_Afyuadri-Putra.pdf"},
-{id:"04",title:"Python Advanced",issuer:"SoftUni",year:"2024",type:"PROGRAMMING",pdf:"./sertifikat/Sertifikasi_Python-Advanced_SoftUni-Indonesia_2024_Afyuadri-Putra.pdf"},
-{id:"05",title:"BNSP KKNI Level II — Teknik Komputer dan Jaringan",issuer:"BNSP",year:"2021",type:"NATIONAL CERTIFICATION",pdf:"./sertifikat/Sertifikasi-BNSP_KKNI-Level-II_Teknik-Komputer-dan-Jaringan_2021_Afyuadri-Putra.pdf"},
-{id:"06",title:"Microsoft Office Professional",issuer:"Lami Komputer",year:"2023",type:"PRODUCTIVITY",pdf:"./sertifikat/Sertifikasi_Microsoft-Office-Professional_Lami-Komputer_2023_Afyuadri-Putra.pdf"},
-{id:"07",title:"Academic Diploma / Ijazah",issuer:"Universitas Muhammadiyah Riau",year:"2026",type:"ACADEMIC",pdf:"./sertifikat/ijazah.pdf"}
-],
+      activeView: "education",
+      activeCred: 0,
 
-get current(){return this.credentials[this.activeCred]},
+      viewerOpen: false,
 
-init(){},
+      pulse: false,
+      pulseTimer: null,
 
-select(index){if(index<0||index>=this.credentials.length||index===this.activeCred)return;this.activeCred=index;this.animateDetail()},
+      touchStartX: 0,
+      touchStartY: 0,
 
-next(){this.select((this.activeCred+1)%this.credentials.length)},
 
-previous(){this.select((this.activeCred-1+this.credentials.length)%this.credentials.length)},
+      /* ============================================================
+         CREDENTIAL DATA
 
-animateDetail(){this.pulse=false;clearTimeout(this.pulseTimer);requestAnimationFrame(()=>requestAnimationFrame(()=>{this.pulse=true;this.pulseTimer=setTimeout(()=>this.pulse=false,200)}))},
+         index = unique credential identifier
+         id    = display number
+      ============================================================ */
 
-swipe(event){const endX=event.changedTouches[0].clientX,delta=endX-this.touchStartX;if(Math.abs(delta)<45)return;delta<0?this.next():this.previous()},
+      credentials: [
+        {
+          index: "CERT-01",
+          id: "01",
+          title: "Software Engineer with Python",
+          issuer: "SoftUni",
+          year: "2025",
+          type: "PROFESSIONAL",
+          pdf: "./sertifikat/Sertifikasi-Profesional_Software-Engineer-with-Python_SoftUni-Indonesia_2025_Afyuadri-Putra.pdf"
+        },
 
-keyboardMove(event,direction){if(this.viewerOpen)return;if(["INPUT","TEXTAREA","SELECT","BUTTON","A"].includes(event.target.tagName))return;if(window.innerWidth<1024&&this.activeView!=="credentials")return;direction>0?this.next():this.previous()},
+        {
+          index: "CERT-02",
+          id: "02",
+          title: "PostgreSQL Database",
+          issuer: "SoftUni",
+          year: "2024",
+          type: "DATABASE",
+          pdf: "./sertifikat/Sertifikasi_PostgreSQL-Database_SoftUni-Indonesia_2024_Afyuadri-Putra.pdf"
+        },
 
-openViewer(){this.viewerOpen=true},
+        {
+          index: "CERT-03",
+          id: "03",
+          title: "JavaScript Front-End",
+          issuer: "SoftUni",
+          year: "2024",
+          type: "FRONTEND",
+          pdf: "./sertifikat/Sertifikasi_JavaScript-Front-End_SoftUni-Indonesia_2024_Afyuadri-Putra.pdf"
+        },
 
-closeViewer(){this.viewerOpen=false},
+        {
+          index: "CERT-04",
+          id: "04",
+          title: "Python Advanced",
+          issuer: "SoftUni",
+          year: "2024",
+          type: "PROGRAMMING",
+          pdf: "./sertifikat/Sertifikasi_Python-Advanced_SoftUni-Indonesia_2024_Afyuadri-Putra.pdf"
+        },
 
-}}
+        {
+          index: "CERT-05",
+          id: "05",
+          title: "BNSP KKNI Level II — Teknik Komputer dan Jaringan",
+          issuer: "BNSP",
+          year: "2021",
+          type: "NATIONAL CERTIFICATION",
+          pdf: "./sertifikat/Sertifikasi-BNSP_KKNI-Level-II_Teknik-Komputer-dan-Jaringan_2021_Afyuadri-Putra.pdf"
+        },
+
+        {
+          index: "CERT-06",
+          id: "06",
+          title: "Microsoft Office Professional",
+          issuer: "Lami Komputer",
+          year: "2023",
+          type: "PRODUCTIVITY",
+          pdf: "./sertifikat/Sertifikasi_Microsoft-Office-Professional_Lami-Komputer_2023_Afyuadri-Putra.pdf"
+        },
+
+        {
+          index: "CERT-07",
+          id: "07",
+          title: "Academic Diploma / Ijazah",
+          issuer: "Universitas Muhammadiyah Riau",
+          year: "2026",
+          type: "ACADEMIC",
+          pdf: "./sertifikat/ijazah.pdf"
+        }
+      ],
+
+
+      /* ============================================================
+         CURRENT CREDENTIAL
+      ============================================================ */
+
+      get current() {
+        return this.credentials[this.activeCred];
+      },
+
+
+      /* ============================================================
+         INIT
+      ============================================================ */
+
+      init() {
+        this.activeCred = 0;
+      },
+
+
+      /* ============================================================
+         SELECT BY ARRAY POSITION
+
+         Digunakan oleh:
+         - Next
+         - Previous
+      ============================================================ */
+
+      select(index) {
+        const nextIndex = Number(index);
+
+        if (
+          !Number.isInteger(nextIndex) ||
+          nextIndex < 0 ||
+          nextIndex >= this.credentials.length
+        ) {
+          return;
+        }
+
+        if (nextIndex === this.activeCred) {
+          return;
+        }
+
+        this.activeCred = nextIndex;
+
+        this.animateDetail();
+      },
+
+
+      /* ============================================================
+         SELECT BY UNIQUE CREDENTIAL INDEX
+
+         Contoh:
+         selectCredential("CERT-02")
+      ============================================================ */
+
+      selectCredential(credentialIndex) {
+        const targetIndex = this.credentials.findIndex(
+          (credential) => credential.index === credentialIndex
+        );
+
+        if (targetIndex === -1) {
+          return;
+        }
+
+        if (targetIndex === this.activeCred) {
+          return;
+        }
+
+        this.activeCred = targetIndex;
+
+        this.animateDetail();
+      },
+
+
+      /* ============================================================
+         NEXT
+      ============================================================ */
+
+      next() {
+        const nextIndex =
+          (this.activeCred + 1) %
+          this.credentials.length;
+
+        this.select(nextIndex);
+      },
+
+
+      /* ============================================================
+         PREVIOUS
+      ============================================================ */
+
+      previous() {
+        const previousIndex =
+          (this.activeCred - 1 + this.credentials.length) %
+          this.credentials.length;
+
+        this.select(previousIndex);
+      },
+
+
+      /* ============================================================
+         DETAIL ANIMATION
+      ============================================================ */
+
+      animateDetail() {
+        this.pulse = false;
+
+        clearTimeout(this.pulseTimer);
+
+        requestAnimationFrame(() => {
+          requestAnimationFrame(() => {
+            this.pulse = true;
+
+            this.pulseTimer = setTimeout(() => {
+              this.pulse = false;
+            }, 200);
+          });
+        });
+      },
+
+
+      /* ============================================================
+         MOBILE SWIPE
+      ============================================================ */
+
+      swipe(event) {
+        const touch = event.changedTouches?.[0];
+
+        if (!touch) {
+          return;
+        }
+
+        const deltaX =
+          touch.clientX - this.touchStartX;
+
+        const deltaY =
+          touch.clientY - this.touchStartY;
+
+        /*
+         * Jangan anggap scroll vertikal
+         * sebagai swipe credential.
+         */
+        if (Math.abs(deltaX) <= Math.abs(deltaY)) {
+          return;
+        }
+
+        /*
+         * Minimum swipe distance.
+         */
+        if (Math.abs(deltaX) < 45) {
+          return;
+        }
+
+        if (deltaX < 0) {
+          this.next();
+        } else {
+          this.previous();
+        }
+      },
+
+
+      /* ============================================================
+         KEYBOARD NAVIGATION
+      ============================================================ */
+
+      keyboardMove(event, direction) {
+        if (this.viewerOpen) {
+          return;
+        }
+
+        const tagName = event.target?.tagName;
+
+        /*
+         * Jangan mengganggu interactive elements.
+         */
+        if (
+          ["INPUT", "TEXTAREA", "SELECT", "BUTTON", "A"].includes(
+            tagName
+          )
+        ) {
+          return;
+        }
+
+        /*
+         * Mobile/tablet hanya aktif
+         * ketika berada di credential view.
+         */
+        if (
+          window.innerWidth < 1024 &&
+          this.activeView !== "credentials"
+        ) {
+          return;
+        }
+
+        event.preventDefault();
+
+        if (direction > 0) {
+          this.next();
+        } else {
+          this.previous();
+        }
+      },
+
+
+      /* ============================================================
+         VIEWER
+      ============================================================ */
+
+      openViewer() {
+        this.viewerOpen = true;
+      },
+
+      closeViewer() {
+        this.viewerOpen = false;
+      }
+    };
+  }
 </script>
 
 <script src="./i18n.js"></script>
