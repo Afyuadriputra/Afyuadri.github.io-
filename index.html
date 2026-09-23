@@ -28,7 +28,705 @@
 .floating-nav-trigger{position:fixed;z-index:300;bottom:20px;left:20px;display:none;width:56px;height:56px;padding:4px;border:2px solid #f7f7f7;border-radius:999px;background:#393e46;box-shadow:0 10px 24px rgba(57,62,70,.24);cursor:pointer}.floating-nav-trigger img{display:block;width:100%;height:100%;border-radius:999px;object-fit:cover}.nav-scrolled .floating-nav-trigger{display:block}.floating-nav-trigger.hidden,.is-menu-open~.floating-nav-trigger{display:none!important}
 .floating-nav-panel{position:fixed;z-index:301;bottom:20px;left:20px;display:none;width:min(280px,calc(100vw - 40px));overflow:hidden;border:1px solid rgba(146,154,171,.38);border-radius:18px;background:rgba(247,247,247,.97);box-shadow:0 18px 48px rgba(57,62,70,.20);backdrop-filter:blur(14px)}.floating-nav-panel.is-open{display:block}.floating-nav-panel a{display:flex;min-height:44px;align-items:center;border-bottom:1px solid #eee;padding:0 16px;color:#393e46;font:500 11px/1 "JetBrains Mono",monospace;text-decoration:none}.floating-nav-panel a:hover{background:#eee}.floating-nav-panel header{display:flex;height:56px;align-items:center;justify-content:space-between;padding:0 8px 0 16px;color:#393e46;font:600 10px/1 "JetBrains Mono",monospace;letter-spacing:.12em}.floating-nav-panel button{display:grid;width:40px;height:40px;place-items:center;border:0;border-radius:12px;background:transparent;color:#393e46;cursor:pointer}.floating-nav-panel button:hover{background:#eee}
 .splash{position:fixed;z-index:1000;inset:0;border:0;width:100%;height:100%;opacity:1;transition:opacity .35s ease}.splash.is-hidden{opacity:0;pointer-events:none}.section-frame[data-loaded="false"]{background:linear-gradient(100deg,#f7f7f7 35%,#eee 50%,#f7f7f7 65%);background-size:200% 100%;animation:skeleton 1.25s infinite}@keyframes skeleton{to{background-position:-200% 0}}@media(prefers-reduced-motion:reduce){.section-frame[data-loaded="false"]{animation:none}}
+
+
+/* =========================================================
+   BALMON PRESENTATION TRIGGER
+========================================================= */
+
+.balmon-deck-trigger{
+  position:fixed;
+  z-index:290;
+  top:50%;
+  right:18px;
+  display:flex;
+  align-items:center;
+  gap:10px;
+  width:56px;
+  min-height:168px;
+  padding:10px 8px;
+  border:1px solid rgba(146,154,171,.42);
+  border-radius:18px;
+  background:rgba(247,247,247,.92);
+  box-shadow:0 14px 36px rgba(57,62,70,.12);
+  backdrop-filter:blur(16px);
+  color:#393e46;
+  cursor:pointer;
+  transform:translateY(-50%);
+  transition:
+    width .28s cubic-bezier(.22,1,.36,1),
+    background-color .2s ease,
+    border-color .2s ease,
+    box-shadow .2s ease,
+    transform .2s ease;
+}
+
+.balmon-deck-trigger:hover{
+  width:185px;
+  border-color:rgba(31,92,190,.35);
+  background:rgba(255,255,255,.96);
+  box-shadow:0 18px 44px rgba(57,62,70,.17);
+  transform:translateY(-50%) translateX(-3px);
+}
+
+.balmon-deck-trigger:focus-visible{
+  outline:2px solid #1f5cbe;
+  outline-offset:4px;
+}
+
+.balmon-trigger-line{
+  position:absolute;
+  top:18px;
+  left:8px;
+  width:3px;
+  height:38px;
+  border-radius:999px;
+  background:linear-gradient(
+    to bottom,
+    #1f5cbe 0 45%,
+    #e43b3b 45% 70%,
+    #f0b400 70% 100%
+  );
+}
+
+.balmon-trigger-copy{
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  min-width:0;
+  opacity:0;
+  transform:translateX(6px);
+  transition:
+    opacity .2s ease,
+    transform .25s cubic-bezier(.22,1,.36,1);
+}
+
+.balmon-deck-trigger:hover .balmon-trigger-copy,
+.balmon-deck-trigger:focus-visible .balmon-trigger-copy{
+  opacity:1;
+  transform:translateX(0);
+}
+
+.balmon-trigger-eyebrow{
+  font-family:"JetBrains Mono",monospace;
+  font-size:7px;
+  line-height:1.3;
+  letter-spacing:.16em;
+  color:#929aab;
+  white-space:nowrap;
+}
+
+.balmon-trigger-title{
+  margin-top:3px;
+  font-family:"Geist",Inter,sans-serif;
+  font-size:18px;
+  font-weight:600;
+  letter-spacing:-.04em;
+  color:#174ea6;
+}
+
+.balmon-trigger-meta{
+  margin-top:3px;
+  font-family:"JetBrains Mono",monospace;
+  font-size:7px;
+  letter-spacing:.12em;
+  color:#929aab;
+}
+
+.balmon-trigger-icon{
+  display:grid;
+  flex-shrink:0;
+  width:36px;
+  height:36px;
+  margin-left:auto;
+  place-items:center;
+  border:1px solid rgba(146,154,171,.35);
+  border-radius:12px;
+  background:#fff;
+  color:#174ea6;
+}
+
+.balmon-trigger-icon svg{
+  width:16px;
+  height:16px;
+  stroke:currentColor;
+  stroke-width:1.8;
+  transition:transform .2s ease;
+}
+
+.balmon-deck-trigger:hover .balmon-trigger-icon svg{
+  transform:translateX(2px);
+}
+
+
+/* =========================================================
+   BALMON PRESENTATION OVERLAY
+========================================================= */
+
+.balmon-presentation{
+  position:fixed;
+  z-index:900;
+  inset:0;
+  display:none;
+  overflow:hidden;
+  background:#f7f7f7;
+}
+
+.balmon-presentation.is-open{
+  display:block;
+  animation:balmonPresentationIn .28s ease both;
+}
+
+@keyframes balmonPresentationIn{
+  from{
+    opacity:0;
+  }
+  to{
+    opacity:1;
+  }
+}
+
+.balmon-presentation-backdrop{
+  position:absolute;
+  inset:0;
+  background:
+    radial-gradient(
+      circle at 50% 40%,
+      rgba(31,92,190,.055),
+      transparent 35%
+    ),
+    #f7f7f7;
+}
+
+.balmon-presentation-shell{
+  position:relative;
+  z-index:1;
+  display:flex;
+  width:100%;
+  height:100%;
+  flex-direction:column;
+}
+
+
+/* =========================================================
+   HEADER
+========================================================= */
+
+.balmon-presentation-header{
+  display:flex;
+  flex-shrink:0;
+  min-height:76px;
+  align-items:center;
+  justify-content:space-between;
+  gap:20px;
+  padding:12px 24px;
+  border-bottom:1px solid rgba(146,154,171,.23);
+  background:rgba(247,247,247,.78);
+  backdrop-filter:blur(18px);
+}
+
+.balmon-presentation-brand{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  min-width:0;
+}
+
+.balmon-status-dot{
+  width:7px;
+  height:7px;
+  flex-shrink:0;
+  border-radius:999px;
+  background:#1f5cbe;
+  box-shadow:0 0 0 5px rgba(31,92,190,.08);
+  animation:balmonPulse 2s ease-in-out infinite;
+}
+
+@keyframes balmonPulse{
+  0%,100%{
+    box-shadow:0 0 0 4px rgba(31,92,190,.06);
+  }
+
+  50%{
+    box-shadow:0 0 0 8px rgba(31,92,190,.12);
+  }
+}
+
+.balmon-presentation-kicker{
+  display:block;
+  font-family:"JetBrains Mono",monospace;
+  font-size:8px;
+  letter-spacing:.16em;
+  color:#929aab;
+}
+
+.balmon-presentation-brand h2{
+  margin:4px 0 0;
+  overflow:hidden;
+  font-family:"Geist",Inter,sans-serif;
+  font-size:14px;
+  font-weight:600;
+  letter-spacing:-.025em;
+  color:#393e46;
+  text-overflow:ellipsis;
+  white-space:nowrap;
+}
+
+.balmon-presentation-actions{
+  display:flex;
+  align-items:center;
+  gap:8px;
+}
+
+.balmon-slide-counter{
+  min-width:66px;
+  text-align:center;
+  font-family:"JetBrains Mono",monospace;
+  font-size:9px;
+  letter-spacing:.08em;
+  color:#393e46;
+}
+
+.balmon-control-button,
+.balmon-close-button{
+  display:grid;
+  width:40px;
+  height:40px;
+  place-items:center;
+  border:1px solid rgba(146,154,171,.3);
+  border-radius:12px;
+  background:rgba(255,255,255,.8);
+  color:#393e46;
+  cursor:pointer;
+  transition:
+    background-color .18s ease,
+    border-color .18s ease,
+    transform .18s ease;
+}
+
+.balmon-control-button:hover,
+.balmon-close-button:hover{
+  border-color:rgba(31,92,190,.28);
+  background:#fff;
+  transform:translateY(-1px);
+}
+
+.balmon-control-button svg,
+.balmon-close-button svg{
+  width:16px;
+  height:16px;
+  stroke:currentColor;
+  stroke-width:1.8;
+}
+
+.balmon-close-button:hover{
+  color:#b42318;
+}
+
+
+/* =========================================================
+   STAGE
+========================================================= */
+
+.balmon-stage{
+  position:relative;
+  display:flex;
+  flex:1;
+  min-height:0;
+  align-items:center;
+  justify-content:center;
+  gap:16px;
+  padding:20px 80px;
+}
+
+.balmon-slide-frame{
+  position:relative;
+  display:flex;
+  width:min(1240px,100%);
+  height:100%;
+  min-height:0;
+  align-items:center;
+  justify-content:center;
+}
+
+.balmon-slide-frame::before{
+  position:absolute;
+  inset:8% 5%;
+  border:1px solid rgba(146,154,171,.18);
+  border-radius:24px;
+  content:"";
+  pointer-events:none;
+}
+
+.balmon-slide-image{
+  position:relative;
+  z-index:2;
+  display:block;
+  max-width:100%;
+  max-height:calc(100vh - 185px);
+  width:auto;
+  height:auto;
+  aspect-ratio:16 / 9;
+  object-fit:contain;
+  border-radius:16px;
+  box-shadow:
+    0 30px 80px rgba(57,62,70,.12),
+    0 0 0 1px rgba(146,154,171,.18);
+  user-select:none;
+  -webkit-user-drag:none;
+  animation:slideImageIn .35s cubic-bezier(.22,1,.36,1);
+}
+
+@keyframes slideImageIn{
+  from{
+    opacity:0;
+    transform:scale(.985) translateY(5px);
+  }
+
+  to{
+    opacity:1;
+    transform:scale(1) translateY(0);
+  }
+}
+
+.balmon-slide-number-large{
+  position:absolute;
+  top:12px;
+  left:24px;
+  z-index:3;
+  font-family:"JetBrains Mono",monospace;
+  font-size:8px;
+  letter-spacing:.14em;
+  color:#929aab;
+}
+
+.balmon-slide-loading{
+  position:absolute;
+  z-index:5;
+  display:flex;
+  align-items:center;
+  gap:8px;
+  padding:8px 12px;
+  border:1px solid rgba(146,154,171,.25);
+  border-radius:999px;
+  background:rgba(247,247,247,.88);
+  font-family:"JetBrains Mono",monospace;
+  font-size:8px;
+  letter-spacing:.12em;
+  color:#929aab;
+  opacity:0;
+  pointer-events:none;
+  transition:opacity .18s ease;
+  backdrop-filter:blur(12px);
+}
+
+.balmon-slide-loading.is-visible{
+  opacity:1;
+}
+
+.balmon-slide-loading span:first-child{
+  width:5px;
+  height:5px;
+  border-radius:999px;
+  background:#1f5cbe;
+  animation:balmonLoadingPulse 1s infinite;
+}
+
+@keyframes balmonLoadingPulse{
+  50%{
+    opacity:.3;
+  }
+}
+
+
+/* =========================================================
+   STAGE NAVIGATION
+========================================================= */
+
+.balmon-stage-nav{
+  position:absolute;
+  z-index:10;
+  display:grid;
+  width:48px;
+  height:48px;
+  place-items:center;
+  border:1px solid rgba(146,154,171,.3);
+  border-radius:999px;
+  background:rgba(247,247,247,.9);
+  box-shadow:0 10px 24px rgba(57,62,70,.09);
+  color:#393e46;
+  cursor:pointer;
+  backdrop-filter:blur(14px);
+  transition:
+    background-color .18s ease,
+    border-color .18s ease,
+    transform .18s ease;
+}
+
+.balmon-stage-nav:hover{
+  border-color:rgba(31,92,190,.3);
+  background:#fff;
+}
+
+.balmon-stage-nav:active{
+  transform:scale(.94);
+}
+
+.balmon-stage-nav svg{
+  width:19px;
+  height:19px;
+  stroke:currentColor;
+  stroke-width:1.8;
+}
+
+.balmon-stage-prev{
+  left:24px;
+}
+
+.balmon-stage-next{
+  right:24px;
+}
+
+
+/* =========================================================
+   FOOTER
+========================================================= */
+
+.balmon-presentation-footer{
+  display:flex;
+  flex-shrink:0;
+  min-height:100px;
+  flex-direction:column;
+  gap:10px;
+  padding:12px 24px 14px;
+  border-top:1px solid rgba(146,154,171,.23);
+  background:rgba(247,247,247,.8);
+  backdrop-filter:blur(18px);
+}
+
+.balmon-progress{
+  width:100%;
+  height:2px;
+  overflow:hidden;
+  border-radius:999px;
+  background:#e5e7eb;
+}
+
+.balmon-progress span{
+  display:block;
+  width:10%;
+  height:100%;
+  border-radius:inherit;
+  background:#1f5cbe;
+  transition:width .3s ease;
+}
+
+.balmon-thumbnails{
+  display:flex;
+  justify-content:center;
+  gap:6px;
+  overflow-x:auto;
+  padding:2px 0;
+  scrollbar-width:none;
+}
+
+.balmon-thumbnails::-webkit-scrollbar{
+  display:none;
+}
+
+.balmon-thumbnail{
+  position:relative;
+  flex:0 0 auto;
+  width:76px;
+  height:43px;
+  overflow:hidden;
+  padding:0;
+  border:1px solid rgba(146,154,171,.28);
+  border-radius:7px;
+  background:#fff;
+  cursor:pointer;
+  opacity:.55;
+  transition:
+    opacity .18s ease,
+    border-color .18s ease,
+    transform .18s ease;
+}
+
+.balmon-thumbnail:hover{
+  opacity:.85;
+  transform:translateY(-1px);
+}
+
+.balmon-thumbnail.is-active{
+  border-color:#1f5cbe;
+  opacity:1;
+  box-shadow:0 0 0 2px rgba(31,92,190,.08);
+}
+
+.balmon-thumbnail img{
+  display:block;
+  width:100%;
+  height:100%;
+  object-fit:cover;
+}
+
+.balmon-thumbnail-number{
+  position:absolute;
+  right:4px;
+  bottom:3px;
+  padding:2px 4px;
+  border-radius:3px;
+  background:rgba(57,62,70,.78);
+  color:#fff;
+  font-family:"JetBrains Mono",monospace;
+  font-size:6px;
+}
+
+.balmon-footer-meta{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:7px;
+  font-family:"JetBrains Mono",monospace;
+  font-size:7px;
+  letter-spacing:.12em;
+  color:#929aab;
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media(max-width:767px){
+
+  .balmon-deck-trigger{
+    top:auto;
+    right:14px;
+    bottom:18px;
+    width:auto;
+    min-height:48px;
+    height:48px;
+    padding:5px 7px 5px 12px;
+    border-radius:999px;
+    transform:none;
+  }
+
+  .balmon-deck-trigger:hover{
+    width:auto;
+    transform:translateY(-2px);
+  }
+
+  .balmon-trigger-line{
+    display:none;
+  }
+
+  .balmon-trigger-copy{
+    opacity:1;
+    transform:none;
+  }
+
+  .balmon-trigger-eyebrow{
+    font-size:6px;
+  }
+
+  .balmon-trigger-title{
+    font-size:14px;
+  }
+
+  .balmon-trigger-meta{
+    font-size:6px;
+  }
+
+  .balmon-trigger-icon{
+    width:34px;
+    height:34px;
+    border-radius:999px;
+  }
+
+
+  .balmon-presentation-header{
+    min-height:68px;
+    padding:10px 14px;
+  }
+
+  .balmon-presentation-brand h2{
+    max-width:190px;
+    font-size:12px;
+  }
+
+  .balmon-presentation-kicker{
+    font-size:6px;
+  }
+
+  .balmon-slide-counter{
+    display:none;
+  }
+
+  .balmon-control-button{
+    display:none;
+  }
+
+  .balmon-stage{
+    padding:10px 10px 20px;
+  }
+
+  .balmon-slide-image{
+    max-height:calc(100vh - 185px);
+    border-radius:10px;
+  }
+
+  .balmon-slide-frame::before{
+    inset:10% 0;
+    border-radius:16px;
+  }
+
+  .balmon-stage-nav{
+    width:40px;
+    height:40px;
+  }
+
+  .balmon-stage-prev{
+    left:8px;
+  }
+
+  .balmon-stage-next{
+    right:8px;
+  }
+
+  .balmon-presentation-footer{
+    min-height:82px;
+    padding:8px 12px 10px;
+  }
+
+  .balmon-thumbnail{
+    width:62px;
+    height:35px;
+  }
+
+  .balmon-footer-meta{
+    font-size:6px;
+  }
+}
+
+
+@media(prefers-reduced-motion:reduce){
+
+  .balmon-deck-trigger,
+  .balmon-trigger-copy,
+  .balmon-trigger-icon svg,
+  .balmon-status-dot,
+  .balmon-slide-image{
+    transition:none!important;
+    animation:none!important;
+  }
+}
+
+
 </style>
+
+
+
 </head>
 
 <body>
@@ -74,24 +772,205 @@
 </header>
 <button id="floating-nav-trigger" class="floating-nav-trigger" type="button" aria-label="Open navigation menu"><img src="./duck-jump-rope.gif" alt="Open navigation menu"></button>
 <aside id="floating-nav-panel" class="floating-nav-panel" aria-label="Quick navigation" aria-hidden="true"><header>MENU <button id="floating-nav-close" type="button" aria-label="Close navigation menu"><svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" d="m6 6 12 12M18 6 6 18"/></svg></button></header><a href="#work">Work</a><a href="#capabilities">Capabilities</a><a href="#ai-engineering">AI Engineering</a><a href="#more-work">Experience</a><a href="#project-archive">Project Archive</a><a href="#contact">Contact</a></aside>
+<!-- =========================================================
+     BALMON PRESENTATION ENTRY
+========================================================= -->
+<button
+  id="balmon-deck-trigger"
+  class="balmon-deck-trigger"
+  type="button"
+  aria-label="Open Balmon presentation"
+  aria-controls="balmon-presentation"
+  aria-expanded="false"
+>
+  <span class="balmon-trigger-line"></span>
+
+  <span class="balmon-trigger-copy">
+    <span class="balmon-trigger-eyebrow">FEATURED</span>
+    <span class="balmon-trigger-title">BALMON</span>
+    <span class="balmon-trigger-meta">10 SLIDES</span>
+  </span>
+
+  <span class="balmon-trigger-icon" aria-hidden="true">
+    <svg viewBox="0 0 24 24" fill="none">
+      <path d="M5 12h13" />
+      <path d="m13 6 6 6-6 6" />
+    </svg>
+  </span>
+</button>
+
+
+<!-- =========================================================
+     BALMON PRESENTATION VIEWER
+========================================================= -->
+<div
+  id="balmon-presentation"
+  class="balmon-presentation"
+  aria-hidden="true"
+  role="dialog"
+  aria-modal="true"
+  aria-labelledby="balmon-presentation-title"
+>
+  <div class="balmon-presentation-backdrop"></div>
+
+  <div class="balmon-presentation-shell">
+
+    <!-- TOP BAR -->
+    <header class="balmon-presentation-header">
+      <div class="balmon-presentation-brand">
+        <span class="balmon-status-dot"></span>
+
+        <div>
+          <span class="balmon-presentation-kicker">
+            PROJECT PRESENTATION
+          </span>
+
+          <h2 id="balmon-presentation-title">
+            Balai Monitor Spektrum Frekuensi Radio
+          </h2>
+        </div>
+      </div>
+
+      <div class="balmon-presentation-actions">
+
+        <span
+          id="balmon-slide-counter"
+          class="balmon-slide-counter"
+          aria-live="polite"
+        >
+          01 / 10
+        </span>
+
+        <button
+          id="balmon-fullscreen"
+          class="balmon-control-button"
+          type="button"
+          aria-label="Toggle fullscreen"
+          title="Fullscreen"
+        >
+          <svg viewBox="0 0 24 24" fill="none">
+            <path d="M8 3H3v5" />
+            <path d="M3 3l6 6" />
+            <path d="M16 3h5v5" />
+            <path d="m21 3-6 6" />
+            <path d="M3 16v5h5" />
+            <path d="m3 21 6-6" />
+            <path d="M21 16v5h-5" />
+            <path d="m21 21-6-6" />
+          </svg>
+        </button>
+
+        <button
+          id="balmon-presentation-close"
+          class="balmon-close-button"
+          type="button"
+          aria-label="Close presentation"
+          title="Close"
+        >
+          <svg viewBox="0 0 24 24" fill="none">
+            <path d="m6 6 12 12" />
+            <path d="M18 6 6 18" />
+          </svg>
+        </button>
+
+      </div>
+    </header>
+
+
+    <!-- PRESENTATION STAGE -->
+    <div class="balmon-stage">
+
+      <button
+        id="balmon-prev"
+        class="balmon-stage-nav balmon-stage-prev"
+        type="button"
+        aria-label="Previous slide"
+      >
+        <svg viewBox="0 0 24 24" fill="none">
+          <path d="M19 12H5" />
+          <path d="m11 18-6-6 6-6" />
+        </svg>
+      </button>
+
+
+      <div class="balmon-slide-frame">
+
+        <div class="balmon-slide-number-large">
+          <span id="balmon-large-current">01</span>
+        </div>
+
+        <img
+          id="balmon-slide-image"
+          class="balmon-slide-image"
+          src="./balmon-ppt/1.png"
+          alt="Balmon presentation slide 1"
+          draggable="false"
+        />
+
+        <div class="balmon-slide-loading" id="balmon-slide-loading">
+          <span></span>
+          <span>LOADING SLIDE</span>
+        </div>
+
+      </div>
+
+
+      <button
+        id="balmon-next"
+        class="balmon-stage-nav balmon-stage-next"
+        type="button"
+        aria-label="Next slide"
+      >
+        <svg viewBox="0 0 24 24" fill="none">
+          <path d="M5 12h14" />
+          <path d="m13 6 6 6-6 6" />
+        </svg>
+      </button>
+
+    </div>
+
+
+    <!-- BOTTOM BAR -->
+    <footer class="balmon-presentation-footer">
+
+      <div class="balmon-progress">
+        <span id="balmon-progress-bar"></span>
+      </div>
+
+      <div
+        id="balmon-thumbnails"
+        class="balmon-thumbnails"
+        aria-label="Presentation slides"
+      ></div>
+
+      <div class="balmon-footer-meta">
+        <span>ARROW KEYS</span>
+        <span>•</span>
+        <span>ESC TO CLOSE</span>
+      </div>
+
+    </footer>
+
+  </div>
+</div>
 
 <main id="portfolio">
 
-<section id="home" class="section-wrapper"><iframe class="section-frame" src="./section1.html" title="Afyuadri Putra — Hero" loading="eager" fetchpriority="high" data-section="section1" data-loaded="false"></iframe></section>
+  <section id="home" class="section-wrapper"><iframe class="section-frame" src="./section1.html" title="Afyuadri Putra — Hero" loading="eager" fetchpriority="high" data-section="section1" data-loaded="false"></iframe></section>
 
-<section id="work" class="section-wrapper"><iframe class="section-frame" src="./section2.html" title="Selected Work" loading="eager" data-section="section2" data-loaded="false"></iframe></section>
+  <section id="work" class="section-wrapper"><iframe class="section-frame" src="./section2.html" title="Selected Work" loading="eager" data-section="section2" data-loaded="false"></iframe></section>
 
-<section id="capabilities" class="section-wrapper"><iframe class="section-frame" src="./section3.html" title="Engineering Capabilities" loading="lazy" data-section="section3" data-loaded="false"></iframe></section>
+  <section id="capabilities" class="section-wrapper"><iframe class="section-frame" src="./section3.html" title="Engineering Capabilities" loading="lazy" data-section="section3" data-loaded="false"></iframe></section>
 
-<section id="ai-engineering" class="section-wrapper"><iframe class="section-frame" src="./section4.html" title="AI Engineering Edge" loading="lazy" data-section="section4" data-loaded="false"></iframe></section>
+  <section id="ai-engineering" class="section-wrapper"><iframe class="section-frame" src="./section4.html" title="AI Engineering Edge" loading="lazy" data-section="section4" data-loaded="false"></iframe></section>
 
-<section id="section-5" class="section-wrapper"><iframe class="section-frame" src="./section5.html" title="Portfolio Section Five" loading="lazy" data-section="section5" data-loaded="false"></iframe></section>
+  <section id="section-5" class="section-wrapper"><iframe class="section-frame" src="./section5.html" title="Portfolio Section Five" loading="lazy" data-section="section5" data-loaded="false"></iframe></section>
 
-<section id="more-work" class="section-wrapper"><iframe class="section-frame" src="./section6-work.html" title="More Selected Work" loading="lazy" data-section="section6-work" data-loaded="false"></iframe></section>
+  <section id="more-work" class="section-wrapper"><iframe class="section-frame" src="./section6-work.html" title="More Selected Work" loading="lazy" data-section="section6-work" data-loaded="false"></iframe></section>
 
-<section id="project-archive" class="section-wrapper"><iframe class="section-frame" src="./section6-archive.html" title="Project Archive" loading="lazy" data-section="section6-archive" data-loaded="false"></iframe></section>
+  <section id="project-archive" class="section-wrapper"><iframe class="section-frame" src="./section6-archive.html" title="Project Archive" loading="lazy" data-section="section6-archive" data-loaded="false"></iframe></section>
 
-<section id="contact" class="section-wrapper"><iframe class="section-frame" src="./section7.html" title="Contact Afyuadri Putra" loading="lazy" data-section="section7" data-loaded="false"></iframe></section>
+  <section id="contact" class="section-wrapper"><iframe class="section-frame" src="./section7.html" title="Contact Afyuadri Putra" loading="lazy" data-section="section7" data-loaded="false"></iframe></section>
 
 </main>
 
@@ -188,7 +1067,432 @@ updateStickyUI();
 
 const splash=document.getElementById("splash");
 setTimeout(()=>{splash.classList.add("is-hidden");setTimeout(()=>splash.remove(),400)},3000);
+
+
+
+/* =========================================================
+   BALMON PRESENTATION VIEWER
+========================================================= */
+
+const BALMON_SLIDES = Array.from(
+  { length: 10 },
+  (_, index) => `./balmon-ppt/${index + 1}.png`
+);
+
+const balmonTrigger = document.getElementById("balmon-deck-trigger");
+const balmonPresentation = document.getElementById("balmon-presentation");
+const balmonClose = document.getElementById("balmon-presentation-close");
+const balmonFullscreen = document.getElementById("balmon-fullscreen");
+
+const balmonPrev = document.getElementById("balmon-prev");
+const balmonNext = document.getElementById("balmon-next");
+
+const balmonImage = document.getElementById("balmon-slide-image");
+const balmonCounter = document.getElementById("balmon-slide-counter");
+const balmonLargeCurrent = document.getElementById("balmon-large-current");
+const balmonProgressBar = document.getElementById("balmon-progress-bar");
+
+const balmonThumbnails = document.getElementById("balmon-thumbnails");
+const balmonLoading = document.getElementById("balmon-slide-loading");
+
+let balmonCurrentSlide = 0;
+let balmonPreviousBodyOverflow = "";
+
+
+/* ---------------------------------------------------------
+   PRELOAD IMAGES
+--------------------------------------------------------- */
+
+const balmonPreloadedImages = BALMON_SLIDES.map(src => {
+  const img = new Image();
+  img.src = src;
+  return img;
+});
+
+
+/* ---------------------------------------------------------
+   CREATE THUMBNAILS
+--------------------------------------------------------- */
+
+BALMON_SLIDES.forEach((src, index) => {
+
+  const button = document.createElement("button");
+
+  button.type = "button";
+  button.className = "balmon-thumbnail";
+  button.dataset.slide = String(index);
+  button.setAttribute(
+    "aria-label",
+    `Open Balmon slide ${index + 1}`
+  );
+
+  button.innerHTML = `
+    <img
+      src="${src}"
+      alt="Balmon slide ${index + 1}"
+      loading="${index === 0 ? "eager" : "lazy"}"
+    >
+
+    <span class="balmon-thumbnail-number">
+      ${String(index + 1).padStart(2, "0")}
+    </span>
+  `;
+
+  button.addEventListener("click", () => {
+    showBalmonSlide(index);
+  });
+
+  balmonThumbnails.appendChild(button);
+});
+
+
+/* ---------------------------------------------------------
+   SHOW SLIDE
+--------------------------------------------------------- */
+
+function showBalmonSlide(index){
+
+  if(index < 0){
+    index = BALMON_SLIDES.length - 1;
+  }
+
+  if(index >= BALMON_SLIDES.length){
+    index = 0;
+  }
+
+  balmonCurrentSlide = index;
+
+  const slideNumber = index + 1;
+  const slideNumberText = String(slideNumber).padStart(2, "0");
+
+  balmonLoading.classList.add("is-visible");
+
+  const nextImage = new Image();
+
+  nextImage.onload = () => {
+
+    balmonImage.src = BALMON_SLIDES[index];
+
+    balmonImage.alt =
+      `Balmon presentation slide ${slideNumber}`;
+
+    balmonLargeCurrent.textContent =
+      slideNumberText;
+
+    balmonCounter.textContent =
+      `${slideNumberText} / ${String(BALMON_SLIDES.length).padStart(2, "0")}`;
+
+    balmonProgressBar.style.width =
+      `${(slideNumber / BALMON_SLIDES.length) * 100}%`;
+
+    balmonLoading.classList.remove("is-visible");
+
+    document
+      .querySelectorAll(".balmon-thumbnail")
+      .forEach((thumbnail, thumbnailIndex) => {
+
+        thumbnail.classList.toggle(
+          "is-active",
+          thumbnailIndex === index
+        );
+
+      });
+
+    const activeThumbnail =
+      balmonThumbnails.querySelector(
+        `.balmon-thumbnail[data-slide="${index}"]`
+      );
+
+    activeThumbnail?.scrollIntoView({
+      behavior:
+        window.matchMedia("(prefers-reduced-motion: reduce)").matches
+          ? "auto"
+          : "smooth",
+      inline:"center",
+      block:"nearest"
+    });
+
+    preloadAdjacentSlides(index);
+  };
+
+  nextImage.onerror = () => {
+    balmonLoading.innerHTML = `
+      <span></span>
+      <span>SLIDE NOT FOUND</span>
+    `;
+  };
+
+  nextImage.src = BALMON_SLIDES[index];
+}
+
+
+/* ---------------------------------------------------------
+   PRELOAD NEXT / PREVIOUS
+--------------------------------------------------------- */
+
+function preloadAdjacentSlides(index){
+
+  const nextIndex =
+    (index + 1) % BALMON_SLIDES.length;
+
+  const previousIndex =
+    (index - 1 + BALMON_SLIDES.length)
+    % BALMON_SLIDES.length;
+
+  balmonPreloadedImages[nextIndex];
+  balmonPreloadedImages[previousIndex];
+}
+
+
+/* ---------------------------------------------------------
+   OPEN
+--------------------------------------------------------- */
+
+function openBalmonPresentation(){
+
+  balmonPreviousBodyOverflow =
+    document.body.style.overflow;
+
+  document.body.style.overflow = "hidden";
+
+  balmonPresentation.classList.add("is-open");
+
+  balmonPresentation.setAttribute(
+    "aria-hidden",
+    "false"
+  );
+
+  balmonTrigger?.setAttribute(
+    "aria-expanded",
+    "true"
+  );
+
+  showBalmonSlide(balmonCurrentSlide);
+
+  requestAnimationFrame(() => {
+    balmonClose?.focus();
+  });
+}
+
+
+/* ---------------------------------------------------------
+   CLOSE
+--------------------------------------------------------- */
+
+function closeBalmonPresentation(){
+
+  balmonPresentation.classList.remove("is-open");
+
+  balmonPresentation.setAttribute(
+    "aria-hidden",
+    "true"
+  );
+
+  balmonTrigger?.setAttribute(
+    "aria-expanded",
+    "false"
+  );
+
+  document.body.style.overflow =
+    balmonPreviousBodyOverflow;
+
+  balmonTrigger?.focus();
+}
+
+
+/* ---------------------------------------------------------
+   NAVIGATION
+--------------------------------------------------------- */
+
+function showPreviousBalmonSlide(){
+  showBalmonSlide(balmonCurrentSlide - 1);
+}
+
+function showNextBalmonSlide(){
+  showBalmonSlide(balmonCurrentSlide + 1);
+}
+
+balmonTrigger?.addEventListener(
+  "click",
+  openBalmonPresentation
+);
+
+balmonClose?.addEventListener(
+  "click",
+  closeBalmonPresentation
+);
+
+balmonPrev?.addEventListener(
+  "click",
+  showPreviousBalmonSlide
+);
+
+balmonNext?.addEventListener(
+  "click",
+  showNextBalmonSlide
+);
+
+
+/* ---------------------------------------------------------
+   CLOSE WHEN BACKDROP IS CLICKED
+--------------------------------------------------------- */
+
+document
+  .querySelector(".balmon-presentation-backdrop")
+  ?.addEventListener(
+    "click",
+    closeBalmonPresentation
+  );
+
+
+/* ---------------------------------------------------------
+   KEYBOARD CONTROL
+--------------------------------------------------------- */
+
+document.addEventListener("keydown", event => {
+
+  if(
+    !balmonPresentation.classList.contains("is-open")
+  ){
+    return;
+  }
+
+  if(event.key === "Escape"){
+    event.preventDefault();
+    closeBalmonPresentation();
+    return;
+  }
+
+  if(event.key === "ArrowLeft"){
+    event.preventDefault();
+    showPreviousBalmonSlide();
+    return;
+  }
+
+  if(event.key === "ArrowRight"){
+    event.preventDefault();
+    showNextBalmonSlide();
+    return;
+  }
+});
+
+
+/* ---------------------------------------------------------
+   FULLSCREEN
+--------------------------------------------------------- */
+
+balmonFullscreen?.addEventListener(
+  "click",
+  async () => {
+
+    try{
+
+      if(!document.fullscreenElement){
+
+        await balmonPresentation.requestFullscreen();
+
+      }else{
+
+        await document.exitFullscreen();
+
+      }
+
+    }catch(error){
+
+      console.warn(
+        "Fullscreen is not available.",
+        error
+      );
+
+    }
+
+  }
+);
+
+
+/* ---------------------------------------------------------
+   ESCAPE FULLSCREEN STATE
+--------------------------------------------------------- */
+
+document.addEventListener(
+  "fullscreenchange",
+  () => {
+
+    if(
+      balmonFullscreen &&
+      document.fullscreenElement
+    ){
+
+      balmonFullscreen.setAttribute(
+        "aria-label",
+        "Exit fullscreen"
+      );
+
+    }else if(balmonFullscreen){
+
+      balmonFullscreen.setAttribute(
+        "aria-label",
+        "Toggle fullscreen"
+      );
+
+    }
+
+  }
+);
+
+
+/* ---------------------------------------------------------
+   SWIPE SUPPORT — MOBILE
+--------------------------------------------------------- */
+
+let balmonTouchStartX = 0;
+let balmonTouchEndX = 0;
+
+balmonPresentation.addEventListener(
+  "touchstart",
+  event => {
+
+    balmonTouchStartX =
+      event.changedTouches[0].screenX;
+
+  },
+  { passive:true }
+);
+
+balmonPresentation.addEventListener(
+  "touchend",
+  event => {
+
+    balmonTouchEndX =
+      event.changedTouches[0].screenX;
+
+    const distance =
+      balmonTouchEndX - balmonTouchStartX;
+
+    if(Math.abs(distance) < 50){
+      return;
+    }
+
+    if(distance < 0){
+      showNextBalmonSlide();
+    }else{
+      showPreviousBalmonSlide();
+    }
+
+  },
+  { passive:true }
+);
+
+
+/* ---------------------------------------------------------
+   INITIAL STATE
+--------------------------------------------------------- */
+
+showBalmonSlide(0);
+
 </script>
+
+
 
 <script src="./i18n.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/flowbite@3.1.2/dist/flowbite.min.js"></script>
